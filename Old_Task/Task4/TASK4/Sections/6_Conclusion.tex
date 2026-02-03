@@ -1,0 +1,21 @@
+\section{Conclusion}
+
+The comprehensive evaluation conducted in Task 4 demonstrates that deterministic gradient-based optimization is the superior paradigm for engineering problems characterized by smooth, differentiable constitutive equations. The BFGS algorithm, when properly parameterized, outperforms stochastic metaheuristics in terms of convergence speed, solution accuracy, and computational efficiency, as evidenced by the optimal 16.37 kg design of the Two-Bar Truss.
+
+However, this superiority is not unconditional. It is predicated on the validity of the gradient. The breakdown of BFGS under function noise and the necessity for precise penalty tuning highlight the algorithm's lack of inherent robustness compared to the "rough-terrain" capabilities of Simulated Annealing. Therefore, the future of robust engineering optimization lies not in the dogmatic adherence to one class of algorithms, but in hybrid architectures that couple the exploration resilience of metaheuristics with the exploitation power of quasi-Newton updates. By integrating these approaches, engineers can navigate the noisy, constrained, and high-dimensional landscapes of modern design with both confidence and precision.
+
+\begin{table}[H]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{|l|l|l|}
+    \hline
+    \textbf{Problem Characteristic} & \textbf{Recommended Algorithm} & \textbf{Reason} \\ \hline
+    Smooth, Constrained (Truss) & BFGS & Explored gradients for 66\% weight saving. \\ \hline
+    Smooth, Noisy Data (Calibration) & BFGS & Averaging effect preserves gradient validity. \\ \hline
+    Non-Smooth / Function Noise & Hybrid (SA + BFGS) & SA escapes noise traps; BFGS refines. \\ \hline
+    Discrete Ordered (Gears) & Relaxed BFGS & Fast convergence to basin of attraction \\ \hline
+    \end{tabular}
+    }
+    \caption{Final Summary of Algorithm Applicability}
+    \label{tab:conclusion_summary}
+\end{table}

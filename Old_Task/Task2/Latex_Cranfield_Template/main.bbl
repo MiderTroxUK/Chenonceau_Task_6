@@ -1,0 +1,144 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{hoarauTask1}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=ed973b2751c565a5cce841c0164ffea5}{%
+           family={Hoarau},
+           familyi={H\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{ed973b2751c565a5cce841c0164ffea5}
+      \strng{fullhash}{ed973b2751c565a5cce841c0164ffea5}
+      \strng{fullhashraw}{ed973b2751c565a5cce841c0164ffea5}
+      \strng{bibnamehash}{ed973b2751c565a5cce841c0164ffea5}
+      \strng{authorbibnamehash}{ed973b2751c565a5cce841c0164ffea5}
+      \strng{authornamehash}{ed973b2751c565a5cce841c0164ffea5}
+      \strng{authorfullhash}{ed973b2751c565a5cce841c0164ffea5}
+      \strng{authorfullhashraw}{ed973b2751c565a5cce841c0164ffea5}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Submitted to Cranfield University}
+      \field{title}{Task 1: Individual Report}
+      \field{year}{2025}
+    \endentry
+    \entry{harambatTask1}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=3626678c2852e41d1072fe506bd8fb5b}{%
+           family={Harambat},
+           familyi={H\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{3626678c2852e41d1072fe506bd8fb5b}
+      \strng{fullhash}{3626678c2852e41d1072fe506bd8fb5b}
+      \strng{fullhashraw}{3626678c2852e41d1072fe506bd8fb5b}
+      \strng{bibnamehash}{3626678c2852e41d1072fe506bd8fb5b}
+      \strng{authorbibnamehash}{3626678c2852e41d1072fe506bd8fb5b}
+      \strng{authornamehash}{3626678c2852e41d1072fe506bd8fb5b}
+      \strng{authorfullhash}{3626678c2852e41d1072fe506bd8fb5b}
+      \strng{authorfullhashraw}{3626678c2852e41d1072fe506bd8fb5b}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Submitted to Cranfield University}
+      \field{title}{Task 1: Individual Report}
+      \field{year}{2025}
+    \endentry
+    \entry{phillips2025brief}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=3b7a64fc894e1aee2d5038a2c4dbdb5e}{%
+           family={Phillips},
+           familyi={P\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{3b7a64fc894e1aee2d5038a2c4dbdb5e}
+      \strng{fullhash}{3b7a64fc894e1aee2d5038a2c4dbdb5e}
+      \strng{fullhashraw}{3b7a64fc894e1aee2d5038a2c4dbdb5e}
+      \strng{bibnamehash}{3b7a64fc894e1aee2d5038a2c4dbdb5e}
+      \strng{authorbibnamehash}{3b7a64fc894e1aee2d5038a2c4dbdb5e}
+      \strng{authornamehash}{3b7a64fc894e1aee2d5038a2c4dbdb5e}
+      \strng{authorfullhash}{3b7a64fc894e1aee2d5038a2c4dbdb5e}
+      \strng{authorfullhashraw}{3b7a64fc894e1aee2d5038a2c4dbdb5e}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{10}
+      \field{note}{Module Brief}
+      \field{title}{Group Project Spring 2026: MSc in Computational \& Software Techniques in Engineering}
+      \field{year}{2025}
+    \endentry
+    \entry{bedruneTask1}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=113ec34deb44cdcf94673e7d8356feb7}{%
+           family={Bédrune},
+           familyi={B\bibinitperiod},
+           given={Pierre},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{113ec34deb44cdcf94673e7d8356feb7}
+      \strng{fullhash}{113ec34deb44cdcf94673e7d8356feb7}
+      \strng{fullhashraw}{113ec34deb44cdcf94673e7d8356feb7}
+      \strng{bibnamehash}{113ec34deb44cdcf94673e7d8356feb7}
+      \strng{authorbibnamehash}{113ec34deb44cdcf94673e7d8356feb7}
+      \strng{authornamehash}{113ec34deb44cdcf94673e7d8356feb7}
+      \strng{authorfullhash}{113ec34deb44cdcf94673e7d8356feb7}
+      \strng{authorfullhashraw}{113ec34deb44cdcf94673e7d8356feb7}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Submitted to Cranfield University}
+      \field{title}{Task 1: Individual Report}
+      \field{year}{2025}
+    \endentry
+    \entry{hinotTask1}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=d3a0b831107c93604b607618c01b0bf0}{%
+           family={{Clémence-Philomène Hinot}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{d3a0b831107c93604b607618c01b0bf0}
+      \strng{fullhash}{d3a0b831107c93604b607618c01b0bf0}
+      \strng{fullhashraw}{d3a0b831107c93604b607618c01b0bf0}
+      \strng{bibnamehash}{d3a0b831107c93604b607618c01b0bf0}
+      \strng{authorbibnamehash}{d3a0b831107c93604b607618c01b0bf0}
+      \strng{authornamehash}{d3a0b831107c93604b607618c01b0bf0}
+      \strng{authorfullhash}{d3a0b831107c93604b607618c01b0bf0}
+      \strng{authorfullhashraw}{d3a0b831107c93604b607618c01b0bf0}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Submitted to Cranfield University}
+      \field{title}{Task 1: Individual Report}
+      \field{year}{2025}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

@@ -1,0 +1,104 @@
+\documentclass[12pt]{article}
+\usepackage{listings} % Include the listings package
+\usepackage[T1]{fontenc} % Add the fontenc package with T1 encoding
+\usepackage{subcaption}
+
+\PassOptionsToPackage{maxbibnames=99}{biblatex}
+\usepackage{./Layout/EngReport}
+\usepackage{indentfirst}
+\addbibresource{./Layout/Sources.bib}
+
+\graphicspath{{Images/}}
+%\bibliography{./Layout/Sources}
+\onehalfspacing
+\graphicspath{{Images/}{Images/GearTrainDesign/}{Images/Sensor Calibration/}{Images/Two Truss/}}
+\geometry{letterpaper, portrait, includeheadfoot=true, hmargin=1in, vmargin=1in}
+
+% Fix header height warning
+\setlength{\headheight}{35pt}
+
+% Configure listings to handle UTF-8 characters properly
+\lstset{
+	inputencoding=utf8,
+	extendedchars=true,
+	literate=
+	{°}{{$^\circ$}}1
+	{α}{{$\alpha$}}1
+	{σ}{{$\sigma$}}1
+	{∇}{{$\nabla$}}1
+	{≈}{{$\approx$}}1
+	{≤}{{$\leq$}}1
+	{≥}{{$\geq$}}1
+	{→}{{$\rightarrow$}}1
+	{←}{{$\leftarrow$}}1
+	{✓}{{\checkmark}}1
+	{✗}{{$\times$}}1
+	{—}{{---}}1
+	{–}{{--}}1
+	{²}{{$^2$}}1
+	{₀}{{$_0$}}1
+	{₁}{{$_1$}}1
+	{₂}{{$_2$}}1
+	{ᵀ}{{$^T$}}1
+	{·}{{$\cdot$}}1
+	{×}{{$\times$}}1
+	{ρ}{{$\rho$}}1
+	{β}{{$\beta$}}1
+	{ε}{{$\varepsilon$}}1
+	{∂}{{$\partial$}}1
+	{∞}{{$\infty$}}1
+	{É}{{\'E}}1
+	{é}{{\'e}}1
+	{è}{{\`e}}1
+	{ê}{{\^e}}1
+	{à}{{\`a}}1
+	{â}{{\^a}}1
+	{ù}{{\`u}}1
+	{û}{{\^u}}1
+	{î}{{\^i}}1
+	{ï}{{\"i}}1
+	{ô}{{\^o}}1
+	{ç}{{\c{c}}}1
+}
+
+%\fontsize{font size}{vertsize (usually 1.2x)}\selectfont
+
+\begin{document}
+	\renewcommand{\familydefault}{\rmdefault}
+	
+	\input{./Layout/titlepage}
+	\input{./Layout/headerfooter}
+	\tableofcontents
+	\pagebreak
+	
+	\fontsize{12}{20}\selectfont{
+		
+		\input{./Sections/1_Introduction}
+		\pagebreak
+		
+		\input{./Sections/2_Methodology}
+		\pagebreak
+		
+		\input{./Sections/5_Problem3_GearTrain}
+		\pagebreak
+		
+		\input{./Sections/4_Problem2_Sensor}
+		\pagebreak
+		
+		\input{./Sections/3_Problem1_Truss}
+		\pagebreak
+		
+		\input{./Sections/6_Comparison}
+		\pagebreak
+		
+		\input{./Sections/6_Conclusion}
+		\pagebreak
+		
+		%\input{./Sections/7_References}
+		\printbibliography[heading=bibintoc, title={References}]
+		\pagebreak
+		
+		\input{./Sections/N_Appendix}
+		\pagebreak
+	}
+\end{document}

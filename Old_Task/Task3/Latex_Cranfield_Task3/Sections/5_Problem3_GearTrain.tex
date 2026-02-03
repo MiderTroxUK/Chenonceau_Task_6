@@ -1,0 +1,135 @@
+\section{Problem 3: Gear Train Design}
+
+\subsection{Problem description}
+The objective of this exercise is to choose a gear train design that achieves a specific transmission ratio.
+We would define the gear train with four gears with the numbers of teeth $N_1, N_2, N_3, N_4$.
+The target transmission ratio is:
+\begin{equation}
+R = \frac{N_2 \cdot N_4}{N_1 \cdot N_3}
+\end{equation}
+(Note: Standard formulation is usually $\frac{product\ driven}{product\ drivers}$ or similar. The equation in text is $R=(N2 N4)/(N1 N3)$ or $f(N) = (N1 N3)/(N2 N4)$. I will use the cost function definition for consistency: $Target \approx 1/6.931 \approx 0.144$).
+
+Here, the target transmission ratio will be randomly chosen: $R_{target} = 1/6.931 \approx 0.1442793$.
+And each gear must have an integer number of teeth between 12 and 60.
+The problem is difficult because the search space is discrete and nonlinear, meaning classical optimization cannot be used directly.
+Therefore, two heuristic optimization algorithms will be tested:
+\begin{itemize}
+    \item Particle Swarm Optimization (PSO)
+    \item Simulated Annealing (SA)
+\end{itemize}
+The goal is to compare their performance and their behavior on this discrete optimization problem.
+
+\subsection{Cost function}
+The cost function measures the error between the achieved ratio and the target ratio:
+\begin{equation}
+f(N_1,N_2,N_3,N_4) = \left| \frac{N_1 \times N_3}{N_2 \times N_4} - R_{target} \right|
+\end{equation}
+A good solution is one where this error approaches zero.
+
+\subsection{Sources}
+Course material on PSO and Simulated Annealing.
+
+\subsection{Methodology}
+
+\textbf{Particle Swarm Optimization:}
+It simulates a swarm of particles exploring the search space. Each particle represents a potential gear combination $[N_1,N_2,N_3,N_4]$.
+Particles move according to:
+\begin{itemize}
+    \item Their own best-found solution
+    \item The best solution found by the swarm
+\end{itemize}
+Positions are rounded to integers to satisfy the gear teeth constraint as we can’t make gears with an odd number of teeth.
+We store the best error at each iteration to generate a convergence curve like we did for the SA.
+
+\textbf{Simulated Annealing:}
+It explores the space by randomly perturbing the current solution. It accepts worse solutions with a probability depending on analogy to a temperature parameter:
+\begin{itemize}
+    \item With high temperature goes a wide exploration
+    \item Low temperature goes a convergence around a good solution
+\end{itemize}
+The algorithm stops when the temperature becomes very low. We record both the current energy and the best energy to produce a convergence curve.
+
+\subsection{Settings}
+
+\textbf{PSO}
+\begin{itemize}
+    \item Population size: 40
+    \item Iterations: 300
+    \item $w=0.7, C_1=1.5, C_2=1.5$
+    \item Integer rounding of particle positions
+    \item Recorded global best error per iteration (for convergence curve)
+\end{itemize}
+
+\textbf{SA}
+\begin{itemize}
+    \item Initial temperature: 1000
+    \item Cooling rate: 0.90
+    \item Minimum temperature: 0.1
+    \item Random seed: 42
+    \item Recorded: Current energy / Best energy (for convergence curve)
+\end{itemize}
+
+\subsection{Results}
+
+\subsubsection{Results analysis}
+The optimal solution found by the Particle Swarm Optimization is:
+
+\textbf{PSO Results:}
+PSO finds an extremely accurate gear ratio, with an error on the order of $10^{-5}$, meaning it almost exactly matches the target ratio.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Gear_Train_PSO_Convergence.png}
+    \caption{PSO Convergence curve}
+\end{figure}
+
+The graph shows that PSO converges extremely quickly within $\approx 10$ iterations and then stabilizes at a very small error value.
+
+And the result found by the Simulated Annealing (Solid Annealing) is:
+
+\textbf{SA Results:}
+SA clearly fails on this problem. The final ratio is far from the target, with a very large error.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Gear_Train_SA_Convergence.png}
+    \caption{SA Convergence Curve}
+\end{figure}
+
+The plot shows:
+\begin{itemize}
+    \item Highly unstable exploration, current energy jumps up and down
+    \item Best energy stays flat because the algorithm never discovers a good solution
+    \item Cooling happens too fast to explore thoroughly
+\end{itemize}
+
+\subsubsection{Explanations}
+
+\textbf{Why PSO succeeds}
+\begin{itemize}
+    \item PSO is particularly effective in structured continuous search spaces, even with integer rounding.
+    \item The particles rapidly converge to the correct ratio because the cost function is smooth.
+    \item Global and personal best mechanisms guide the search efficiently.
+\end{itemize}
+
+\textbf{Why SA fails}
+\begin{itemize}
+    \item The gear train problem is very sensitive: small changes in $N_i$ produce large jumps in the ratio.
+    \item SA explores randomly and relies on thermal acceptance, which:
+    \begin{itemize}
+        \item Moves too chaotically
+        \item Does not exploit promising regions enough
+        \item Requires much slower cooling to perform well
+    \end{itemize}
+    \item SA found a physically valid gear set but not even close to the desired ratio.
+\end{itemize}
+
+\subsubsection{Conclusion}
+PSO is clearly the superior method for this task. It finds a nearly perfect solution extremely fast, while SA remains stuck far away from any optimal region.
+For a future study, SA could be improved by:
+\begin{itemize}
+    \item Reducing the cooling rate from 0.99 to 0.90 for example
+    \item Using a smarter neighbour generator
+    \item Introducing integer-specific heuristics
+\end{itemize}
+But in its current form, SA is not suitable for this optimisation problem.

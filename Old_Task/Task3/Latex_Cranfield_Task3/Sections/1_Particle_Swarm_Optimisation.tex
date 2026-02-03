@@ -1,0 +1,73 @@
+\section{Method 1: Particle Swarm Optimisation}
+
+\subsection{Source choice}
+
+To implement the Particle Swarm optimisation, a list of criteria with weight is established.
+
+\begin{table}[h!]
+\centering
+\caption{Criteria for selecting the solution for coding Particle Swarm Optimisation}
+\begin{tabular}{|p{4cm}|p{8cm}|c|}
+\hline
+\textbf{Criteria} & \textbf{Description} & \textbf{Weight} \\ \hline
+Objective handling capability & Ability to handle both single-objective and multi-objective optimisation problems & 6 \\ \hline
+Method sophistication & Use of advanced optimisation methods rather than basic scalarisation approaches & 4 \\ \hline
+Academic research fit & Suitability and alignment with academic research requirements & 1 \\ \hline
+Algorithm performance & Quality and effectiveness of the optimisation algorithms & 3 \\ \hline
+Swarm-based approach & Use of particle swarm optimisation methodology & 5 \\ \hline
+Documentation & Good documentation of the solution & 2 \\ \hline
+\end{tabular}
+\end{table}
+
+GitHub repositories propose solutions but it doesn't respond to the need. The searches are therefore concentrated on libraries.
+
+\begin{table}[h!]
+\centering
+\caption{Ranking of possible solutions}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+\textbf{Solution} & \textbf{Method} & \textbf{Obj. Cap.} & \textbf{Sophist.} & \textbf{Acad. Fit} & \textbf{Perf.} & \textbf{Swarm} & \textbf{Doc.} \\ \hline
+Pymoo library & COMPSO method & 6 & 4 & 1 & 3 & 5 & 2 \\ \hline
+ & MOPSO-CD method & 6 & 4 & 1 & 2 & 5 & 2 \\ \hline
+ & NSGA-III & 6 & 4 & 1 & 3 & 0 & 2 \\ \hline
+ & NSGA-II & 6 & 4 & 1 & 3 & 0 & 2 \\ \hline
+ & R-NSGA-II & 6 & 4 & 1 & 3 & 0 & 2 \\ \hline
+Platypus library & NSGA-II & 6 & 4 & 0 & 3 & 0 & 1 \\ \hline
+ & MOEA/D & 6 & 4 & 0 & 3 & 0 & 1 \\ \hline
+Custom MOPSO & - & 6 & 4 & 0 & 2 & 5 & 0 \\ \hline
+PySwarms library & Weighted sum & 3 & 0 & 0 & 1 & 5 & 2 \\ \hline
+ & Epsilon-constraint & 3 & 2 & 0 & 1 & 5 & 2 \\ \hline
+\end{tabular}
+}
+\end{table}
+
+According to Table 2, the best library is Pymoo and the best algorithm solution is COMPSO method.
+
+\subsection{Algorithm}
+
+\subsubsection{General description}
+
+The Particle Swarm Optimisation (PSO) is a stochastic optimisation technique inspired by the social behaviour of birds. A population of candidate solutions moves through the domain. Through several time steps, each particle adjusts its position based on its personal best and on the global best. This allows the algorithm to converge to a solution that matches a criterion.
+
+The multi-objective PSO finds Pareto-optimal solutions using a selection based on dominance and diversity. It presents advantages such as an ease of implementation, few parameters to tune, and a good application for nonlinear problems; but also, limitations such as a possible too early convergence, a sensitivity to parameters settings, and no guarantee of global optimum.
+
+The MOPSO-CD (Multi-Objective Particle Swarm Optimisation with Crowding Distance) is an advanced extension of the PSO. Its key features are:
+\begin{itemize}
+    \item Crowding distance-based leader selection,
+    \item External archive management,
+    \item Tournament selection,
+    \item Enhanced exploration.
+\end{itemize}
+
+\subsection{Source code}
+
+The multi-objective script is based on the pymoo library: \url{https://pymoo.org/}. The script is written from it and arranged by Clémence-Philomène Hinot with the help of the AI Claude.
+
+\subsection{Sources}
+
+\begin{enumerate}
+    \item Riaz A. Computational Optimisation Design Lecture 2 [Internet]. Lecture presented at: Computational Optimisation Design. 2025 [cited 2025 Oct 21]. Available from: \url{https://canvas.cranfield.ac.uk/courses/37635/pages/day-2?module_item_id=737718}
+    \item Riaz A. Computational Optimisation Design Lecture 3 [Internet]. Lecture presented at: Computational Optimisation Design. 2025 [cited 2025 Oct 22]. Available from: \url{https://canvas.cranfield.ac.uk/courses/37635/pages/day-3?module_item_id=737719}
+    \item Blank J. MOPSO-CD: Multi-Objective Particle Swarm Optimization with Crowding Distance [Internet]. Pymoo library. 2020 [cited 2025 Dec 9]. Available from: \url{https://pymoo.org/algorithms/moo/mopso\_cd.html}
+\end{enumerate}

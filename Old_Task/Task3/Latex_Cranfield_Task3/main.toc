@@ -1,0 +1,41 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {section}{\numberline {2}Methodology and Algorithms}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Method 1: Particle Swarm Optimisation (PSO)}{4}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Multi-objective algorithm}{4}{subsubsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.2}Method 2: Simulated Annealing (SA)}{5}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Problem 1: Two-Bar Plane Truss Design}{8}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Problem description}{8}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Methodology}{9}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}General explanation}{9}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Penalty function}{9}{subsubsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.3}Results}{10}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}PSO simulation}{10}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}SA simulation}{13}{subsubsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.4}Discussion}{16}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Problem 2: Sensor Calibration}{17}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Problem description}{17}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Cost function}{18}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Methodology}{18}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Settings}{18}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Result}{19}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Work discussion}{20}{subsection.4.6}%
+\contentsline {section}{\numberline {5}Problem 3: Gear Train Design}{21}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Problem description}{21}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Cost function}{22}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Sources}{22}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Methodology}{22}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Settings}{23}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Results}{24}{subsection.5.6}%
+\contentsline {subsubsection}{\numberline {5.6.1}Results analysis}{24}{subsubsection.5.6.1}%
+\contentsline {subsubsection}{\numberline {5.6.2}Explanations}{25}{subsubsection.5.6.2}%
+\contentsline {subsubsection}{\numberline {5.6.3}Conclusion}{26}{subsubsection.5.6.3}%
+\contentsline {section}{\numberline {6}General Conclusion}{27}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Performance Comparison}{27}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Hyperparameter Sensitivity and Robustness}{27}{subsection.6.2}%
+\contentsline {section}{\numberline {7}References}{30}{section.7}%
+\contentsline {section}{\numberline {8}Appendix: Python Code}{31}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Two-Bar Plane Truss Problem Definition}{31}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}PSO Simulation Script (Truss)}{37}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Steinhart-Hart Problem Definition}{56}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Simulated Annealing Class}{62}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.5}Gear Train Problem and Runner}{71}{subsection.8.5}%

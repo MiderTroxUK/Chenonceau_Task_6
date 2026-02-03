@@ -1,0 +1,271 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{fletcher1970}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=97f8f840c3f242a2ae286e30b4dfd9cc}{%
+           family={Fletcher},
+           familyi={F\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{97f8f840c3f242a2ae286e30b4dfd9cc}
+      \strng{fullhash}{97f8f840c3f242a2ae286e30b4dfd9cc}
+      \strng{fullhashraw}{97f8f840c3f242a2ae286e30b4dfd9cc}
+      \strng{bibnamehash}{97f8f840c3f242a2ae286e30b4dfd9cc}
+      \strng{authorbibnamehash}{97f8f840c3f242a2ae286e30b4dfd9cc}
+      \strng{authornamehash}{97f8f840c3f242a2ae286e30b4dfd9cc}
+      \strng{authorfullhash}{97f8f840c3f242a2ae286e30b4dfd9cc}
+      \strng{authorfullhashraw}{97f8f840c3f242a2ae286e30b4dfd9cc}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Computer Journal}
+      \field{title}{A new approach to variable metric algorithms}
+      \field{year}{1970}
+    \endentry
+    \entry{shanno1970}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=d7fe0371d0b85929954b446f717f77d1}{%
+           family={Shanno},
+           familyi={S\bibinitperiod},
+           given={D.F.},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{d7fe0371d0b85929954b446f717f77d1}
+      \strng{fullhash}{d7fe0371d0b85929954b446f717f77d1}
+      \strng{fullhashraw}{d7fe0371d0b85929954b446f717f77d1}
+      \strng{bibnamehash}{d7fe0371d0b85929954b446f717f77d1}
+      \strng{authorbibnamehash}{d7fe0371d0b85929954b446f717f77d1}
+      \strng{authornamehash}{d7fe0371d0b85929954b446f717f77d1}
+      \strng{authorfullhash}{d7fe0371d0b85929954b446f717f77d1}
+      \strng{authorfullhashraw}{d7fe0371d0b85929954b446f717f77d1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mathematics of Computation}
+      \field{title}{Conditioning of quasi Newton methods for function minimisation}
+      \field{year}{1970}
+    \endentry
+    \entry{nocedalwright1999}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=a375d39ab0f7a753973e8e3564576d56}{%
+           family={Nocedal},
+           familyi={N\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=cb09a7decd6b998193e06f6cf7e9ca80}{%
+           family={Wright},
+           familyi={W\bibinitperiod},
+           given={S.J.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{33210b6e8b98605197dfd92b5b9d9626}
+      \strng{fullhash}{33210b6e8b98605197dfd92b5b9d9626}
+      \strng{fullhashraw}{33210b6e8b98605197dfd92b5b9d9626}
+      \strng{bibnamehash}{33210b6e8b98605197dfd92b5b9d9626}
+      \strng{authorbibnamehash}{33210b6e8b98605197dfd92b5b9d9626}
+      \strng{authornamehash}{33210b6e8b98605197dfd92b5b9d9626}
+      \strng{authorfullhash}{33210b6e8b98605197dfd92b5b9d9626}
+      \strng{authorfullhashraw}{33210b6e8b98605197dfd92b5b9d9626}
+      \field{extraname}{1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Numerical Optimization}
+      \field{year}{1999}
+    \endentry
+    \entry{dolan2002}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=888ad0047b3dd3377ac1942d3bf3b58b}{%
+           family={Dolan},
+           familyi={D\bibinitperiod},
+           given={E.D.},
+           giveni={E\bibinitperiod}}}%
+        {{hash=b2d71d8527c057925638398448e7e2dc}{%
+           family={Moré},
+           familyi={M\bibinitperiod},
+           given={J.J.},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{10d8f86883b5d7d5c9a28200d09c6eb6}
+      \strng{fullhash}{10d8f86883b5d7d5c9a28200d09c6eb6}
+      \strng{fullhashraw}{10d8f86883b5d7d5c9a28200d09c6eb6}
+      \strng{bibnamehash}{10d8f86883b5d7d5c9a28200d09c6eb6}
+      \strng{authorbibnamehash}{10d8f86883b5d7d5c9a28200d09c6eb6}
+      \strng{authornamehash}{10d8f86883b5d7d5c9a28200d09c6eb6}
+      \strng{authorfullhash}{10d8f86883b5d7d5c9a28200d09c6eb6}
+      \strng{authorfullhashraw}{10d8f86883b5d7d5c9a28200d09c6eb6}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mathematical Programming}
+      \field{number}{2}
+      \field{title}{Benchmarking optimization software with performance profiles}
+      \field{volume}{91}
+      \field{year}{2002}
+      \field{pages}{201\bibrangedash 213}
+      \range{pages}{13}
+    \endentry
+    \entry{rao2019}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=fa78be6982b583fdb8885520384a53d6}{%
+           family={Rao},
+           familyi={R\bibinitperiod},
+           given={S.S.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {John Wiley \& Sons}%
+      }
+      \strng{namehash}{fa78be6982b583fdb8885520384a53d6}
+      \strng{fullhash}{fa78be6982b583fdb8885520384a53d6}
+      \strng{fullhashraw}{fa78be6982b583fdb8885520384a53d6}
+      \strng{bibnamehash}{fa78be6982b583fdb8885520384a53d6}
+      \strng{authorbibnamehash}{fa78be6982b583fdb8885520384a53d6}
+      \strng{authornamehash}{fa78be6982b583fdb8885520384a53d6}
+      \strng{authorfullhash}{fa78be6982b583fdb8885520384a53d6}
+      \strng{authorfullhashraw}{fa78be6982b583fdb8885520384a53d6}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{5th}
+      \field{title}{Engineering Optimization: Theory and Practice}
+      \field{year}{2019}
+    \endentry
+    \entry{bishop2006}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=1926457ebcacd352693574a2d8d484ce}{%
+           family={Bishop},
+           familyi={B\bibinitperiod},
+           given={C.M.},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{1926457ebcacd352693574a2d8d484ce}
+      \strng{fullhash}{1926457ebcacd352693574a2d8d484ce}
+      \strng{fullhashraw}{1926457ebcacd352693574a2d8d484ce}
+      \strng{bibnamehash}{1926457ebcacd352693574a2d8d484ce}
+      \strng{authorbibnamehash}{1926457ebcacd352693574a2d8d484ce}
+      \strng{authornamehash}{1926457ebcacd352693574a2d8d484ce}
+      \strng{authorfullhash}{1926457ebcacd352693574a2d8d484ce}
+      \strng{authorfullhashraw}{1926457ebcacd352693574a2d8d484ce}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Chapter 3: Linear Models for Regression}
+      \field{title}{Pattern Recognition and Machine Learning}
+      \field{year}{2006}
+    \endentry
+    \entry{nocedalwright2006}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=a375d39ab0f7a753973e8e3564576d56}{%
+           family={Nocedal},
+           familyi={N\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=cb09a7decd6b998193e06f6cf7e9ca80}{%
+           family={Wright},
+           familyi={W\bibinitperiod},
+           given={S.J.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{33210b6e8b98605197dfd92b5b9d9626}
+      \strng{fullhash}{33210b6e8b98605197dfd92b5b9d9626}
+      \strng{fullhashraw}{33210b6e8b98605197dfd92b5b9d9626}
+      \strng{bibnamehash}{33210b6e8b98605197dfd92b5b9d9626}
+      \strng{authorbibnamehash}{33210b6e8b98605197dfd92b5b9d9626}
+      \strng{authornamehash}{33210b6e8b98605197dfd92b5b9d9626}
+      \strng{authorfullhash}{33210b6e8b98605197dfd92b5b9d9626}
+      \strng{authorfullhashraw}{33210b6e8b98605197dfd92b5b9d9626}
+      \field{extraname}{2}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2nd}
+      \field{note}{Chapter 6: Quasi-Newton Methods}
+      \field{title}{Numerical Optimization}
+      \field{year}{2006}
+    \endentry
+    \entry{task3report}{report}{}{}
+      \name{author}{4}{}{%
+        {{hash=05a41cdcd8c927db252f3f3f7ad3d312}{%
+           family={Hoarau},
+           familyi={H\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=a27d923d92045d4229e511decb609efb}{%
+           family={Harambat},
+           familyi={H\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=4cc280e49ed36ea8891b6b0200c05117}{%
+           family={Bédrune},
+           familyi={B\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=8c02777217a1bf520f2844d981d732c8}{%
+           family={Hinot},
+           familyi={H\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Cranfield University}%
+      }
+      \strng{namehash}{64907070180ba57163f8ec7ff1a5a4c4}
+      \strng{fullhash}{209af48b21271fb9876be2c6912c7163}
+      \strng{fullhashraw}{209af48b21271fb9876be2c6912c7163}
+      \strng{bibnamehash}{209af48b21271fb9876be2c6912c7163}
+      \strng{authorbibnamehash}{209af48b21271fb9876be2c6912c7163}
+      \strng{authornamehash}{64907070180ba57163f8ec7ff1a5a4c4}
+      \strng{authorfullhash}{209af48b21271fb9876be2c6912c7163}
+      \strng{authorfullhashraw}{209af48b21271fb9876be2c6912c7163}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Task 3: Optimisation Project Group Report}
+      \field{type}{techreport}
+      \field{year}{2025}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

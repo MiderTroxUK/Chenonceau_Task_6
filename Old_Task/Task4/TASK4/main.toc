@@ -1,0 +1,62 @@
+\contentsline {section}{\numberline {1}Introduction}{4}{section.1}%
+\contentsline {section}{\numberline {2}Quasi-Newton BFGS}{6}{section.2}%
+\contentsline {subsection}{\numberline {2.1}General explanation}{6}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Mathematical approach}{6}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Gear Train Design problem}{8}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Method}{8}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Continuous formulation of the gear train design}{8}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Deterministic optimisation with BFGS}{8}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}Noise robustness protocol}{9}{subsubsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.2}Results}{9}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Convergence of the noise-free continuous problem}{9}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Effect of noise on convergence reliability}{12}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Degradation of continuous solution quality}{13}{subsubsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.4}Discrete solution and computational effort}{15}{subsubsection.3.2.4}%
+\contentsline {subsubsection}{\numberline {3.2.5}Supplementary analysis of noise effect}{16}{subsubsection.3.2.5}%
+\contentsline {subsection}{\numberline {3.3}Discussion}{17}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Sensor Calibration problem}{19}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Problem Description}{19}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Method}{19}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Results}{21}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}Exploration of Performance (Protocol A \& B)}{21}{subsubsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.2}Exploration of Robustness (Protocol C)}{24}{subsubsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.3}The Performance Profile (Dolan-More)}{26}{subsubsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.4}Discussion: Algorithmic Sensitivity \& Robustness}{27}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Computational Efficiency vs. Redundancy (Protocol A)}{27}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}Robustness to Noise Topologies}{27}{subsubsection.4.4.2}%
+\contentsline {section}{\numberline {5}Two Bar Plane Truss Design problem}{29}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Problem Description}{29}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Method}{30}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Exploration of the BFGS parameters}{30}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}Exploration of noise effects}{33}{subsubsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.3}Results}{36}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}Exploration of the BFGS parameters}{36}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}Exploration of noise effects}{42}{subsubsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.4}Discussion}{45}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}Parameter exploration results discussion}{45}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}Noise exploration results discussion}{46}{subsubsection.5.4.2}%
+\contentsline {subsubsection}{\numberline {5.4.3}Work discussion}{47}{subsubsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.5}Comparison with the task 3}{49}{subsection.5.5}%
+\contentsline {section}{\numberline {6}Comparison with the task 3}{50}{section.6}%
+\contentsline {section}{\numberline {7}Conclusion}{51}{section.7}%
+\contentsline {section}{References}{52}{section*.38}%
+\contentsline {section}{\numberline {A}Code Listings}{53}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Sensor Calibration problem}{53}{subsection.A.1}%
+\contentsline {subsubsection}{\numberline {A.1.1}Sensor Calibration Script (run\_task4.py)}{53}{subsubsection.A.1.1}%
+\contentsline {subsubsection}{\numberline {A.1.2}BFGS Implementation (steinhart\_hart\_bfgs.py)}{63}{subsubsection.A.1.2}%
+\contentsline {subsection}{\numberline {A.2}Gear Train problem}{70}{subsection.A.2}%
+\contentsline {subsubsection}{\numberline {A.2.1}Gear Train Script (run\_gear\_train.py)}{70}{subsubsection.A.2.1}%
+\contentsline {subsubsection}{\numberline {A.2.2}Gear Train BFGS (gear\_train\_bfgs.py)}{77}{subsubsection.A.2.2}%
+\contentsline {subsection}{\numberline {A.3}Two Bar Plane Truss problem}{84}{subsection.A.3}%
+\contentsline {subsubsection}{\numberline {A.3.1}Custom BFGS script for Two Truss problem(custom\_TBT\_BFGS.py)}{84}{subsubsection.A.3.1}%
+\contentsline {subsubsection}{\numberline {A.3.2}Two Truss problem script adapted for BFGS (two\_bar\_plane\_truss\_problem.py)}{91}{subsubsection.A.3.2}%
+\contentsline {subsubsection}{\numberline {A.3.3}Two Truss without noise main script(main\_TBT\_BFGS.py)}{94}{subsubsection.A.3.3}%
+\contentsline {subsubsection}{\numberline {A.3.4}Two Truss with noise main script(main\_TBT\_BFGS\_noise.py)}{98}{subsubsection.A.3.4}%
+\contentsline {subsubsection}{\numberline {A.3.5}Test script for Two Truss problem with noise(Test\_noise.py)}{102}{subsubsection.A.3.5}%
+\contentsline {section}{\numberline {B}Detailed Results Data}{114}{appendix.B}%
+\contentsline {subsection}{\numberline {B.1}Sensor Calibration problem}{114}{subsection.B.1}%
+\contentsline {subsubsection}{\numberline {B.1.1}Protocol A: Measurement Noise Summary (First 20 runs)}{114}{subsubsection.B.1.1}%
+\contentsline {subsubsection}{\numberline {B.1.2}Protocol B: Function Noise Summary (First 20 runs)}{115}{subsubsection.B.1.2}%
+\contentsline {subsubsection}{\numberline {B.1.3}Protocol C: Robustness Summary}{115}{subsubsection.B.1.3}%
+\contentsline {subsection}{\numberline {B.2}Two Bar Plane Truss problem}{116}{subsection.B.2}%
+\contentsline {section}{\numberline {C}Group Evaluation}{118}{appendix.C}%

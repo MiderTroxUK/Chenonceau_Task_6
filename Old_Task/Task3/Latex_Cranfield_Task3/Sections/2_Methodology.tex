@@ -1,0 +1,79 @@
+\section{Methodology and Algorithms}
+
+\subsection{Method 1: Particle Swarm Optimisation (PSO)}
+
+The Particle Swarm Optimisation (PSO) is a stochastic optimisation technique inspired by the social behaviour of birds. A population of candidate solutions moves through the domain. Through several time steps, each particle adjusts its position based on its personal best and on the global best. This allows the algorithm to converge to a solution that matches a criterion \cite{riaz_lec2}.
+
+\subsubsection{Multi-objective algorithm}
+
+\textbf{Description}
+
+The multi-objective PSO finds Pareto-optimal solutions using a selection based on dominance and diversity \cite{riaz_lec3}. It presents advantages such as an ease of implementation, few parameters to tune, and a good application for nonlinear problems; but also, limitations such as a possible too early convergence, a sensitivity to parameters settings, and no guarantee of global optimum \cite{riaz_lec2}.
+
+The MOPSO-CD (Multi-Objective Particle Swarm Optimisation with Crowding Distance) is an advanced extension of the PSO \cite{blank_mopso}. This particular algorithm was chosen from a list of other solutions on the base of specific criteria (Appendix A). Its key features are:
+\begin{itemize}
+    \item Crowding distance-based leader selection,
+    \item External archive management,
+    \item Tournament selection,
+    \item Enhanced exploration.
+\end{itemize}
+
+\textbf{Performance metrics}
+
+Metrics are used to measure the performance of the algorithm. We have selected some of the most common criteria:
+\begin{itemize}
+    \item The best value per objective which tracks the minimum value achieved for each objective function at every generation,
+    \item The Pareto front size evolution which tracks how many solutions are on the Pareto front at each generation,
+    \item The normalized convergence which compares both objectives normalized to [0, 1].
+\end{itemize}
+
+\subsection{Method 2: Simulated Annealing (SA)}
+
+\textbf{Problem description:}
+
+The Simulated Annealing is an optimization method inspired by the annealing process in metallurgy. The algorithm explores the search space and accepts neighbouring solutions. In this algorithm, ameliorations are always accepted, and degradations are accepted with a probability. The probability decreases step after step (decreasing temperature). At the beginning, this acceptance mechanism helps to escape local minima. Afterwards, at the end of the process, the algorithm converges to a global minimum.
+
+\textbf{Cost function:}
+
+On this method we use this function to decide if a worst solution can be accepted:
+\begin{equation}
+P(\text{acceptance}) = e^{-\frac{E_{new} - E_{actual}}{T}}
+\end{equation}
+Where:
+\begin{itemize}
+    \item $E_{actual}$: Actual energy
+    \item $E_{new}$: The new worst energy
+    \item $P(\text{acceptance})$: the probability to accept $E_{new}$
+    \item $T$: temperature parameter
+\end{itemize}
+
+Every iteration the temperature $T$ decreases by the cooling\_rate:
+\begin{equation}
+T = T \times \text{cooling\_rate}
+\end{equation}
+
+\textbf{Multi-Objective Strategy (Weight Scalarization):}
+
+Unlike MOPSO, the Simulated Annealing program is inherently a mono-objective algorithm. To solve the bi-objective Truss problem, a scalarization approach is used to transform the problem into a single objective function.
+\begin{itemize}
+    \item \textbf{Scalarization:} A weighted sum combines the two objectives (Weight and Displacement) into a single scalar Energy function.
+    \item \textbf{Normalization:} A scaling factor (Scale = 10000) is applied to the displacement term to normalize both objectives to comparable orders of magnitude.
+    \item \textbf{Weight Distribution:} To approximate a Pareto front, 200 independent runs are performed with the weight $w_1$ uniformly distributed between 0.005 and 0.995 (where $w_2 = 1 - w_1$). This allows the algorithm to explore different trade-offs, from minimizing weight ($w_1 \approx 1$) to minimizing displacement ($w_1 \approx 0$).
+\end{itemize}
+
+\textbf{Performance metrics:}
+
+To evaluate the performance of the SA algorithm, the following metrics were tracked:
+\begin{itemize}
+    \item \textbf{Convergence profiles:} Analysis of the best energy and current energy evolution over iterations to assess stability and exploration.
+    \item \textbf{Pareto Front Approximation:} The collection of non-dominated solutions found across the 200 independent runs is plotted to visualize the trade-off curve (the "Banana shape").
+    \item \textbf{Decision Space Analysis:} Mapping the decision variables ($x_1, x_2$) of the final solutions to identify distinct regions corresponding to different trade-off preferences.
+\end{itemize}
+
+\textbf{Settings:}
+It is important to consider:
+\begin{itemize}
+    \item $initial\_temp$: the temperature at the beginning
+    \item $cooling\_rate$: The speed of the freezing
+    \item $min\_temp$: The temperature where we stop the process
+\end{itemize}

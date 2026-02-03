@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}
+\usepackage{listings} % Include the listings package
+\usepackage[T1]{fontenc} % Add the fontenc package with T1 encoding
+\usepackage{subcaption}
+
+\usepackage{./Layout/EngReport}
+\addbibresource{./Layout/Sources.bib}
+
+\graphicspath{{Images/}}
+%\bibliography{./Layout/Sources}
+\onehalfspacing
+\graphicspath{{Images/}{Images/truss_results/}{Images/steinhart_results/}}
+\geometry{letterpaper, portrait, includeheadfoot=true, hmargin=1in, vmargin=1in}
+
+%\fontsize{font size}{vertsize (usually 1.2x)}\selectfont
+
+\begin{document}
+\renewcommand{\familydefault}{\rmdefault}
+
+\input{./Layout/titlepage}
+\input{./Layout/headerfooter}
+\tableofcontents
+\pagebreak
+
+\fontsize{12}{20}\selectfont{
+
+\input{./Sections/1_Introduction}
+\pagebreak
+
+\input{./Sections/2_Methodology}
+\pagebreak
+
+\input{./Sections/3_Problem1_Truss}
+\pagebreak
+
+\input{./Sections/4_Problem2_Sensor}
+\pagebreak
+
+\input{./Sections/5_Problem3_GearTrain}
+\pagebreak
+
+\input{./Sections/6_Conclusion}
+\pagebreak
+
+\input{./Sections/7_References}
+\pagebreak
+
+\input{./Sections/N_Appendix}
+\pagebreak
+}
+\end{document}

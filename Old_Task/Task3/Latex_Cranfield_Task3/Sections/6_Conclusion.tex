@@ -1,0 +1,45 @@
+\section{General Conclusion}
+
+The investigation into Particle Swarm Optimisation (PSO) and Simulated Annealing (SA) across three engineering domains yields the following conclusions:
+
+\begin{itemize}
+    \item \textbf{PSO} demonstrated superior performance in Multi-Objective problems (Truss) and Discrete problems (Gear Train). Its population-based approach allows for better exploration of complex search spaces and effective handling of Pareto optimality.
+    \item \textbf{SA} performed well in the continuous, single-objective parameter estimation (Sensor), providing accurate results very efficiently. However, it struggled with the discrete nature of the Gear Train problem without specific tuning of the neighbor generation.
+\end{itemize}
+
+\subsection{Performance Comparison}
+
+This table summarises the computational performance of the algorithms.
+
+\begin{table}[h!]
+\centering
+\caption{Algorithm Performance Metrics}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|l|l|c|c|l|}
+\hline
+\textbf{Problem} & \textbf{Algorithm} & \textbf{Run Time (s)} & \textbf{Total Function Calls} & \textbf{Outcome} \\ \hline
+Two-Bar Truss & PSO (MOPSO) & 5.833 & 20,000 & Success (Pareto Front) \\ \hline
+Sensor Calib. & SA & 0.099 & 3,537 & Success (SSE 0.43) \\ \hline
+Gear Train & PSO & 0.028 & 12,000 & Success (Error $< 10^{-4}$) \\ \hline
+Gear Train & SA & 0.0002 & 88 & Failed (High Error) \\ \hline
+\end{tabular}
+}
+\end{table}
+
+\textit{Note: Function Calls for PSO = Population $\times$ Generations (e.g., $40 \times 300 = 12,000$ for Gear Train). SA Function Calls = Iterations.}
+
+\subsection{Hyperparameter Sensitivity and Robustness}
+
+It is important to acknowledge that the results presented in this report are strictly dependent on the specific hyperparameters selected for each algorithm (e.g., cooling rate $\alpha$ for SA, inertia weight $w$ and social/cognitive parameters $c_1, c_2$ for PSO).
+
+Stochastic optimization algorithms do not guarantee global convergence, and their performance is heavily influenced by these settings:
+
+\begin{itemize}
+    \item \textbf{Simulated Annealing Sensitivity:} In Problem 3 (Gear Train), the SA algorithm failed to converge to the target ratio, resulting in a high error. This failure highlights the sensitivity of SA to the cooling schedule and perturbation step size. A cooling rate that is too fast causes the algorithm to become trapped in local minima, as observed in the Gear Train convergence plot. Conversely, a cooling rate that is too slow results in excessive computational cost. The failure in the discrete domain suggests that the specific neighbor generation method used was not sufficiently tuned for that specific landscape.
+
+    \item \textbf{PSO Exploration vs. Exploitation:} The PSO performance relies on balancing exploration (controlled by $w$) and exploitation (controlled by $c_1, c_2$). While the chosen values ($w=0.9, c_1=c_2=2.0$) proved robust for the Truss problem, different values could lead to premature convergence or failure to refine the solution.
+
+    \item \textbf{Penalty Factors:} As demonstrated in Section 3.2.1, constrained optimization requires careful tuning of penalty factors. While our experiment showed robustness at $k=10^{10}$, setting this value too low in other contexts could lead to the acceptance of infeasible solutions, while setting it too high can distort the objective function landscape, making it difficult for the algorithm to approach the feasible boundary.
+\end{itemize}
+
+Therefore, a limitation of this study is that the comparison is valid only for the specific set of parameters tested. A more comprehensive study would require a sensitivity analysis or an automated hyperparameter tuning process (such as a Grid Search) to identify the optimal configuration for each specific problem type.

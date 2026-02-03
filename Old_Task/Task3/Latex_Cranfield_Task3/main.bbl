@@ -1,0 +1,102 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{riaz_lec2}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=d1a71df2ca7c8f8457005149682546c5}{%
+           family={Riaz},
+           familyi={R\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{d1a71df2ca7c8f8457005149682546c5}
+      \strng{fullhash}{d1a71df2ca7c8f8457005149682546c5}
+      \strng{fullhashraw}{d1a71df2ca7c8f8457005149682546c5}
+      \strng{bibnamehash}{d1a71df2ca7c8f8457005149682546c5}
+      \strng{authorbibnamehash}{d1a71df2ca7c8f8457005149682546c5}
+      \strng{authornamehash}{d1a71df2ca7c8f8457005149682546c5}
+      \strng{authorfullhash}{d1a71df2ca7c8f8457005149682546c5}
+      \strng{authorfullhashraw}{d1a71df2ca7c8f8457005149682546c5}
+      \field{extraname}{1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Lecture presented at: Computational Optimisation Design}
+      \field{note}{[cited 2025 Oct 21]. Available from: \url{https://canvas.cranfield.ac.uk/courses/37635/pages/day-2?module_item_id=737718}}
+      \field{title}{Computational Optimisation Design Lecture 2}
+      \field{year}{2025}
+    \endentry
+    \entry{riaz_lec3}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=d1a71df2ca7c8f8457005149682546c5}{%
+           family={Riaz},
+           familyi={R\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{d1a71df2ca7c8f8457005149682546c5}
+      \strng{fullhash}{d1a71df2ca7c8f8457005149682546c5}
+      \strng{fullhashraw}{d1a71df2ca7c8f8457005149682546c5}
+      \strng{bibnamehash}{d1a71df2ca7c8f8457005149682546c5}
+      \strng{authorbibnamehash}{d1a71df2ca7c8f8457005149682546c5}
+      \strng{authornamehash}{d1a71df2ca7c8f8457005149682546c5}
+      \strng{authorfullhash}{d1a71df2ca7c8f8457005149682546c5}
+      \strng{authorfullhashraw}{d1a71df2ca7c8f8457005149682546c5}
+      \field{extraname}{2}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Lecture presented at: Computational Optimisation Design}
+      \field{note}{[cited 2025 Oct 22]. Available from: \url{https://canvas.cranfield.ac.uk/courses/37635/pages/day-3?module_item_id=737719}}
+      \field{title}{Computational Optimisation Design Lecture 3}
+      \field{year}{2025}
+    \endentry
+    \entry{blank_mopso}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=7bddff23f49d64e8e1ddadc09d36e087}{%
+           family={Blank},
+           familyi={B\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{7bddff23f49d64e8e1ddadc09d36e087}
+      \strng{fullhash}{7bddff23f49d64e8e1ddadc09d36e087}
+      \strng{fullhashraw}{7bddff23f49d64e8e1ddadc09d36e087}
+      \strng{bibnamehash}{7bddff23f49d64e8e1ddadc09d36e087}
+      \strng{authorbibnamehash}{7bddff23f49d64e8e1ddadc09d36e087}
+      \strng{authornamehash}{7bddff23f49d64e8e1ddadc09d36e087}
+      \strng{authorfullhash}{7bddff23f49d64e8e1ddadc09d36e087}
+      \strng{authorfullhashraw}{7bddff23f49d64e8e1ddadc09d36e087}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Pymoo library}
+      \field{note}{[cited 2025 Dec 9]. Available from: \url{https://pymoo.org/algorithms/moo/mopso_cd.html}}
+      \field{title}{MOPSO-CD: Multi-Objective Particle Swarm Optimization with Crowding Distance}
+      \field{year}{2020}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

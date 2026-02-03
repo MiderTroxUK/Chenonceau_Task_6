@@ -1,0 +1,85 @@
+\section{Problem 2: Sensor Calibration}
+
+\subsection{Problem description}
+The objective is to determine the Steinhart-Hart coefficients ($A, B, C$) that model the relationship between Resistance ($R$) and Temperature ($T$) for a 10K thermistor.
+Model Equation:
+\begin{equation}
+T_{model} = \frac{1}{A + B \ln(R) + C (\ln(R))^3}
+\end{equation}
+Note: $T$ is in Kelvin, $R$ in Ohms.
+
+\subsection{Cost function}
+The optimisation goal is to minimise the Sum of Squared Errors (SSE) between the measured temperature and the model-predicted temperature:
+\begin{equation}
+SSE = \sum (T_{measured,i} - T_{model,i})^2
+\end{equation}
+
+\subsection{Methodology}
+\textbf{Simulated Annealing:}
+A probabilistic technique for approximating the global optimum of a given function.
+
+\textbf{Particle Swarm Optimisation (PSO):}
+A computational method that optimises a problem by iteratively trying to improve a candidate solution based on a given measure of quality. It solves a problem by maintaining a population of candidate solutions, here dubbed particles, and moving these particles around in the search space according to a simple mathematical formula that depends on the particles' positions and velocities.
+
+\subsection{Settings}
+
+\textbf{Settings SA:}
+\begin{itemize}
+    \item Initial Temperature: 50.0
+    \item Cooling Rate: 0.995
+    \item Minimum Temperature: 1e-6
+\end{itemize}
+
+\textbf{Setting PSO:}
+Implementation utilizes the pymoo library (PSO algorithm).
+\begin{itemize}
+    \item \textbf{Parameters:}
+    \begin{itemize}
+        \item Population size: 50
+        \item Generations: 500
+        \item Inertia weight ($w$): 0.7
+        \item Cognitive parameter ($c_1$): 1.5
+        \item Social parameter ($c_2$): 1.5
+    \end{itemize}
+    \item max\_velocity\_rate: Limits the maximum velocity of particles.
+\end{itemize}
+
+\subsection{Result}
+
+The optimal Steinhart-Hart coefficients found for the provided dataset are:
+
+\begin{table}[h!]
+\centering
+\caption{Optimization Results Comparison (Steinhart-Hart)}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|l|c|c|c|c|c|c|}
+\hline
+\textbf{Algorithm} & \textbf{A} & \textbf{B} & \textbf{C} & \textbf{Final SSE} & \textbf{Function Calls} & \textbf{Execution Time (s)} \\ \hline
+\textbf{Simulated Annealing} & $1.114 \times 10^{-3}$ & $2.367 \times 10^{-4}$ & $7.761 \times 10^{-8}$ & 0.4323 & 3,537 & 0.099 \\ \hline
+\textbf{PSO} & $1.127 \times 10^{-3}$ & $2.345 \times 10^{-4}$ & $8.625 \times 10^{-8}$ & 0.0089 & 25,000 & 0.678 \\ \hline
+\end{tabular}
+}
+\end{table}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Steinhart-Hart Temperature Callibration - PSO Result vs mesured data.png}
+    \caption{Steinhart-Hart Model Fit}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{Steinhart_SA_History.png}
+        \caption{SA Convergence History}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{Steinhart_PSO_History.png}
+        \caption{PSO Convergence History}
+    \end{subfigure}
+    \caption{Convergence Comparison}
+\end{figure}
+
+\subsection{Work discussion}
+Both algorithms successfully calibrated the thermistor model. PSO achieved a significantly lower final SSE (0.0089 versus 0.4323 for SA), indicating a more precise fit for this specific dataset and configuration. However, SA was roughly $6.8\times$ faster (0.099s vs 0.678s) and used significantly fewer function calls (3,537 vs 25,000). This illustrates the classic trade-off: PSO's population-based search provided a better global optimum at the cost of higher computational expense, while SA provided a "good enough" solution very quickly.

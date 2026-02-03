@@ -1,0 +1,21 @@
+\section{Introduction}
+
+This report investigates deterministic gradient-based optimization using the BFGS (Broyden-Fletcher-Goldfarb-Shanno) quasi-Newton method. BFGS has become a cornerstone of numerical optimization due to its efficiency and robust convergence properties, requiring only gradient information rather than explicit Hessian computation \cite{fletcher1970, shanno1970, nocedalwright1999}.
+
+The algorithm is applied to three distinct engineering problems:
+\begin{itemize}
+    \item \textbf{Gear Train Design} (Constrained, Discrete/Integer optimization)
+    \item \textbf{Sensor Calibration} (Unconstrained, Curve fitting)
+    \item \textbf{Two-Bar Plane Truss Design} (Constrained, Multi-objective)
+\end{itemize}
+
+For the Two-Bar Truss problem, systematic parameter exploration is conducted to identify optimal BFGS configurations, followed by noise sensitivity analysis to evaluate algorithm robustness under realistic measurement uncertainties. The results are compared with the metaheuristic approaches (PSO and SA) from Task 3 to assess the relative performance of gradient-based versus derivative-free optimization methods.
+
+\subsection*{Statement on the Use of Generative AI}
+During the preparation of this work, we, as the authors, used ChatGPT (OpenAI) and Claude AI (Anthropic) to assist with:
+\begin{itemize}
+    \item Code efficiency optimization and debugging for BFGS implementation
+    \item Literature review and academic reference formatting
+    \item Technical writing refinement and clarity improvement
+\end{itemize}
+After using these tools, we reviewed and edited all content as needed and take full responsibility for the final report's content, analysis, and code functionality.

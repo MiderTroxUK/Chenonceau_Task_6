@@ -1,0 +1,36 @@
+Convergence Status:
+  S: True
+  Iterations: 30
+  Function evaluations: 121
+    (1 initial + 30 iterations × 4 for finite differences)
+
+Optimal Solution (normalized variables):
+  x1 (position factor) = 0.6573302899
+  x2 (area factor) = 0.5327540754
+  Within bounds: ✓ YES
+
+Physical Solution:
+  Position = 1.66961894 m
+  Area = 3.43711619e-04 m²
+
+Objective Function:
+  Combined objective = 8.189526046308e+00
+  f1 (weight) = 16.36704076 kg
+  f2 (displacement) = 8.66915642e-03 m
+
+Constraints:
+  Normalized (for optimization):
+    g1 = +4.08789274e-04  ✗
+    g2 = -7.93155419e-01  ✓
+  Actual (Pa):
+    g1 (σ_tension - σ₀) = +5.641292e+04 Pa  ✗
+    g2 (σ_compression - σ₀) = -1.094554e+08 Pa  ✓
+
+Convergence Metrics:
+  Final gradient norm: 1.22283870e-03
+  Final step size α: 1.00000000e-12
+
+Generating convergence plots...
+  Saved: TBT_PLOT/bfgs_convergence_objective.png
+  Saved: TBT_PLOT/bfgs_convergence_gradient.png
+  Saved: TBT_PLOT/bfgs_step_sizes.png

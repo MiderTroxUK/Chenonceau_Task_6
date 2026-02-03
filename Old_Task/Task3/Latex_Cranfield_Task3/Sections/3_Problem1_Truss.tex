@@ -1,0 +1,193 @@
+\section{Problem 1: Two-Bar Plane Truss Design}
+
+\subsection{Problem description}
+
+The Two-Bar Truss problem is composed by two diagonal bars (of aluminium here) connected on a node and are fixed at two upper point (Figure 1). On the central node we applied a vertical strength. This force represents the external load that the structure must support. We look for the vertical displacement of the node.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Two_bar_plane_truss.png}
+    \caption{Two-bar plane truss}
+    \label{fig:truss_diagram}
+\end{figure}
+
+There are two design variables which are the position of the joints 1 and 2. They are defined by the two equations: $f_1$ the structural weight truss, and $f_2$ the displacement of joint 3.
+\begin{equation}
+f_1 (x)=2\rho hx_2 \sqrt{(1+x_1^2)}
+\end{equation}
+\begin{equation}
+f_2 (x)=\frac{Ph(1+x_1^2 )^{1.5} \sqrt{(1+x_1^4)}}{2\sqrt{2} Ex_1^2 x_2}
+\end{equation}
+
+These functions are constrained by two stress constraints functions $g_1$ (tension) and $g_2$ (compression).
+\begin{equation}
+g_1(x)=\frac{P(1+x_1)\sqrt{1+x_1^2}}{2\sqrt{2}x_1x_2}-\sigma_0\le0
+\end{equation}
+\begin{equation}
+g_2(x)=\frac{P(-x_1+1)\sqrt{1+x_1^2}}{2\sqrt{2}x_1x_2}-\sigma_0\le0
+\end{equation}
+
+The variables $x_1$ and $x_2$ are calculated from the following formulas:
+$x_1=\frac{x}{h}$ and $x_2=\frac{A}{A_{min}}$
+$0.1\le x_1\le2.25$ and $0.5\le x_2\le2.5$
+
+If the $x_1$ variable is connected to the physical sense of the truss geometry, the position boundaries are:
+$x_{min}=0.1\ast h=0.254m$ and $x_{max}=2.25\ast h=5.72m$
+
+The parameters are converted in the International System units.
+$\rho=0.283lb/in^3=7833kg/m^3$;
+$h=100\ in\ =\ 2.54\ m$;
+$P={10}^4lb=44482.2N$;
+$E=3\cdot{10}^7lb/in^2=2.07e11Pa$;
+$\sigma_0=2\cdot{10}^4lb/in^2=1.38e8Pa$;
+$A_{min}=1in^2=6.5416e-4m^2$.
+
+\subsection{Methodology}
+
+\subsubsection{General explanation}
+The problem is defined with a class which contained four functions: two for the objectives and two for the constraints.
+
+\subsubsection{Penalty function}
+Pymoo library already contains constraint handling with constraint violation measures during the selection process. For the multi-objective problem, it uses the Pareto ranking. To study how the penalty strength affects convergence and feasibility, explicit penalty terms will be added.
+\begin{equation}
+F_{penalised}=f(x)+k\ast\sum\left(\max\left(0,g_i(x)\right)^2\right)
+\end{equation}
+With: $k$ the penalty factor.
+
+Considering this equation, a penalty will be applied when the maximum between 0 and $g_i$ is $g_i$ so the constraint is violated. This is realised with the following loop where the penalty factor is fixed to 10 billion. If the penalty factor is large the algorithm avoids infeasible solutions quickly. While, if the penalty factor is small the algorithm may explore infeasible regions longer.
+
+\subsection{Results}
+
+\subsubsection{PSO simulation}
+
+\textbf{Best solution}
+
+To obtain the best solution, the algorithm minimises the weight function and then the displacement function. Then it finds the best compromise to satisfy the objective functions following the constraint function.
+
+\begin{table}[h!]
+\centering
+\caption{Summary of key solutions (PSO)}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+Solution type & x1 [normalised] & x2 [normalised] & Weight [kg] & Displacement [m] \\ \hline
+Min weight & 0.8245 & 0.5 & 16.6361 & 0.0084 \\ \hline
+Min displacement & 1.8777 & 2.5 & 136.5345 & 0.0011 \\ \hline
+Compromise & 1.2560 & 1.1667 & 48.0982 & 0.0029 \\ \hline
+\end{tabular}
+\end{table}
+
+All the possible values of the design variables are shown in the decision space diagram: each point represents a candidate solution. The colour show a gradient: dark colours for the lower objective values which are better for minimisation, and lighter colours for the higher objective values which are worse for minimisation.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Two-Bar Plane Truss Design - PSO - Decison Space.png}
+    \caption{PSO Decision Space}
+\end{figure}
+
+\textbf{Metrics}
+
+The Pareto front evolution across generations diagram shows that the first generations are far away from the Pareto front but through each time step the solutions converge. This is possible thank to the penalty function which eliminates poor solutions. The visualisation helps identify regions of the decision space associated with optimal solution.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Two-Bar Plane Truss Design - PSO - Pareto Front Evolution Across Generation.png}
+    \caption{Pareto Front Evolution Across Generations}
+\end{figure}
+
+The generation 199, or 200 time step, generates the Pareto front kept. The best solution is extracted from it.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Two-Bar Plane Truss Design - PSO - Pareto Front.png}
+    \caption{PSO Pareto Front}
+\end{figure}
+
+The convergence analyses the efficiency of the algorithm. The following diagrams describes the evolution of the best values at each generation.
+\begin{itemize}
+    \item \textbf{Best value – First objective:} The weight is minimised over time with an improvement of the solution. The curve decreases over the generation, so the minimum is stable.
+    \item \textbf{Best value – Second objective:} The algorithm finds solutions with smaller solutions through the generations. The curve converges around a optimal displacement.
+    \item \textbf{Normalised convergence:} The objectives are normalised for comparison. The algorithm is improving both objectives simultaneously since the curves decreases.
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Two-Bar Plane Truss Design - PSO - Convergence Analysis.png}
+    \caption{PSO Convergence Analysis}
+\end{figure}
+
+The Paretor front size evolution diagram shows the number of non-dominant solutions at each generation. The constant size of it means diversity is maintained throughout optimisation. This is a good indicator to tell that the algorithm didn’t lose diversity and didn’t converge prematurely.
+
+\subsubsection{SA simulation}
+
+\textbf{Weight Scalarization Strategy}
+The simulated\_annealing program is based on a mono-objective algorithm. We have a scalarization approach for transforming the problem (bi-objective) into a function mono-objective. To generate the pareto front, 200 runs are made with the weight uniformly distributed between 0.005 and 0.995. A scale of 10000 is applied at the displacement for normalizing both objectives to comparable orders of magnitude. The stress constraints are enforced through a penalty method is generated by a penalty method in the program for the optimization with a final verification of the final solution. This double approach guaranteed that all the Pareto front respect the structural constraints.
+
+Scalar Energy function :
+\begin{equation}
+E(x) = w_1 \cdot f_1(x) + w_2 \cdot (scale\_f2 \times f_2(x)) + \sum_{i=1,2} 10^6 \cdot \max (0, g_i(x))
+\end{equation}
+where :
+\begin{itemize}
+    \item $w_1, w_2$: scalar weight with $w_1 + w_2 = 1$ and $w_1 \in [0.005,0.995]$
+    \item $f_1(x)$: structural weight (kg)
+    \item $f_2(x)$: displacement (m)
+    \item $scale\_f2 = 10000$: the objective normalize factor
+    \item $g_i(x) \le 0$: Stress contraints (tension $g_1$ and compression $g_2$)
+\end{itemize}
+
+\textbf{Pareto Front}
+The Pareto front is the result of 200 runs of Simulated Annealing program and exhibits an optimal distribution of solutions representing the trade-off structural weight and node displacement.
+The valid solutions are comprised between:
+Weight: 14.39 kg to 213.64 kg
+Displacement : 0.848 mm to 8.382 mm
+The banana shape of the Pareto front saw the conflict between the structural optimization: reduce the weight and increase the flexibility and the displacement, otherwise if we want rigidity we need more material. We also saw no single solution minimizes in the same time both objectives.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Pierre.B - ParetoFront.png}
+    \caption{SA Pareto Front}
+\end{figure}
+
+\textbf{Decision Space}
+The decision space distribution revel a characteristic L shape. It is the result of the linear scalarization of the weight:
+\begin{itemize}
+    \item Region 1 ($x_2 \in [0.5, 1.0]$, $x_1$ variable): light solution for the weight minimization ($w_1 \approx 1.0$)
+    \item Region 2 ($x_2 \in [2.0, 2.5]$, $x_1$ variable): Minimize the node displacement ($w_1 \approx 0.0$)
+    \item Space of transition ($x_2 \in [1.0, 2.0]$) : compromise solution
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Pierre.B - Decison Space.png}
+    \caption{SA Decision Space}
+\end{figure}
+
+\textbf{Analyse de Convergence}
+The convergence compartment of the 200 runs is represented on distinct plot on each objective:
+\begin{itemize}
+    \item Best weight evolution: Weight decreased to 200 kg by 14,39 kg. Significant improvement result after the 50 first runs. Stable execution after 150 runs that saw a complete exploration of the light region.
+    \item Best displament evolution: Speed convergence in 20 runs to the minimal value of 0,848 mm. We have a parabolic augmentation and this logic we start by making the displacement optimization, so we have the best optimization at the beginning and the worst after that.
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Pierre.B - Convergence.png}
+    \caption{SA Convergence}
+\end{figure}
+
+\subsection{Discussion}
+
+Comparison between PSO and SA simulation:
+
+\begin{table}[h!]
+\centering
+\caption{Comparison PSO vs SA}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+Algorithm & x1 [normalised] & x2 [normalised] & Weight [kg] & Displacement [m] \\ \hline
+PSO & 1.2560 & 1.1667 & 48.0982 & 0.0029 \\ \hline
+SA & (Compromise) & (Compromise) & (See Front) & (See Front) \\ \hline
+\end{tabular}
+\end{table}
+
+(Note: SA produced a full Pareto front via scalarization, while MOPSO produced it directly. Both methods successfully mapped the trade-off curve.)

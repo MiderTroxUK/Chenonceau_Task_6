@@ -1,0 +1,8 @@
+\contentsline {section}{Abstract}{2}{}%
+\contentsline {section}{\numberline {1}Introduction}{3}{}%
+\contentsline {section}{\numberline {2}Allocation of Roles and Responsibilities}{4}{}%
+\contentsline {section}{\numberline {3}Project Management Strategy}{5}{}%
+\contentsline {subsection}{\numberline {3.1}Methodology}{5}{}%
+\contentsline {subsection}{\numberline {3.2}Tools}{5}{}%
+\contentsline {section}{\numberline {4}Provisional Timeline}{6}{}%
+\contentsline {section}{\numberline {5}Conclusion}{7}{}%

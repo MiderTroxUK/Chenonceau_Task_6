@@ -5,17 +5,23 @@
 
 \PassOptionsToPackage{maxbibnames=99}{biblatex}
 \usepackage{./Layout/EngReport}
+
+\setlength{\headheight}{35pt}
+
 \usepackage{indentfirst}
 \addbibresource{./Layout/Sources.bib}
 
 \graphicspath{{Images/}}
-%\bibliography{./Layout/Sources}
 \onehalfspacing
-\graphicspath{{Images/}{Images/GearTrainDesign/}{Images/Sensor Calibration/}{Images/Two Truss/}}
-\geometry{letterpaper, portrait, includeheadfoot=true, hmargin=1in, vmargin=1in}
+\geometry{a4paper, portrait, includeheadfoot=true, hmargin=1in, vmargin=1in}
 
-% Fix header height warning
-\setlength{\headheight}{35pt}
+% Adjust Table of Contents spacing for "Appendix X" labels
+% This prevents the overlap of "Appendix A", "Appendix B" with titles
+\usepackage{tocloft}
+\setlength{\cftsubsecnumwidth}{6em}  % Width for subsection numbers (Appendix A)
+\setlength{\cftsubsubsecnumwidth}{6.5em}  % Width for subsubsection numbers (Appendix A.A)
+\setlength{\cftsubsecindent}{1.5em}  % Indent for subsections
+\setlength{\cftsubsubsecindent}{3em}  % Indent for subsubsections
 
 % Configure listings to handle UTF-8 characters properly
 \lstset{
@@ -61,44 +67,50 @@
 	{ç}{{\c{c}}}1
 }
 
-%\fontsize{font size}{vertsize (usually 1.2x)}\selectfont
 
 \begin{document}
 	\renewcommand{\familydefault}{\rmdefault}
 	
 	\input{./Layout/titlepage}
 	\input{./Layout/headerfooter}
+	
+	% Arabic numerals for main content (starts from 1)
+	\pagenumbering{arabic}
+	
+	\fontsize{12}{20}\selectfont{
+		
+		\input{./Sections/0_Abstract}
+		\pagebreak
+		
+		\input{./Sections/1_Acronyms}
+		\pagebreak
+		
+	}
+	
 	\tableofcontents
 	\pagebreak
 	
 	\fontsize{12}{20}\selectfont{
 		
-		\input{./Sections/1_Introduction}
+		\input{./Sections/2_Introduction}
 		\pagebreak
 		
-		\input{./Sections/2_Methodology}
+		\input{./Sections/3_Methodology}
 		\pagebreak
 		
-		\input{./Sections/5_Problem3_GearTrain}
+		\input{./Sections/4_Results}
 		\pagebreak
 		
-		\input{./Sections/4_Problem2_Sensor}
-		\pagebreak
-		
-		\input{./Sections/3_Problem1_Truss}
-		\pagebreak
-		
-		\input{./Sections/6_Comparison}
+		\input{./Sections/5_Discussion}
 		\pagebreak
 		
 		\input{./Sections/6_Conclusion}
 		\pagebreak
 		
-		%\input{./Sections/7_References}
 		\printbibliography[heading=bibintoc, title={References}]
 		\pagebreak
 		
-		\input{./Sections/N_Appendix}
+		\input{./Sections/8_Appendix}
 		\pagebreak
 	}
 \end{document}

@@ -1,0 +1,52 @@
+\section{Cooling Tower}
+
+TO DO → formalising the problem
+
+Objective: Minimising the surface of the cooling surface
+
+Problem information:
+\begin{itemize}
+	\item Design variables:
+		\begin{itemize}
+			\item fixed volume
+			\item $r_0$ to $r_m$
+		\end{itemize}
+	\item Constraint:
+		\begin{itemize}
+			\item hyperboloid
+		\end{itemize}
+	\item 8 simulations:
+		\begin{itemize}
+			\item 1 imposed
+			\item x simulations with radii fixed and heights which vary
+			\item x simulations with height fixed and radii which vary
+			\item x simulations both heights and radii vary
+		\end{itemize}
+	\item run 3 algorithms on each simulation: PSO, SA, and BFGS
+\end{itemize}
+
+
+Other information:
+\begin{itemize}
+	\item hyperbolic regression with 3 points: $r_0$, $r_{m/2}$, $r_m$
+	\item new constraint: $r_mi$ need to be greater than $r_{m/2}$ and to be lower than $r_m$
+	\item usually $r_0$ < $r_m$
+	\item $r_0$ and $r_m$ fixed arbitrary
+	\item calculate the volume at each step of each algorithm
+	\item to ensure the respect of the fixed volume we will use a Penalty function
+	\item continuous problem
+\end{itemize}
+
+\section{Algorithms}
+
+\subsection{Particle Swarm Optimisation method}
+
+TO DO
+
+\subsection{Simulated Annealing method}
+
+TO DO
+
+\subsection{Broyden-Fletcher-Goldfarb-Shanno method}
+
+TO DO

@@ -18,6 +18,12 @@ from psoAlgorithm import ParticleSwarm
 # Import the cooling problem
 # TO DO
 
+# Import the visualisation functions
+from visualisation import plot_pareto_front, plot_decision_space, plot_convergence
+
+# Import the visualisation functions
+from visualisation import save_results_to_csv, save_summary
+
 # ========== MAIN OPTIMISATION RUNNER ==========
 
 def run_optimisation(problem, pso_params, output_dir='results', 

@@ -111,9 +111,9 @@ The final report must include:
 ## 6. Implementation Plan
 
 ### **Phase 1: Setup & Primitives (John)**
-- [ ] Create `cooling_tower.py` module.
-- [ ] Implement `surface_area(radii, heights)` and `volume(radii, heights)`.
-- [ ] Implement `cost_function(x, penalty_weight)`.
+- [x] Create `cooling_tower.py` module.
+- [x] Implement `surface_area(radii, heights)` and `volume(radii, heights)`.
+- [x] Implement `cost_function(x, penalty_weight)`.
 
 ### **Phase 2: Algorithms (Team)**
 - [ ] **Martin:** Adapt BFGS to use `cost_function`. Gradients via finite differences if analytical too complex.

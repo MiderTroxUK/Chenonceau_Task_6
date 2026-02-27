@@ -85,53 +85,218 @@ class CoolingTowerProblem:
         # Case 1 defaults: equal heights
         self.fixed_heights = np.full(m, total_height / m)
 
-    def unpack_decision_variables_case1(self, x):
+    def unpack_decision_variables(self, x, case_num, **kwargs):
         """
-        Reconstructs the full radii and heights arrays from the decision variables for Case 1.
-        Case 1: Optimize inner radii r1...r(m-1). Fixed heights. Fixed r0, rm.
-        
-        Args:
-            x: array of shape (m-1,), interior radii.
-        
-        Returns:
-            radii: shape (m+1,)
-            heights: shape (m,)
+        Reconstructs the full radii and heights arrays from the decision variables based on the scenario.
         """
-        # x contains [r1, r2, ..., r_{m-1}]
-        radii = np.zeros(self.m + 1)
-        radii[0] = self.r0
-        radii[-1] = self.rm
-        radii[1:-1] = x
-        
-        return radii, self.fixed_heights
+        x = np.asarray(x)
+        if case_num in [1, 4, 5, 6, 7]:
+            # x contains [r1, r2, ..., r_{m-1}]
+            radii = np.zeros(self.m + 1)
+            radii[0] = self.r0
+            radii[-1] = self.rm
+            radii[1:-1] = x
+            heights = kwargs.get('fixed_heights', self.fixed_heights)
+            return radii, heights
+            
+        elif case_num == 2:
+            # x contains [h1, h2, ..., hm]
+            radii = kwargs.get('fixed_radii')
+            if radii is None:
+                raise ValueError("Case 2 requires 'fixed_radii' kwarg.")
+            return radii, x
+            
+        elif case_num == 3:
+            # x contains [r1...r_{m-1}, h1...hm]
+            radii = np.zeros(self.m + 1)
+            radii[0] = self.r0
+            radii[-1] = self.rm
+            radii[1:-1] = x[:self.m - 1]
+            heights = x[self.m - 1:]
+            return radii, heights
+            
+        elif case_num == 8:
+            # x contains [a, b, c] - hyperbola parameters
+            a, b, c = x
+            heights = self.fixed_heights
+            # Calculate z heights (cumulative sum)
+            z_levels = np.zeros(self.m + 1)
+            for i in range(1, self.m + 1):
+                z_levels[i] = z_levels[i-1] + heights[i-1]
+                
+            # r(z) = a * sqrt(1 + (z-c)^2 / b^2)
+            radii = a * np.sqrt(1 + ((z_levels - c)**2) / (b**2))
+            return radii, heights
+            
+        else:
+            raise ValueError(f"Unknown case_num: {case_num}")
 
-    def cost_function_case1(self, x, penalty_weight=1e3):
+    def cost_function(self, x, case_num, penalty_weight=1e3, **kwargs):
         """
-        Objective function for Case 1 (Minimize Surface Area with Volume Penalty).
-        J(x) = A_total(x) + rho * (V_total(x) - V_target)^2
-        
-        Args:
-            x: decision variables (m-1 radii)
-            penalty_weight: scalar weight for constraint violation
+        Objective function for all cases.
+        J(x) = A_total(x) + rho * (V_total(x) - V_target)^2 + custom_penalties
         """
-        radii, heights = self.unpack_decision_variables_case1(x)
+        radii, heights = self.unpack_decision_variables(x, case_num, **kwargs)
         
         area = total_surface_area(radii, heights)
         vol = total_volume(radii, heights)
         
-        penalty = penalty_weight * (vol - self.v_target)**2
+        # Case 6 has 50% more volume
+        target_vol = self.v_target * 1.5 if case_num == 6 else self.v_target
+        
+        penalty = penalty_weight * (vol - target_vol)**2
+        
+        # Case 4: Tight Waist Constraint
+        # r_mid < 0.7 * min(r0, rm)
+        if case_num == 4:
+            mid_idx = self.m // 2
+            r_mid = radii[mid_idx]
+            max_allowed = 0.7 * min(self.r0, self.rm)
+            if r_mid > max_allowed:
+                penalty += penalty_weight * (r_mid - max_allowed)**2
+                
+        # Optional: Add height positivity constraint if not handled by optimizer bounds (Cases 2, 3)
+        if case_num in [2, 3]:
+            # Penalize negative or zero heights
+            neg_heights = heights[heights < 0.1]
+            if len(neg_heights) > 0:
+                penalty += penalty_weight * np.sum((0.1 - neg_heights)**2)
+                
         return area + penalty
     
-    def get_initial_guess_case1_linear(self):
+    def get_initial_guess(self, case_num, **kwargs):
         """
-        Returns a linear interpolation between r0 and rm as an initial guess for x.
+        Returns a reasonable initial guess for the specified case.
         """
-        # Linspace from r0 to rm with m+1 points, take the inner m-1 points
-        return np.linspace(self.r0, self.rm, self.m + 1)[1:-1]
+        if case_num in [1, 4, 6, 7]:
+            # Linear guess from r0 to rm
+            return np.linspace(self.r0, self.rm, self.m + 1)[1:-1]
+            
+        elif case_num == 5:
+            # Cylindrical Start
+            r_avg = (self.r0 + self.rm) / 2.0
+            return np.full(self.m - 1, r_avg)
+            
+        elif case_num == 2:
+            # Heights guess: equal slices
+            return self.fixed_heights.copy()
+            
+        elif case_num == 3:
+            # Combination of linear radii and equal heights
+            radii_guess = np.linspace(self.r0, self.rm, self.m + 1)[1:-1]
+            heights_guess = self.fixed_heights.copy()
+            return np.concatenate((radii_guess, heights_guess))
+            
+        elif case_num == 8:
+            # a, b, c guess
+            # r(z) = a * sqrt(1 + (z-c)^2 / b^2)
+            # a roughly min radius
+            a_guess = min(self.r0, self.rm) * 0.8
+            # b controls curvature, sensible starting value
+            b_guess = self.total_height
+            # c is waist height, roughly in the middle
+            c_guess = self.total_height / 2.0
+            return np.array([a_guess, b_guess, c_guess])
+            
+        else:
+            raise ValueError(f"Unknown case_num: {case_num}")
 
-    def get_initial_guess_case1_cylinder(self):
+    def get_bounds(self, case_num):
         """
-        Returns a cylinder guess (average radius) for x.
+        Returns the variable bounds [(lower, upper), ...] for each decision variable.
+        Used by BFGS (L-BFGS-B) and PSO for box-constrained optimization.
         """
-        r_avg = (self.r0 + self.rm) / 2.0
-        return np.full(self.m - 1, r_avg)
+        if case_num == 7:
+            # Restricted Bounds: r_i in [20, 60]
+            return [(20.0, 60.0)] * (self.m - 1)
+            
+        elif case_num in [1, 4, 5, 6]:
+            # General radii bounds: between some sensible physical limits
+            r_min = 5.0
+            r_max = max(self.r0, self.rm) * 2.0
+            return [(r_min, r_max)] * (self.m - 1)
+            
+        elif case_num == 2:
+            # Heights bounds: positive heights, max ~2x equal slice
+            h_min = 0.5
+            h_max = self.total_height * 0.5
+            return [(h_min, h_max)] * self.m
+            
+        elif case_num == 3:
+            # Radii bounds + Heights bounds
+            r_min, r_max = 5.0, max(self.r0, self.rm) * 2.0
+            h_min, h_max = 0.5, self.total_height * 0.5
+            radii_bounds = [(r_min, r_max)] * (self.m - 1)
+            height_bounds = [(h_min, h_max)] * self.m
+            return radii_bounds + height_bounds
+            
+        elif case_num == 8:
+            # Hyperbola parameters: a, b, c
+            return [
+                (5.0, max(self.r0, self.rm)),        # a: waist radius
+                (5.0, self.total_height * 3.0),      # b: curvature
+                (0.0, self.total_height)              # c: waist height
+            ]
+        else:
+            raise ValueError(f"Unknown case_num: {case_num}")
+
+
+def numerical_gradient(func, x, epsilon=1e-6):
+    """
+    Computes the gradient of a scalar function using central finite differences.
+    
+    grad_i = (f(x + e_i * eps) - f(x - e_i * eps)) / (2 * eps)
+    
+    Args:
+        func: scalar-valued function f(x) -> float.
+        x: current point (np.ndarray).
+        epsilon: step size for finite differences.
+        
+    Returns:
+        grad: np.ndarray of same shape as x.
+    """
+    x = np.asarray(x, dtype=float)
+    grad = np.zeros_like(x)
+    for i in range(len(x)):
+        x_plus = x.copy()
+        x_minus = x.copy()
+        x_plus[i] += epsilon
+        x_minus[i] -= epsilon
+        grad[i] = (func(x_plus) - func(x_minus)) / (2.0 * epsilon)
+    return grad
+
+
+def analytical_surface_area_hyperboloid(a, b, c, z_bottom, z_top, n_steps=1000):
+    """
+    Computes the exact lateral surface area of a Hyperboloid of One Sheet
+    by numerical integration of the surface-of-revolution formula.
+    
+    r(z) = a * sqrt(1 + (z - c)^2 / b^2)
+    
+    A = 2*pi * integral_{z_bot}^{z_top} r(z) * sqrt(1 + (dr/dz)^2) dz
+    
+    This is useful for the report discussion comparing discrete (frustum)
+    approximation vs the true curved surface.
+    
+    Args:
+        a: waist radius parameter.
+        b: curvature parameter.
+        c: waist height parameter.
+        z_bottom: lower integration limit.
+        z_top: upper integration limit.
+        n_steps: number of integration steps (trapezoidal rule).
+        
+    Returns:
+        area: the analytically integrated surface area.
+    """
+    z = np.linspace(z_bottom, z_top, n_steps)
+    
+    r = a * np.sqrt(1.0 + ((z - c)**2) / (b**2))
+    # dr/dz = a * (z - c) / (b^2 * sqrt(1 + (z-c)^2 / b^2))
+    drdz = a * (z - c) / (b**2 * np.sqrt(1.0 + ((z - c)**2) / (b**2)))
+    
+    integrand = r * np.sqrt(1.0 + drdz**2)
+    
+    # Trapezoidal integration
+    area = 2.0 * np.pi * np.trapz(integrand, z)
+    return area

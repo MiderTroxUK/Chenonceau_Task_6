@@ -104,7 +104,6 @@ class PsoOptimizer(BaseOptimizer):
         best_x, best_cost, history, n_fevals = particle_swarm(
             objective_func=self._objective_func,
             bounds=bounds,
-            num_particles=self.options.get('num_particles', 30),
             **self.options
         )
         
@@ -153,7 +152,7 @@ def run_scenario(optimizer_class, problem: CoolingTowerProblem, case_num: int, s
     # Create output directory
     algo_name = optimizer_class.__name__.replace('Optimizer', '')
     base_out_dir = os.path.join(os.path.dirname(__file__), "output")
-    out_dir = os.path.join(os.path.dirname(__file__), base_out_dir, algo_name)
+    out_dir = os.path.join(base_out_dir, algo_name)
     os.makedirs(out_dir, exist_ok=True)
     
     base_filename = f"Case{case_num}_{algo_name}"

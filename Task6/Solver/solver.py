@@ -151,10 +151,11 @@ def run_scenario(optimizer_class, problem: CoolingTowerProblem, case_num: int, s
     from mpl_toolkits.mplot3d import Axes3D
     
     # Create output directory
-    out_dir = os.path.join(os.path.dirname(__file__), "output")
+    algo_name = optimizer_class.__name__.replace('Optimizer', '')
+    base_out_dir = os.path.join(os.path.dirname(__file__), "output")
+    out_dir = os.path.join(os.path.dirname(__file__), base_out_dir, algo_name)
     os.makedirs(out_dir, exist_ok=True)
     
-    algo_name = optimizer_class.__name__.replace('Optimizer', '')
     base_filename = f"Case{case_num}_{algo_name}"
     
     # 1. Plot Convergence History
@@ -233,7 +234,7 @@ def run_scenario(optimizer_class, problem: CoolingTowerProblem, case_num: int, s
     plt.close()
     
     # 4. Save Metrics to CSV
-    csv_path = os.path.join(out_dir, "summary_metrics.csv")
+    csv_path = os.path.join(base_out_dir, "summary_metrics.csv")
     file_exists = os.path.isfile(csv_path)
     
     with open(csv_path, mode='a', newline='') as f:

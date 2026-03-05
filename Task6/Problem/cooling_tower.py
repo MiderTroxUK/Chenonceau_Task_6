@@ -75,13 +75,15 @@ class CoolingTowerProblem:
     """
     Defines the optimization problem for the Cooling Tower.
     """
-    def __init__(self, m=10, r0=39.3, rm=27.4, total_height=36.5, v_target=70320.0):
+    def __init__(self, m=10, r0=39.3, rm=27.4, total_height=36.5, v_target=70320.0,
+                 enforce_constant_spacing: bool = False):
         self.m = m
         self.r0 = r0
         self.rm = rm
         self.total_height = total_height
         self.v_target = v_target
-        
+        self.enforce_constant_spacing = enforce_constant_spacing
+
         # Case 1 defaults: equal heights
         self.fixed_heights = np.full(m, total_height / m)
 
@@ -97,6 +99,9 @@ class CoolingTowerProblem:
             radii[-1] = self.rm
             radii[1:-1] = x
             heights = kwargs.get('fixed_heights', self.fixed_heights)
+            # If constant spacing is enforced, always use fixed_heights
+            if self.enforce_constant_spacing:
+                heights = self.fixed_heights
             return radii, heights
             
         elif case_num == 2:
@@ -104,7 +109,11 @@ class CoolingTowerProblem:
             radii = kwargs.get('fixed_radii')
             if radii is None:
                 raise ValueError("Case 2 requires 'fixed_radii' kwarg.")
-            return radii, x
+            # If constant spacing enforced, ignore x and use fixed_heights
+            heights = x
+            if self.enforce_constant_spacing:
+                heights = self.fixed_heights
+            return radii, heights
             
         elif case_num == 3:
             # x contains [r1...r_{m-1}, h1...hm]
@@ -113,6 +122,8 @@ class CoolingTowerProblem:
             radii[-1] = self.rm
             radii[1:-1] = x[:self.m - 1]
             heights = x[self.m - 1:]
+            if self.enforce_constant_spacing:
+                heights = self.fixed_heights
             return radii, heights
             
         elif case_num == 8:

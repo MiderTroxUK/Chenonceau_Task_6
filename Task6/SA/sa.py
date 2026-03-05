@@ -1,3 +1,10 @@
+"""
+Subject:        SA algorithm (simple version)
+@author:        Pierre Bédrune, John HOARAU
+@date:          04/03/2026
+
+Simulated Annealing basique. Les contraintes géométriques sont gérées par le solver.
+"""
 
 import numpy as np
 from typing import Callable, Tuple, List
@@ -9,27 +16,31 @@ def simulated_annealing(
     **kwargs
 ) -> Tuple[np.ndarray, float, List[float], int]:
     """
-    Pierre's Simulated Annealing implementation.
-
-    Args:
-        objective_func: The function to minimize. Takes an array of variables and returns the cost.
-        initial_guess: The starting point for the algorithm.
-
+    Simulated Annealing for minimization.
+    
+    Parameters via **kwargs:
+        bounds: List of (min, max) tuples
+        T_initial: Initial temperature (default 5000)
+        T_final: Final temperature (default 1e-8)
+        alpha: Cooling rate (default 0.995)
+        max_iter: Max iterations (default 5000)
+        n_neighbors: Neighbors per iteration (default 3)
+        step_size: Perturbation size (default 0.1)
+        seed: Random seed
+        verbose: Print progress
+        
     Returns:
-        best_position (np.ndarray): The best combination of parameters found.
-        best_cost (float): The cost evaluated at the best_position.
-        history (List[float]): The history of the best cost over iterations.
-        n_fevals (int): Total number of times the objective function was evaluated.
+        best_pos, best_cost, history, n_fevals
     """
-
-    # ----- Extract parameters from kwargs -----
+    
+    # Extract parameters
     bounds = kwargs.get('bounds', None)
-    T_initial = kwargs.get('T_initial', 5000.0)
-    T_final = kwargs.get('T_final', 1e-8)
+    t_initial = kwargs.get('T_initial', 5000.0)
+    t_final = kwargs.get('T_final', 1e-8)
     alpha = kwargs.get('alpha', 0.995)
     max_iter = kwargs.get('max_iter', 5000)
     n_neighbors = kwargs.get('n_neighbors', 3)
-    step_size = kwargs.get('step_size', 0.15)
+    step_size = kwargs.get('step_size', 0.1)
     adaptive_step = kwargs.get('adaptive_step', True)
     seed = kwargs.get('seed', None)
     verbose = kwargs.get('verbose', False)
@@ -37,57 +48,46 @@ def simulated_annealing(
     if seed is not None:
         np.random.seed(seed)
 
+    # Initialize
     x = np.array(initial_guess, dtype=float)
     n_vars = len(x)
-
-    # ----- Bounds handling -----
+    
     if bounds is not None:
         lb = np.array([b[0] for b in bounds], dtype=float)
         ub = np.array([b[1] for b in bounds], dtype=float)
-        rng = ub - lb  # search-space width per dimension
     else:
-        lb = None
-        ub = None
-        rng = np.abs(x) + 1.0  # fallback scaling
-
-    # ----- Initial evaluation -----
+        lb = np.full(n_vars, 5.0)
+        ub = np.full(n_vars, 80.0)
+    rng = ub - lb
+    
+    x = np.clip(x, lb, ub)
     current_cost = objective_func(x)
     n_fevals = 1
 
     best_pos = x.copy()
     best_cost = current_cost
-
     history: List[float] = [best_cost]
+    
+    t = t_initial
     log_every = max(1, max_iter // 10)
 
-    # ----- Temperature schedule -----
-    T = T_initial
-
-    # ----- Main optimisation loop -----
+    # Main loop
     for iteration in range(max_iter):
-
-        # -- Adaptive step size: decreases with temperature --
-        # Allows large exploration at high T, fine-tuning at low T
+        
+        # Adaptive step size
         if adaptive_step:
-            t_ratio = np.sqrt(T / T_initial)
-            t_ratio = np.clip(t_ratio, 0.01, 1.0)
+            t_ratio = np.clip(np.sqrt(t / t_initial), 0.01, 1.0)
             step_current = step_size * t_ratio
         else:
             step_current = step_size
 
-        # -- Generate and evaluate neighbors --
-        # Sample n_neighbors candidates, keep the best for acceptance test
+        # Generate neighbors
         best_neighbor_x = None
         best_neighbor_cost = np.inf
 
         for _ in range(n_neighbors):
-            # Gaussian perturbation scaled by search range
             perturbation = np.random.randn(n_vars) * step_current * rng
-            neighbor_x = x + perturbation
-
-            # Clipping boundary: project back onto bounds
-            if lb is not None and ub is not None:
-                neighbor_x = np.clip(neighbor_x, lb, ub)
+            neighbor_x = np.clip(x + perturbation, lb, ub)
 
             neighbor_cost = objective_func(neighbor_x)
             n_fevals += 1
@@ -96,40 +96,25 @@ def simulated_annealing(
                 best_neighbor_cost = neighbor_cost
                 best_neighbor_x = neighbor_x.copy()
 
-        # -- Metropolis acceptance criterion --
-        delta_E = best_neighbor_cost - current_cost
+        # Metropolis criterion
+        delta_e = best_neighbor_cost - current_cost
+        accept = delta_e < 0 or np.random.rand() < np.exp(-delta_e / t)
 
-        if delta_E < 0:
-            # Better solution: always accept
-            accept = True
-        else:
-            # Worse solution: accept with probability exp(-ΔE/T)
-            acceptance_prob = np.exp(-delta_E / T)
-            accept = np.random.rand() < acceptance_prob
-
-        if accept and best_neighbor_x is not None:
+        if accept:
             x = best_neighbor_x
             current_cost = best_neighbor_cost
-
-            # Update global best
             if current_cost < best_cost:
                 best_cost = current_cost
                 best_pos = x.copy()
 
         history.append(best_cost)
+        t = alpha * t
 
-        # -- Cooling: geometric decay --
-        T = alpha * T
-
-        # -- Early stopping --
-        if T < T_final:
-            if verbose:
-                print(f"  [SA] Early stop at iter {iteration + 1}: T={T:.2e} < T_final={T_final:.2e}")
+        if t < t_final:
             break
 
-        # -- Verbose output --
         if verbose and (iteration + 1) % log_every == 0:
-            print(f"  [SA] Iter {iteration + 1:>5d}/{max_iter} | "
-                  f"T: {T:.2e} | Best cost: {best_cost:.6f}")
+            print(f"  [SA] Iter {iteration+1:>5d}/{max_iter} | "
+                  f"T: {t:.2e} | Best: {best_cost:.2f}")
 
     return best_pos, best_cost, history, n_fevals

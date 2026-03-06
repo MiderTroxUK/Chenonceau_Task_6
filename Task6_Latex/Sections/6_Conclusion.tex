@@ -17,3 +17,69 @@ The key findings are:
 \end{itemize}
 
 In summary, SA is well-suited for cooling tower optimisation when combined with appropriate geometric constraints or parametric formulations. The computational cost remains low (1.6--6.2 s per case), making it practical for engineering design applications.
+
+\subsection{Conclusion on Particle Swarm Optimisation}
+
+The PSO algorithm exhibited strong exploration capabilities but suffered from severe constraint satisfaction failures under the penalty-based formulation used in this study. Volume errors exceeded 14\,000\,m$^3$ in five out of eight cases, rendering the corresponding solutions physically meaningless. This systemic failure is attributed to the interaction between the swarm dynamics and the penalty landscape: the penalty weight $\rho = 10^3$, while sufficient for single-point methods (BFGS, SA), is insufficient to steer the distributed swarm toward the feasible manifold.
+
+The key findings are:
+
+\begin{itemize}
+    \item \textbf{Best performance}: Case~8 (Hyperbolic Fit) achieved the lowest surface area of all algorithm--case combinations (5\,742.55\,m$^2$) with near-zero volume error, confirming that the low-dimensional parametric space enables effective swarm convergence.
+    
+    \item \textbf{Convergence behaviour}: The two-phase convergence pattern (rapid descent followed by plateau) was consistently observed. Cases~2, 6, and~8 converged within 30--50 iterations, while Cases~1, 3, and~5 required over 500 iterations.
+    
+    \item \textbf{Constraint satisfaction}: Only three out of eight cases (Cases~2, 6, and~8) achieved volume errors below 1\,m$^3$. This constitutes the most significant limitation of PSO as deployed in this study and calls for alternative constraint-handling strategies.
+    
+    \item \textbf{Computational cost}: PSO required 150\,200 function evaluations per case---$29\times$ more than BFGS and $9\times$ more than SA---yet produced the worst overall results. This poor cost-effectiveness ratio limits PSO's suitability for problems where function evaluations are expensive.
+\end{itemize}
+
+In summary, while PSO's global exploration capability is theoretically advantageous for multimodal landscapes, the method's performance on equality-constrained surface optimisation problems is fundamentally limited by the penalty-based constraint handling. Future work should investigate feasibility-preserving update rules, adaptive penalty schedules, or hybrid PSO-local-search strategies to address these shortcomings.
+
+\subsection{Conclusion on BFGS}
+
+The BFGS quasi-Newton method emerged as the most effective algorithm in this study, achieving the best or near-best surface area in seven out of eight cases with perfect volume constraint satisfaction (zero error in all cases) and the lowest computational cost.
+
+The key findings are:
+
+\begin{itemize}
+    \item \textbf{Best performance}: Case~8 (Hyperbolic Fit) combined with BFGS represents the most efficient configuration, converging in 12 iterations (0.04\,s) to an area of 5\,961.77\,m$^2$ with zero volume error.
+    
+    \item \textbf{Convergence behaviour}: BFGS exhibited superlinear convergence in all well-conditioned cases, with typical convergence achieved within 20--30 iterations. The gradient norm provides a natural stopping criterion, unlike SA and PSO which rely on fixed iteration budgets.
+    
+    \item \textbf{Geometric quality}: BFGS consistently produced the smoothest, most physically realistic profiles. In Case~6 (High Volume), BFGS achieved a 4.7$\times$ lower surface area than SA, exclusively due to geometric regularity.
+    
+    \item \textbf{Limitations}: Case~3 (Full Freedom, $D = 19$) revealed the method's vulnerability to ill-conditioning and local trapping in high-dimensional spaces. For such problems, BFGS should be combined with multi-start strategies or hybridised with a global search phase.
+\end{itemize}
+
+In summary, BFGS is the recommended algorithm for cooling tower optimisation when gradient information is available and the search space is well conditioned. Its deterministic nature, adaptive termination, and inherent geometric smoothness make it ideally suited for structural engineering applications where solution quality, reproducibility, and computational efficiency are paramount.
+
+\subsection{Overall Conclusion}
+
+This study benchmarked three optimisation algorithms---BFGS, Simulated Annealing, and Particle Swarm Optimisation---on the structural surface area minimisation of a discretised hyperboloidal cooling tower across eight study cases of increasing complexity. The investigation reveals a clear performance hierarchy: BFGS $>$ SA $\gg$ PSO, with the following overarching conclusions:
+
+\begin{enumerate}
+    \item \textbf{Algorithm selection matters, but problem formulation matters more.} Case~8 (Hyperbolic Parametrisation, $D = 3$) yielded the best result for all three methods, demonstrating that embedding physical knowledge into the parametrisation is more effective than algorithmic sophistication.
+    
+    \item \textbf{Gradient-based methods are naturally suited to shape optimisation.} BFGS's local search produces smooth, structurally plausible profiles without requiring explicit geometric penalties, whereas stochastic methods can generate unrealistic geometries unless additional constraints are imposed.
+    
+    \item \textbf{Penalty-based constraint handling is algorithm-dependent.} The static penalty weight $\rho = 10^3$ is effective for BFGS and SA but inadequate for PSO, highlighting the need for constraint-handling strategies tailored to each method's search dynamics.
+    
+    \item \textbf{Computational efficiency spans three orders of magnitude.} BFGS achieves convergence in $\mathcal{O}(10^2)$ function evaluations, SA in $\mathcal{O}(10^4)$, and PSO in $\mathcal{O}(10^5)$, with BFGS delivering superior solutions at the lowest cost in the majority of cases.
+\end{enumerate}
+
+\subsection{Future Work}
+
+Several directions for future investigation are identified:
+
+\begin{itemize}
+    \item \textbf{Constraint handling}: Investigate augmented Lagrangian methods, feasibility-preserving operators for PSO, and adaptive penalty schedules to improve stochastic method performance on equality-constrained problems.
+    
+    \item \textbf{Hybrid algorithms}: Combine global exploration (SA or PSO) with local refinement (BFGS) in a two-phase strategy, using the stochastic method to identify promising basins and BFGS to converge within them.
+    
+    \item \textbf{Structural constraints}: Extend the cost function to incorporate stress, buckling, and wind-load criteria, transforming the problem into a multi-objective optimisation that more closely reflects real engineering requirements.
+    
+    \item \textbf{Higher-fidelity models}: Replace the conical frustum discretisation with finite element shell models to capture bending stiffness, membrane stress distributions, and nonlinear geometric effects.
+    
+    \item \textbf{Parametric exploration}: Investigate alternative parametric families beyond the hyperboloid of one sheet (e.g., polynomial profiles, B-spline representations) to assess whether further surface area reductions are achievable while maintaining structural integrity.
+\end{itemize}

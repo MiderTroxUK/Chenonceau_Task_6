@@ -847,10 +847,64 @@ Function Evaluations & \textbf{294} \\
 
 \subsection{Comparison between the three methods}
 
-TO DO
+Table~\ref{tab:comparison_all} consolidates the final surface area and volume error for all three algorithms across the eight study cases.
+
+\begin{table}[H]
+\centering
+\caption{Consolidated comparison: final surface area (m$^2$) and volume error (m$^3$) for BFGS, SA, and PSO across all eight study cases. Bold entries indicate the best area per case. Cells marked with $\dagger$ denote volume errors exceeding 1\,000\,m$^3$, indicating effective constraint failure.}
+\label{tab:comparison_all}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l | r r | r r | r r}
+\hline
+ & \multicolumn{2}{c|}{\textbf{BFGS}} & \multicolumn{2}{c|}{\textbf{SA}} & \multicolumn{2}{c}{\textbf{PSO}} \\
+\textbf{Case} & Area & Vol Err & Area & Vol Err & Area & Vol Err \\
+\hline
+1 --- Reference          & \textbf{7\,769} & 0.00 & 7\,877 & 0.06 & 8\,021 & 36\,579$^\dagger$ \\
+2 --- Variable Heights   & \textbf{7\,776} & 0.00 & 7\,871 & 0.01 & 11\,458 & 0.03 \\
+3 --- Full Freedom       & \textbf{7\,775} & 0.00 & 10\,540 & 0.43 & 9\,909 & 14\,870$^\dagger$ \\
+4 --- Tight Waist        & \textbf{7\,775} & 0.00 & 7\,779 & 0.03 & 8\,024 & 37\,601$^\dagger$ \\
+5 --- Cylindrical Start  & \textbf{7\,793} & 0.00 & 8\,054 & 0.18 & 8\,073 & 32\,385$^\dagger$ \\
+6 --- High Volume        & \textbf{7\,678} & 0.00 & 36\,042 & 0.02 & 39\,394 & 0.13 \\
+7 --- Restricted Bounds  & 8\,046 & 0.00 & \textbf{7\,798} & 0.10 & 8\,042 & 26\,378$^\dagger$ \\
+8 --- Hyperbolic Fit     & 5\,962 & 0.00 & 5\,766 & 0.00 & \textbf{5\,743} & 0.03 \\
+\hline
+\end{tabular}%
+}
+\end{table}
+
+Several key observations emerge from this consolidation:
+
+\textbf{BFGS achieves the best surface area in six out of eight cases.} Its gradient-based local search exploits curvature information to reach well-conditioned minima with perfect volume constraint satisfaction (zero error in all cases). The only exceptions are Case~7, where the imposed box constraints limit the explorable region and SA finds a marginally better solution, and Case~8, where the low-dimensional parametric formulation allows all algorithms to converge effectively.
+
+\textbf{SA provides the most reliable constraint satisfaction among the stochastic methods.} In every case, the volume error remains below 0.5\,m$^3$, confirming that the quadratic penalty formulation effectively guides the SA search toward the feasible manifold. However, Case~6 reveals a critical limitation: without explicit smoothness penalties, SA generates a physically unrealistic zigzag profile with a surface area 4.7$\times$ larger than the BFGS solution, despite satisfying the volume constraint.
+
+\textbf{PSO exhibits severe constraint failures in five out of eight cases.} Cases~1, 3, 4, 5, and~7 show volume errors exceeding 14\,000\,m$^3$---more than 20\% of the target volume. This indicates that the penalty weight $\rho = 10^3$, while sufficient for BFGS and SA, is inadequate for guiding the PSO swarm toward the feasible region within the allocated 150\,200 function evaluations. Only Cases~2, 6, and~8 achieve feasible solutions, suggesting that PSO requires either a substantially higher penalty weight, a problem-specific constraint-handling mechanism, or significantly more iterations to reliably satisfy the equality constraint.
 
 \subsection{Comparison of the methods performances}
 
-TO DO
+\begin{table}[H]
+\centering
+\caption{Computational performance comparison: mean computation time and function evaluations per case.}
+\label{tab:perf_comparison}
+\begin{tabular}{l r r r}
+\hline
+\textbf{Metric} & \textbf{BFGS} & \textbf{SA} & \textbf{PSO} \\
+\hline
+Mean time per case (s) & 0.39 & 3.56 & 6.04 \\
+Median time per case (s) & 0.23 & 3.49 & 6.30 \\
+Mean function evaluations & 5\,256 & 16\,540 & 150\,200 \\
+Fastest case (s) & 0.01 (Case 8) & 1.61 (Case 2) & 4.11 (Case 6) \\
+Slowest case (s) & 1.47 (Case 5) & 6.16 (Case 3) & 7.34 (Case 3) \\
+\hline
+\end{tabular}
+\end{table}
 
-Explanations: As with Tasks 3 and 4, one aim of this Task is to compare the performance of the numerical techniques that you have employed by, for example, counting the number of function evaluations that are involved, recording the elapsed time, etc. 
+The performance comparison reveals a clear hierarchy in computational efficiency:
+
+\textbf{BFGS is the fastest method by a wide margin}, averaging 0.39\,s per case compared to 3.56\,s for SA and 6.04\,s for PSO. This advantage stems from the superlinear convergence rate of quasi-Newton methods: BFGS requires on average only 5\,256 function evaluations to reach the optimum, 3$\times$ fewer than SA and 29$\times$ fewer than PSO. In Case~8 (Hyperbolic Fit), BFGS converges in only 294 evaluations (0.01\,s), demonstrating the exceptional efficiency of gradient-based methods on smooth, low-dimensional landscapes.
+
+\textbf{SA occupies a middle ground}, with moderate computation times (1.6--6.2\,s) and a fixed evaluation budget of 16\,540 per case. The constant evaluation count reflects the predetermined cooling schedule: the algorithm always runs to completion regardless of whether convergence has been achieved. This represents a disadvantage compared to BFGS, which terminates adaptively once gradient norms fall below tolerance.
+
+\textbf{PSO is the most expensive method}, requiring 150\,200 function evaluations per case (a fixed swarm size of 200 particles over 750 iterations). Despite this computational investment, PSO fails to produce feasible solutions in the majority of cases, yielding the worst cost-effectiveness ratio of the three methods. The high evaluation count is partly explained by the need to evaluate the entire swarm at each iteration, as opposed to the single-point evaluation strategy of BFGS and SA.
+
+It should be noted that while the absolute timings are hardware-dependent and should not be compared across different machines, the relative ranking (BFGS $\ll$ SA $<$ PSO) and the function evaluation counts provide machine-independent performance metrics that are directly comparable.

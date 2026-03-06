@@ -89,4 +89,22 @@ The Simulated Annealing implementation, including cooling schedule, neighbour ge
 
 \subsubsection{SA Results}
 
-Results for the Simulated Annealing algorithm will be inserted once the SA solver runs have been completed and validated.
+\begin{table}[h!]
+\centering
+\caption{SA optimisation results across all eight study cases.}
+\label{tab:sa_results}
+\begin{tabular}{l r r r r}
+\hline
+\textbf{Case} & \textbf{Time (s)} & \textbf{Func Evals} & \textbf{Area (m$^2$)} & \textbf{Vol Error (m$^3$)} \\
+\hline
+1 --- Ref Case           & 1.82  & 16\,540 & 7\,876.71  & 0.06 \\
+2 --- Variable Heights   & 1.61  & 16\,540 & 7\,871.45  & 0.01 \\
+3 --- Full Freedom       & 6.16  & 16\,540 & 10\,540.05 & 0.43 \\
+4 --- Tight Waist        & 5.15  & 16\,540 & 7\,779.18  & 0.03 \\
+5 --- Cylindrical Start  & 4.85  & 16\,540 & 8\,053.97  & 0.18 \\
+6 --- High Volume        & 1.73  & 16\,540 & 36\,042.25 & 0.02 \\
+7 --- Restricted Bounds  & 5.16  & 16\,540 & 7\,797.63  & 0.10 \\
+8 --- Hyperbolic Fit     & 2.17  & 16\,540 & 5\,765.62  & 0.00 \\
+\hline
+\end{tabular}
+\end{table}

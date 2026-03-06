@@ -150,7 +150,7 @@ def particle_swarm(
     c1: float = 2.0,
     c2: float = 2.0,
     max_velocity_rate: float = 0.3,
-    seed: int = 42,
+    seed: int = 10,
     verbose: bool = False,
     **kwargs,
 ) -> Tuple[np.ndarray, float, List[float], int]:

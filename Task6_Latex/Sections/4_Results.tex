@@ -4,7 +4,7 @@
 
 \subsubsection{Convergence}
 
-To better characterise the optimisation dynamics, the convergence histories are analysed in pairs. All curves exhibit the typical behaviour of PSO, with a rapid initial decay followed by a gradual stabilisation once the swarm approches a locally optimal region. However, the rate of decrease, the number of iterations required to reach the plateau, and the presence of intermittent stagnation phases vary significantly from one case to another.
+To better characterise the optimisation dynamics, the convergence histories are analysed in pairs. All curves exhibit the typical behaviour of PSO, with a rapid initial decay followed by a gradual stabilisation once the swarm approaches a locally optimal region. However, the rate of decrease, the number of iterations required to reach the plateau, and the presence of intermittent stagnation phases vary significantly from one case to another.
 
 \begin{figure}[H]
     \centering
@@ -104,7 +104,7 @@ Each shape reflects the balance between aerodynamic, structural, and volumetric 
         \caption{Case 6 profile}
         \label{fig:profpso06}
     \end{subfigure}
-    \caption{Convergence plots (cases 3 and 6)}
+    \caption{Optimised tower profiles (Cases 3 and 6)}
     \label{fig:pso-convergences_36}
 \end{figure}
 
@@ -124,7 +124,7 @@ Cases 3 and 6 represent the most vertically developed cooling‑tower shapes wit
         \caption{Case 7 profile}
         \label{fig:profpso07}
     \end{subfigure}
-    \caption{Convergence plots (cases 4 and 7)}
+    \caption{Optimised tower profiles (Cases 4 and 7)}
     \label{fig:pso-convergences_47}
 \end{figure}
 
@@ -144,7 +144,7 @@ Cases 4 and 7 correspond to cooling‑tower geometries with medium height and a 
         \caption{Case 5 profile}
         \label{fig:profpso05}
     \end{subfigure}
-    \caption{Convergence plots (cases 1 and 5)}
+    \caption{Optimised tower profiles (Cases 1 and 5)}
     \label{fig:pso-convergences_15}
 \end{figure}
 
@@ -164,7 +164,7 @@ The profiles of cases 1 and 5 are nearly identical, both forming a symmetric coo
         \caption{Case 8 profile}
         \label{fig:profpso08}
     \end{subfigure}
-    \caption{Convergence plots (cases 2 and 8)}
+    \caption{Optimised tower profiles (Cases 2 and 8)}
     \label{fig:pso-convergences_28}
 \end{figure}
 
@@ -421,7 +421,7 @@ Function Evaluations & 16,540 \\
 \label{fig:sa_case6}
 \end{figure}
 
-The target volume is increased to 105,480 m³ ($\times 1.5$). \textbf{The resulting profile is unrealistic}: a zigzag shape with significant oscillations. The SA minimises the area without any smoothness constraint, producing a physically impossible geometry. While the volume constraint is satisfied, the solution is unacceptable from an engineering perspective.
+The target volume is increased to 105,480 m³ ($\times 1.5$). The resulting profile is unrealistic: a zigzag shape with significant oscillations. The SA minimises the area without any smoothness constraint, producing a physically impossible geometry. While the volume constraint is satisfied, the solution is unacceptable from an engineering perspective.
 
 %----------------------------------------------------------
 \subsubsection{Case 7: Restricted Bounds}
@@ -505,7 +505,7 @@ Function Evaluations & 16,540 \\
 \label{fig:sa_case8}
 \end{figure}
 
-\textbf{This case achieves the best overall result.} A parametric formulation with 3 parameters $(a, b, c)$ defines an analytical hyperbola. The profile is quasi-cylindrical with a slight conical shape, significantly different from the other cases. The area is \textbf{26\% lower} than Case 1, and the volume error is virtually zero. Convergence is rapid and monotonic. This parametric formulation is the most efficient as it reduces the search space while guaranteeing a physically realistic shape.
+This case achieves the best overall result. A parametric formulation with 3 parameters $(a, b, c)$ defines an analytical hyperbola. The profile is quasi-cylindrical with a slight conical shape, significantly different from the other cases. The area is \textbf{26\% lower} than Case 1, and the volume error is virtually zero. Convergence is rapid and monotonic. This parametric formulation is the most efficient as it reduces the search space while guaranteeing a physically realistic shape.
 
 \subsection{Broyden-Fletcher-Goldfarb-Shanno results}
 
@@ -632,7 +632,7 @@ Function Evaluations & 23,692 \\
 \label{fig:bfgs_case3}
 \end{figure}
 
-\textbf{This case illustrates a fundamental limitation of gradient-based methods.} With both radii and heights as free variables, BFGS converges to a local minimum that is physically unrealistic: an extremely narrow tower (waist = 5.0 m) stretched vertically to nearly 180 m. The volume error (8.96 m³) indicates the optimiser struggled to satisfy constraints in this high-dimensional space. The computation time (22.72 s) is significantly higher due to the complexity of the search space. Unlike SA, which explores globally, BFGS is trapped by its local search behaviour.
+This case illustrates a fundamental limitation of gradient-based methods. With both radii and heights as free variables, BFGS converges to a local minimum that is physically unrealistic: an extremely narrow tower (waist = 5.0 m) stretched vertically to nearly 180 m. The volume error (8.96 m³) indicates the optimiser struggled to satisfy constraints in this high-dimensional space. The computation time (22.72 s) is significantly higher due to the complexity of the search space. Unlike SA, which explores globally, BFGS is trapped by its local search behaviour.
 
 %----------------------------------------------------------
 \subsubsection{Case 4: Tight Waist}
@@ -758,7 +758,7 @@ Function Evaluations & 6,426 \\
 \label{fig:bfgs_case6}
 \end{figure}
 
-\textbf{This case highlights a major advantage of BFGS over SA.} With the target volume increased to 105,480 m³ ($\times 1.5$), BFGS produces a physically realistic hyperboloid profile (7678.24 m²), while SA generated an unrealistic zigzag shape (36042.25 m²). The convergence is rapid ($<30$ iterations) despite the challenging constraint. The wider waist (27.7 m) is a natural consequence of the increased volume requirement. This demonstrates that gradient-based methods naturally preserve smooth geometries through their local search behaviour.
+This case highlights a major advantage of BFGS over SA. With the target volume increased to 105,480 m³ ($\times 1.5$), BFGS produces a physically realistic hyperboloid profile (7678.24 m²), while SA generated an unrealistic zigzag shape (36042.25 m²). The convergence is rapid ($<30$ iterations) despite the challenging constraint. The wider waist (27.7 m) is a natural consequence of the increased volume requirement. This demonstrates that gradient-based methods naturally preserve smooth geometries through their local search behaviour.
 
 %----------------------------------------------------------
 \subsubsection{Case 7: Restricted Bounds}
@@ -842,7 +842,7 @@ Function Evaluations & \textbf{294} \\
 \label{fig:bfgs_case8}
 \end{figure}
 
-\textbf{This case achieves exceptional performance.} Using a parametric hyperbolic formulation with only 3 parameters $(a, b, c)$, BFGS converges in just \textbf{12 iterations} (294 function evaluations) to an area of 5961.77 m². This represents a \textbf{23\% improvement} over the reference Case 1 and is achieved in 0.04 seconds—the fastest computation time of all cases. The resulting profile is a smooth, monotonic cone-like shape that satisfies the volume constraint perfectly. This demonstrates that \textbf{combining BFGS with a well-chosen parametric formulation yields optimal results}: the reduced search space eliminates local minima while BFGS provides efficient gradient-based convergence.
+This case achieves exceptional performance. Using a parametric hyperbolic formulation with only 3 parameters $(a, b, c)$, BFGS converges in just \textbf{12 iterations} (294 function evaluations) to an area of 5961.77 m². This represents a \textbf{23\% improvement} over the reference Case 1 and is achieved in 0.04 seconds—the fastest computation time of all cases. The resulting profile is a smooth, monotonic cone-like shape that satisfies the volume constraint perfectly. This demonstrates that combining BFGS with a well-chosen parametric formulation yields optimal results: the reduced search space eliminates local minima while BFGS provides efficient gradient-based convergence.
 
 
 \subsection{Comparison between the three methods}

@@ -590,7 +590,7 @@ Function Evaluations & 17,982 \\
 \label{fig:bfgs_case2}
 \end{figure}
 
-With variable heights, BFGS achieves a remarkable \textbf{13\% improvement} over Case 1 (6830.77 m² vs 7766.65 m²). The convergence is rapid and monotonic within 20 iterations. The optimised profile shows a compressed geometry with redistributed frustum heights, concentrating material near the waist. This case demonstrates BFGS's efficiency in exploiting the additional degrees of freedom provided by variable heights. Compared to SA (7871.45 m²), BFGS achieves a significantly better result.
+With variable heights, BFGS achieves a 12\% improvement over Case 1 (6830.77 m² vs 7766.65 m²). The convergence is rapid and monotonic within 20 iterations. The optimised profile shows a compressed geometry with redistributed frustum heights, concentrating material near the waist. This case demonstrates BFGS's efficiency in exploiting the additional degrees of freedom provided by variable heights. Compared to SA (7871.45 m²), BFGS achieves a significantly better result.
 
 %----------------------------------------------------------
 \subsubsection{Case 3: Full Freedom}
@@ -874,7 +874,7 @@ Table~\ref{tab:comparison_all} consolidates the final surface area and volume er
 
 Several key observations emerge from this consolidation:
 
-\textbf{BFGS achieves the best surface area in six out of eight cases.} Its gradient-based local search exploits curvature information to reach well-conditioned minima with perfect volume constraint satisfaction (zero error in all cases). The only exceptions are Case~7, where the imposed box constraints limit the explorable region and SA finds a marginally better solution, and Case~8, where the low-dimensional parametric formulation allows all algorithms to converge effectively.
+BFGS achieves the best surface area in five out of eight cases. Its gradient-based local search exploits curvature information to reach well-conditioned minima with perfect volume constraint satisfaction (zero error in all cases). The exceptions are Case~3, where BFGS converges to a local minimum with an area 26\% larger than SA (Table~\ref{tab:bfgs_case3} vs.\ Table~\ref{tab:sa_case3}); Case~7, where the imposed box constraints limit the explorable region and SA finds a marginally better solution; and Case~8, where the low-dimensional parametric formulation allows all algorithms to converge effectively.
 
 \textbf{SA provides the most reliable constraint satisfaction among the stochastic methods.} In every case, the volume error remains below 0.5\,m$^3$, confirming that the quadratic penalty formulation effectively guides the SA search toward the feasible manifold. However, Case~6 reveals a critical limitation: without explicit smoothness penalties, SA generates a physically unrealistic zigzag profile with a surface area 4.7$\times$ larger than the BFGS solution, despite satisfying the volume constraint.
 

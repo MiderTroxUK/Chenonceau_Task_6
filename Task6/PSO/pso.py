@@ -71,7 +71,7 @@ def particle_swarm(
     max_velocity_rate: float = 0.2,
     adaptive: bool = True,
     pertube_best: bool = True,
-    seed: int = None,
+    seed: int = 50,
     verbose: bool = False,
     **kwargs
 ) -> Tuple[np.ndarray, float, List[float], int]:

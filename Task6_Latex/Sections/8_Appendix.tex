@@ -11,28 +11,82 @@
 
 \subsection{Code Listings}
 
-\subsubsection{PSO implementation}
+\subsubsection{Problem Definition --- \texttt{cooling\_tower.py}}
+\label{app:cooling_tower}
+This module defines the geometric primitives (frustum surface area, volume, slant height) and the \texttt{CoolingTowerProblem} class which encapsulates the decision variable mapping and cost function for all eight study cases.
+\lstinputlisting[language=Python, caption={Cooling Tower Problem Definition (\texttt{cooling\_tower.py})}, label={lst:cooling_tower}, basicstyle=\ttfamily\scriptsize, breaklines=true, numbers=left, numberstyle=\tiny\color{gray}, frame=single, tabsize=4]{../Task6/Problem/cooling_tower.py}
 
-TO DO
+\clearpage
+\subsubsection{Solver Orchestrator --- \texttt{solver.py}}
+\label{app:solver}
+The orchestrator script constructs each study case, initialises the geometry, and dispatches each algorithm wrapper uniformly. It also generates convergence plots, profile comparisons, and summary metrics.
+\lstinputlisting[language=Python, caption={Solver Orchestrator (\texttt{solver.py})}, label={lst:solver}, basicstyle=\ttfamily\scriptsize, breaklines=true, numbers=left, numberstyle=\tiny\color{gray}, frame=single, tabsize=4]{../Task6/Solver/solver.py}
 
-\subsubsection{SA implementation}
+\clearpage
+\subsubsection{BFGS Implementation --- \texttt{bfgs.py}}
+\label{app:bfgs}
+The BFGS quasi-Newton implementation, including inverse Hessian approximation updates, Armijo line search, and numerical gradient computation via finite differences.
+\lstinputlisting[language=Python, caption={BFGS Implementation (\texttt{bfgs.py})}, label={lst:bfgs}, basicstyle=\ttfamily\scriptsize, breaklines=true, numbers=left, numberstyle=\tiny\color{gray}, frame=single, tabsize=4]{../Task6/BFGS/bfgs.py}
 
-TO DO
+\clearpage
+\subsubsection{PSO Implementation --- \texttt{pso.py}}
+\label{app:pso}
+The Particle Swarm Optimisation implementation, including swarm initialisation, velocity updates, boundary handling, and convergence tracking.
+\lstinputlisting[language=Python, caption={Particle Swarm Optimisation (\texttt{pso.py})}, label={lst:pso}, basicstyle=\ttfamily\scriptsize, breaklines=true, numbers=left, numberstyle=\tiny\color{gray}, frame=single, tabsize=4]{../Task6/PSO/pso.py}
 
-\subsubsection{BFGS implementation}
+\clearpage
+\subsubsection{SA Implementation --- \texttt{sa.py}}
+\label{app:sa}
+The Simulated Annealing implementation, including cooling schedule, neighbour generation, and Metropolis acceptance criterion.
+\lstinputlisting[language=Python, caption={Simulated Annealing (\texttt{sa.py})}, label={lst:sa}, basicstyle=\ttfamily\scriptsize, breaklines=true, numbers=left, numberstyle=\tiny\color{gray}, frame=single, tabsize=4]{../Task6/SA/sa.py}
 
-TO DO
-
+\clearpage
 \subsection{Detailed Results Data}
 
-\subsubsection{PSO results}
+\subsubsection{BFGS Results}
 
-TO DO
+\begin{table}[h!]
+\centering
+\caption{BFGS optimisation results across all eight study cases.}
+\label{tab:bfgs_results}
+\begin{tabular}{l r r r r r}
+\hline
+\textbf{Case} & \textbf{Time (s)} & \textbf{Func Evals} & \textbf{Area (m$^2$)} & \textbf{Vol (m$^3$)} & \textbf{Vol Error (m$^3$)} \\
+\hline
+1 --- Ref Case           & 0.1792 & 6\,432  & 7\,768.72  & 70\,320.00  & 0.00 \\
+2 --- Variable Heights   & 0.2042 & 6\,432  & 7\,776.30  & 70\,320.00  & 0.00 \\
+3 --- Full Freedom       & 0.3750 & 6\,432  & 7\,775.10  & 70\,320.00  & 0.00 \\
+4 --- Tight Waist        & 0.4962 & 6\,432  & 7\,775.11  & 70\,320.00  & 0.00 \\
+5 --- Cylindrical Start  & 1.4698 & 8\,539  & 7\,792.74  & 70\,320.00  & 0.00 \\
+6 --- High Volume        & 0.2520 & 6\,426  & 7\,678.24  & 105\,480.00 & 0.00 \\
+7 --- Restricted Bounds  & 0.1330 & 1\,303  & 8\,045.87  & 70\,320.00  & 0.00 \\
+8 --- Hyperbolic Fit     & 0.0146 & 294    & 5\,961.77  & 70\,320.00  & 0.00 \\
+\hline
+\end{tabular}
+\end{table}
 
-\subsubsection{SA results}
+\subsubsection{PSO Results}
 
-TO DO
+\begin{table}[h!]
+\centering
+\caption{PSO optimisation results across all eight study cases.}
+\label{tab:pso_results}
+\begin{tabular}{l r r r r r}
+\hline
+\textbf{Case} & \textbf{Time (s)} & \textbf{Func Evals} & \textbf{Area (m$^2$)} & \textbf{Vol (m$^3$)} & \textbf{Vol Error (m$^3$)} \\
+\hline
+1 --- Ref Case           & 6.6602  & 150\,200 & 8\,021.28  & 33\,740.58  & 36\,579.42 \\
+2 --- Variable Heights   & 4.2376  & 150\,200 & 11\,458.07 & 70\,320.03  & 0.03 \\
+3 --- Full Freedom       & 7.3397  & 150\,200 & 9\,908.86  & 55\,449.77  & 14\,870.23 \\
+4 --- Tight Waist        & 6.8575  & 150\,200 & 8\,023.55  & 32\,719.38  & 37\,600.62 \\
+5 --- Cylindrical Start  & 6.7781  & 150\,200 & 8\,072.50  & 37\,934.59  & 32\,385.41 \\
+6 --- High Volume        & 4.1121  & 150\,200 & 39\,393.50 & 105\,479.87 & 0.13 \\
+7 --- Restricted Bounds  & 6.5794  & 150\,200 & 8\,041.84  & 43\,941.57  & 26\,378.43 \\
+8 --- Hyperbolic Fit     & 5.7374  & 150\,200 & 5\,742.55  & 70\,319.97  & 0.03 \\
+\hline
+\end{tabular}
+\end{table}
 
-\subsubsection{BFGS results}
+\subsubsection{SA Results}
 
-TO DO
+Results for the Simulated Annealing algorithm will be inserted once the SA solver runs have been completed and validated.

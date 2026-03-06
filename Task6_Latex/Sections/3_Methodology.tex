@@ -1,52 +1,248 @@
 \section{Cooling Tower}
 
-TO DO → formalising the problem
 
-Objective: Minimising the surface of the cooling surface
+\subsection{Mathematical Problem Formulation and Geometric Parametrisation}
 
-Problem information:
+The cooling tower of a nuclear power plant defines a continuous surface optimisation problem over a rotationally symmetric structure. 
+To render this tractable computationally, the continuous domain is discretised into a vertical stack of $m$ conical frustums, bounded by $m+1$ horizontal cross-sections (rings). 
+Let $z$ denote the vertical axis originating at the tower base, with $z_0 = 0$. 
+Each frustum $i \in \{1, \dots, m\}$ is fully characterised by its bottom radius $r_{i-1}$, top radius $r_i$, and section height $h_i$.
+
+
+The macroscopic engineering objective is to minimise construction material costs, which are directly proportional to the total lateral surface area $A_{\text{total}}$. 
+This is subject to a strict equality constraint enforcing a fixed thermodynamic cooling capacity, expressed as a target volume $V_{\text{target}} = 70{,}320\,\text{m}^3$. 
+For each frustum $i$, the slant height $s_i$, lateral surface area $A_i$, and volumetric capacity $V_i$ are given by:
+
+\begin{align}
+    s_i &= \sqrt{(r_{i-1} - r_i)^2 + h_i^2} \\
+    A_i &= \pi (r_{i-1} + r_i)\, s_i \\
+    V_i &= \frac{\pi h_i}{3} \left( r_{i-1}^2 + r_{i-1} r_i + r_i^2 \right)
+\end{align}
+
+The resulting global problem is formally a constrained nonlinear programme (NLP):
+
+\begin{equation}
+    \min_{\mathbf{x} \in \mathcal{D}}\; A_{\text{total}}(\mathbf{x}) = \sum_{i=1}^{m} A_i(\mathbf{x})
+    \quad \text{subject to} \quad
+    \mathcal{H}(\mathbf{x}) = \sum_{i=1}^{m} V_i(\mathbf{x}) - V_{\text{target}} = 0
+\end{equation}
+
+where $\mathbf{x}$ is the decision variable vector, and $\mathcal{D} \subseteq \mathbb{R}^{D}$ is the feasible space defined by the physical boundary conditions.
+
+\subsection{Methodology: Quadratic Penalty Formulation and Search Landscape}
+
+To evaluate the three fundamentally different algorithms, Simulated Annealing (SA), Particle Swarm Optimisation (PSO), and the quasi-Newton BFGS method, on a common, unbiased basis, the equality constraint $\mathcal{H}(\mathbf{x}) = 0$ must be handled uniformly. 
+Since SA and PSO are natively unconstrained, and since introducing solver-specific constraint-handling logic would compromise benchmark fairness, the equality constraint is absorbed into the objective via a \textbf{quadratic penalty method}. 
+
+The surrogate objective becomes:
+
+\begin{equation}
+    J(\mathbf{x}) = A_{\text{total}}(\mathbf{x}) + \rho \left[\mathcal{H}(\mathbf{x})\right]^2
+\end{equation}
+
+where $\rho \gg 0$ is a static scalar penalty weight. A static $\rho$ is deliberately chosen over an adaptive schedule to ensure that all three algorithms operate on an identical, fixed search landscape any dynamic $\rho$ strategy would introduce algorithm-dependent trajectory effects that would confound the performance comparison. 
+The chosen value $\rho = 10^3$ was calibrated empirically to ensure that volume violations incur a penalty several orders of magnitude larger than the surface area objective, effectively rendering infeasible solutions non-competitive without distorting the local geometry near the feasible manifold.
+
+This penalty formulation has two notable consequences on the search landscape. 
+First, for BFGS, the quadratic term degrades the conditioning of the Hessian approximation in proportion to $\rho$, increasing the curvature of the surrogate near constraint boundaries~\cite{nocedal2006numerical}. 
+Second, for SA and PSO, the penalty creates steep regions of high curvature in the search landscape around infeasible points, placing greater demands on the exploration-exploitation balance of each algorithm.
+
+\subsection{Architectural Decoupling and Benchmark Fairness}
+
+A fully decoupled, object-oriented software architecture was implemented around a central \texttt{CoolingTowerProblem} class, which encapsulates the geometric model and all case-specific logic. 
+The key design principle is a vector mapping pipeline (\texttt{unpack\_decision\_variables}): all three solvers interact exclusively with an abstract decision vector $\mathbf{x} \in \mathbb{R}^D$, with no knowledge of the underlying physical structure. 
+The class internally reconstructs the full radii and heights arrays from $\mathbf{x}$ according to the active case. 
+This architecture ensures that the \texttt{solver.py} orchestrator applies each algorithm identically across all eight cases, with no solver-specific preprocessing or constraint logic injected at the call level. 
+The result is a genuinely fair, one-to-one algorithmic comparison.
+
+\subsection{Study Cases: Dimensionality and Physical Complexity}
+
+Eight cases were designed to progressively stress-test the algorithms across increasing levels of search space complexity, physical realism, and parametric dimensionality. 
+All cases are evaluated against BFGS, SA, and PSO.
+
 \begin{itemize}
-	\item Design variables:
-		\begin{itemize}
-			\item fixed volume
-			\item $r_0$ to $r_m$
-		\end{itemize}
-	\item Constraint:
-		\begin{itemize}
-			\item hyperboloid
-		\end{itemize}
-	\item 8 simulations:
-		\begin{itemize}
-			\item 1 imposed
-			\item x simulations with radii fixed and heights which vary
-			\item x simulations with height fixed and radii which vary
-			\item x simulations both heights and radii vary
-		\end{itemize}
-	\item run 3 algorithms on each simulation: PSO, SA, and BFGS
+
+    \item \textbf{Case 1: Mandatory Reference Case ($D = 9$):}
+    The canonical benchmark. Section heights $h_i$ and boundary radii $r_0 = 39.3\,\text{m}$, $r_m = 27.4\,\text{m}$ are fixed, and the nine inner radii $r_1, \dots, r_9$ constitute the sole decision variables. 
+	This low-dimensional, well-conditioned problem serves as the convergence baseline against which all other cases are evaluated.
+
+    \item \textbf{Case 2: Variable Heights ($D = 10$):}
+    The radii profile from Case 1 is fixed, and the ten section heights $h_i$ are optimised instead. 
+	This isolates the vertical sensitivity of the volume constraint and characterises how each algorithm navigates a height-dominated feasible manifold.
+
+    \item \textbf{Case 3: Full Freedom ($D = 19$):}
+    Both inner radii and section heights are optimised simultaneously.
+	The near-doubling of dimensionality substantially expands the search landscape, exposing each algorithm to a higher density of local minima and testing resilience against premature convergence.
+
+    \item \textbf{Case 4: Tight Waist ($D = 9$):}
+    A structural constraint is imposed: $r_{\text{mid}} < 0.7\,\min(r_0, r_m)$, artificially narrowing the tower throat. 
+	This breaks the convexity of the feasible region and introduces a disconnected, non-convex feasible zone, testing each solver's ability to navigate segmented constraint boundaries.
+
+    \item \textbf{Case 5: Cylindrical Initialisation ($D = 9$):}
+    A deliberately poor starting point is imposed: $r_i = r_0$ for all $i$, corresponding to a cylinder that substantially violates the volume constraint. 
+	This case measures the sensitivity of each algorithm to initialisation, and in particular the speed at which each method escapes a far-from-feasible equilibrium.
+
+    \item \textbf{Case 6: High Volume ($D = 9$):}
+    The target volume is increased by $50\%$ to $V_{\text{target}} = 105{,}480\,\text{m}^3$. 
+	This rescales the feasible manifold and alters the relative magnitude of the penalty gradient $\nabla[\mathcal{H}(\mathbf{x})]^2$, probing each algorithm's scalability under a shifted constraint landscape.
+
+    \item \textbf{Case 7: Restricted Bounds ($D = 9$):}
+    Box constraints are imposed on all inner radii: $r_i \in [20, 60]\,\text{m}$, simulating civil engineering construction tolerances. 
+	This tests BFGS boundary approximations via L-BFGS-B, and requires SA and PSO to implement explicit boundary clipping or reflection strategies.
+
+    \item \textbf{Case 8: Hyperbolic Parametrisation ($D = 3$):}
+    Rather than optimising discrete node positions, the tower profile is constrained to a hyperboloid of one sheet:
+    \begin{equation}
+        r(z) = a\sqrt{1 + \frac{(z - c)^2}{b^2}}
+    \end{equation}
+    where $a$ is the waist radius, $b$ controls the curvature, and $c$ is the height of the waist. The optimisation operates directly on $(a, b, c)$, reducing the search to $D = 3$. This parametrisation substantially mitigates the curse of dimensionality while inherently guaranteeing $C^1$ profile continuity---a structurally significant property, as smooth surface curvature improves wind load distribution along the tower shell~\cite{mungan1976buckling}. This case also enables a direct comparison between the discrete frustum approximation and the analytically integrated surface area of the true hyperboloid, quantifying the geometric discretisation error introduced in Cases~1--7.
+
 \end{itemize}
 
-
-Other information:
-\begin{itemize}
-	\item hyperbolic regression with 3 points: $r_0$, $r_{m/2}$, $r_m$
-	\item new constraint: $r_mi$ need to be greater than $r_{m/2}$ and to be lower than $r_m$
-	\item usually $r_0$ < $r_m$
-	\item $r_0$ and $r_m$ fixed arbitrary
-	\item calculate the volume at each step of each algorithm
-	\item to ensure the respect of the fixed volume we will use a Penalty function
-	\item continuous problem
-\end{itemize}
 
 \section{Algorithms}
 
-\subsection{Particle Swarm Optimisation method}
+\subsection{Particle Swarm Optimisation method} \cite{task3report}
 
-TO DO
+\subsubsection{General explanation & Algorithm}
+
+The Particle Swarm Optimisation (PSO) is a stochastic optimisation technique inspired by the social behaviour of birds. A population of candidate solutions moves through the domain. Through several time steps, each particle adjusts its position based on its personal best and on the global best. This allows the algorithm to converge to a solution that matches a criterion \cite{riaz_lec2}.
+
+As the problem is single-objective, the standard PSO is used to minimise one error function. It uses two major concepts:
+\begin{itemize}
+	\item Continuous Movement: Particles move in continuous space according to standard velocity and position update rules.
+	\item Convergence Tracking: The best error is stored at each iteration to generate a convergence curve.
+\end{itemize}
+
+The PSO algorithm initialises a population of particles distributed across the search space, each assigned a random velocity and position. At each iteration, velocities are updated according to each particle's own experience and the collective knowledge of the swarm, weighted by an inertia term that decreases progressively to balance exploration and exploitation. A perturbation of the global best position is introduced to reduce the risk of converging prematurely to a local optimum. The algorithm stops when either the maximum number of iterations is reached or the improvement in the global best falls below a defined tolerance, ensuring computational efficiency without sacrificing solution quality.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.50\textwidth]{../Images/PSO/pso_flowchart.png}
+    \caption{Overview of the Particle Swarm Optimisation algorithm}
+    \label{fig:pso_flowchart}
+\end{figure}
+
+\subsubsection{Seed exploration}
+
+To assess the influence of stochastic initialisation on the stability of the PSO optimisation, a seed-sentivity study was conducted. Seven distinct seed were tested including a random one called "None". The resulting volume errors were evaluated across the eight test cases. The objective of this exploration was to select a seed that provides the best results.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.70\textwidth]{../Images/PSO/Seed exploration.png}
+    \caption{Evolution of the volume error depending on the seed}
+    \label{fig:seed_exploration}
+\end{figure}
+
+Overall, the results show marked variability depending on the seed. In particular, some seeds lead to pronounced peaks for specific cases. The most notable example is the seed of 1000, which generates the largest error on the case 3 in the entire exploration. These large deviations indicate that these seeds may place the optimiser in initial conditions less favourable for convergence or stability.
+
+In contrast, seeds 1 and 10 tend to produc substantially lower and more homogeneous errors accross the eight cases. The seed 10 performs particularly weel: it shows no extreme outliers, and the volume error remains close to zero for most cases. Importantly, its behaviour is stable - neither systematically over optimistic nor overly sensitive to case-to-case variations. Compared to seed 1, seed 10 shows a slightly smoother profile, with fewer local spikes.
+
+The seed option labelled "None", corresponding to the use of a non-deterministic initialisation, was deliberately not retained. Although its average behaviour appears reasonable, its intrinsic randomness means that results cannot be reproduced reliably accross runs. In the context of this study - chere traceability, repeatability, and controlled comparisons are essential - this lack of determinism is undesirables. For this reason, the random seed configuration was excluded from the potential candidates.
+
+Based on this analysis, the seed 10 was selected for the remainder of the study. The choice is justified by its balances behaviour:
+\begin{itemize}
+    \item consistently low volume errors accross all cases,
+    \item absence of irregular peaks,
+    \item good reproducibility.
+\end{itemize}
+This seed therefore offers a reliable compromose between robustness and computational stability. However, it is important to note that the fluctuations are minors compared to the total volume of the cooling tower.
 
 \subsection{Simulated Annealing method}
 
-TO DO
+\subsubsection{Principle}
+
+Simulated Annealing is an optimisation method inspired by the annealing process in metallurgy \cite{task3_chenonceau}. The algorithm explores the search space by accepting neighbouring solutions according to a probabilistic criterion: improvements are always accepted, while degradations are accepted with a probability that decreases over time (decreasing temperature). This acceptance mechanism helps escape local minima at the beginning, then allows the algorithm to converge towards a global minimum \cite{task3_chenonceau}.
+
+\subsubsection{Acceptance Criterion (Metropolis)}
+
+The probability of accepting a worse solution is given by:
+
+\begin{equation}
+P(\text{acceptance}) = e^{-\frac{E_{\text{new}} - E_{\text{actual}}}{T}}
+\end{equation}
+
+where $E_{\text{actual}}$ is the current energy, $E_{\text{new}}$ is the energy of the new solution, and $T$ is the temperature parameter \cite{task3_chenonceau}.
+
+\subsubsection{Cooling Schedule}
+
+At each iteration, the temperature decreases according to:
+
+\begin{equation}
+T = T \times \alpha
+\end{equation}
+
+where $\alpha$ is the cooling rate \cite{task3_chenonceau}.
+
+\subsubsection{Key Parameters}
+
+The SA algorithm requires the following parameters:
+\begin{itemize}
+    \item \textbf{$T_{\text{initial}}$}: Initial temperature (controls exploration intensity)
+    \item \textbf{$\alpha$ (cooling\_rate)}: Cooling speed (typically 0.95--0.999)
+    \item \textbf{$T_{\text{min}}$}: Stopping temperature
+\end{itemize}
+
+\subsubsection{Multi-Objective Strategy (Weight Scalarisation)}
+
+SA is inherently a mono-objective algorithm. To solve bi-objective problems, a scalarisation approach transforms the problem into a single objective function using a weighted sum:
+
+\begin{equation}
+E(x) = w_1 \cdot f_1(x) + w_2 \cdot f_2(x) + \sum_{i} \lambda_i \cdot \max(0, g_i(x))
+\end{equation}
+
+where $w_1 + w_2 = 1$ and $\lambda_i$ are penalty coefficients for constraint violations. To approximate a Pareto front, multiple independent runs are performed with weights $w_1$ uniformly distributed between 0.005 and 0.995 \cite{task3_chenonceau}.
 
 \subsection{Broyden-Fletcher-Goldfarb-Shanno method}
 
-TO DO
+\subsubsection{Principle}
+
+The BFGS (Broyden-Fletcher-Goldfarb-Shanno) algorithm is a quasi-Newton method designed to accelerate the iteration process in nonlinear optimisation \cite{task4_chenonceau}. Unlike Newton's method, which requires explicit computation of the Hessian matrix, BFGS builds an approximation of the Hessian using only gradient information collected during the optimisation process.
+
+The method generates a sequence of iterates $x_k$ starting from an initial guess $x_0$. At each iteration, it computes a search direction $p_k$ using the current Hessian approximation $B_k$ and gradient $\nabla f_k$, then performs a line search to determine the step length $\alpha_k$. The algorithm terminates when convergence criteria are satisfied, typically when the gradient norm falls below a specified tolerance \cite{task4_chenonceau}.
+
+\subsubsection{Mathematical Formulation}
+
+The BFGS method approximates the inverse Hessian $H_k \approx (\nabla^2 f_k)^{-1}$ and updates it at each iteration using the following formula \cite{task4_chenonceau}:
+
+\begin{equation}
+H_{k+1} = (I - \rho_k s_k y_k^T) H_k (I - \rho_k y_k s_k^T) + \rho_k s_k s_k^T
+\end{equation}
+
+where:
+\begin{align}
+s_k &= x_{k+1} - x_k \quad \text{(step taken)} \\
+y_k &= \nabla f_{k+1} - \nabla f_k \quad \text{(change in gradient)} \\
+\rho_k &= \frac{1}{y_k^T s_k}
+\end{align}
+
+The search direction is computed as:
+\begin{equation}
+p_k = -H_k \nabla f_k
+\end{equation}
+
+The new iterate is obtained via line search:
+\begin{equation}
+x_{k+1} = x_k + \alpha_k p_k
+\end{equation}
+
+where $\alpha_k$ satisfies the Wolfe conditions to ensure sufficient decrease and curvature conditions.
+
+\subsubsection{Key Parameters}
+
+The BFGS algorithm requires the following parameters:
+\begin{itemize}
+    \item \textbf{$x_0$}: Initial guess
+    \item \textbf{Gradient tolerance}: Convergence threshold for $\|\nabla f_k\|$
+    \item \textbf{Step tolerance}: Minimum step size before termination
+    \item \textbf{Maximum iterations}: Upper bound on iteration count
+\end{itemize}
+
+\subsubsection{Constraint Handling}
+
+For constrained problems, a penalty approach transforms the objective function:
+\begin{equation}
+F(x) = f(x) + \lambda \sum_{i} \max(0, g_i(x))^2
+\end{equation}
+
+where $g_i(x) \leq 0$ are the constraint functions and $\lambda$ is the penalty coefficient.

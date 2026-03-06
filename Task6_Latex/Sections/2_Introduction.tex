@@ -1,3 +1,46 @@
 \section{Introduction}
 
-TO DO
+Structural optimisation is a cornerstone of modern computational engineering, enabling the design of lighter, more efficient, and more cost-effective structures. 
+Among the most widely studied civil structures in this context is the natural-draught cooling tower, whose hyperboloidal shell geometry presents a rich landscape of continuous, nonlinear optimisation challenges~\cite{mungan1976buckling}. 
+Minimising the lateral surface area of such a tower, directly proportional to construction material consumption, while satisfying a strict volumetric capacity constraint is a problem of both theoretical interest and direct industrial relevance.
+
+This report constitutes Task 6 of the Digital Engineering Design Group Project undertaken by Group Chenonceau within the MSc in Computational and Software Techniques in Engineering at Cranfield University. 
+The group comprises John Hoarau (Project Lead and Integration), Martin Harambat (BFGS Implementation), Pierre B\'{e}drune (Simulated Annealing), and Cl\'{e}mence-Philom\`{e}ne Hinot (Particle Swarm Optimisation and \LaTeX).
+
+\subsection{Project Context and Progression}
+
+Over the preceding tasks, we as a group progressively built our optimisation competence through a structured sequence of increasingly complex problems. 
+In Task 3, two metaheuristic algorithms, Particle Swarm Optimisation (PSO) and Simulated Annealing (SA), were independently developed and validated against
+ two canonical benchmarks: the discrete Gear Train Design problem and the multi-objective Two-Bar Plane Truss Design problem. 
+Task 4 then introduced a deterministic gradient-based counterpart, the Broyden-Fletcher-Goldfarb-Shanno (BFGS) quasi-Newton method, applied to the same benchmarks to
+ enable direct algorithmic comparison. 
+Key outcomes included the characterisation of BFGS superlinear convergence properties, the evaluation of noise robustness across all three methods, and the identification 
+of the complementary strengths and weaknesses of stochastic versus deterministic approaches.
+
+Task 6 represents the culmination of this progression. For the first time, all three algorithms are deployed together on a single, real-world structural optimisation problem: the minimisation of the lateral surface area of a discretised hyperboloidal cooling tower subject to a fixed volume constraint.
+
+\subsection{Problem Statement}
+
+The cooling tower is modelled as a vertical stack of $m$ conical frustums, yielding a constrained nonlinear programme (NLP) 
+in which the decision variables, subsets of the internal radii and section heights, are optimised to minimise the total lateral surface area while preserving a target 
+internal volume $V_{\text{target}} = 70{,}320\,\text{m}^3$. The equality constraint is handled via a quadratic penalty method,
+ enabling uniform treatment across all three solvers without introducing algorithm-specific constraint logic.
+
+To comprehensively evaluate algorithmic performance, eight study cases of increasing complexity are defined. These range from a fixed-height reference case ($D = 9$ decision variables) 
+to a parametric hyperboloidal fit ($D = 3$), encompassing variations in decision variable type, dimensionality, initialisation strategy, constraint topology, and physical scaling.
+
+\subsection{Report Structure}
+
+The remainder of this report is organised as follows. Section 2 presents the mathematical formulation of the cooling tower problem, 
+the quadratic penalty methodology, the software architecture, and the rationale behind the eight study cases. 
+Section 3 details the three optimisation algorithms and their respective adaptations to this problem. 
+Section 4 reports the results across all cases and algorithms. 
+Section 5 provides a comparative discussion on convergence behaviour, constraint satisfaction, and computational cost. Finally, 
+Section 6 draws conclusions and identifies directions for future work.
+
+\subsection{Statement on the Use of Generative AI}
+
+During the preparation of this work, the authors used ChatGPT (OpenAI) and Claude AI (Anthropic) to assist with code efficiency optimisation and debugging, 
+technical writing refinement, and literature review formatting. 
+After using these tools, all content was reviewed and edited as needed. 
+The authors take full responsibility for the final report's content, analysis, and code functionality.

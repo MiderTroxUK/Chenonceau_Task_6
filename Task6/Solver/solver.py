@@ -899,9 +899,7 @@ if __name__ == "__main__":
         kwargs = {}
         if algo_name == 'Pso':
             kwargs = {
-                'num_particles': 200,
-                'max_iter': 750,
-                'correction_mode': 'penalty',  # smooth landscape for swarm
+                'correction_mode': 'correct',  # smooth landscape for swarm
             }
         elif algo_name == 'Sa':
             kwargs = {'T_initial': 10000, 'max_iter': 15000}

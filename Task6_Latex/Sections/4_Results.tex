@@ -172,11 +172,680 @@ Cases 2 and 8 depict cooling‑tower shapes that are considerably more compact, 
 
 \subsection{Simulated Annealing results}
 
-TO DO
+T\subsubsection{Case 1: Mandatory Reference Case}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Final Area & 7876.71 m² \\
+Volume Error & 0.06 m³ \\
+Waist Radius & 21.1 m \\
+Computation Time & 1.82 s \\
+Function Evaluations & 16,540 \\
+\hline
+\end{tabular}
+\caption{SA optimisation results for Case 1}
+\label{tab:sa_case1}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case1_Sa_convergence.png}
+    \caption{Convergence}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case1_Sa_profile.png}
+    \caption{Profile}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case1_Sa_wireframe.png}
+    \caption{3D Wireframe}
+\end{subfigure}
+\caption{SA optimisation results for Case 1: Mandatory Reference Case}
+\label{fig:sa_case1}
+\end{figure}
+
+This is the reference case with fixed frustum heights ($h = 3.65$ m). The convergence curve shows a rapid decrease from $10^{11}$ to $10^{6}$ within the first 2000 iterations, followed by stabilisation. The resulting profile is a classic hyperboloid shape with a well-defined waist at mid-height. The volume constraint is perfectly satisfied.
+
+%----------------------------------------------------------
+\subsubsection{Case 2: Variable Heights}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Final Area & 7871.45 m² \\
+Volume Error & 0.01 m³ \\
+Waist Radius & 21.1 m \\
+Computation Time & 1.61 s \\
+Function Evaluations & 16,540 \\
+\hline
+\end{tabular}
+\caption{SA optimisation results for Case 2}
+\label{tab:sa_case2}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case2_Sa_convergence.png}
+    \caption{Convergence}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case2_Sa_profile.png}
+    \caption{Profile}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case2_Sa_wireframe.png}
+    \caption{3D Wireframe}
+\end{subfigure}
+\caption{SA optimisation results for Case 2: Variable Heights}
+\label{fig:sa_case2}
+\end{figure}
+
+In this case, the radii are fixed (from Case 1) and only the heights are optimised. The convergence shows a single significant improvement at approximately 2000 iterations. The final area is slightly better than Case 1 ($-5$ m²) due to height redistribution. The profile remains identical since the radii are constrained.
+
+%----------------------------------------------------------
+\subsubsection{Case 3: Full Freedom}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Final Area & 10540.05 m² \\
+Volume Error & 0.43 m³ \\
+Waist Radius & 11.1 m \\
+Computation Time & 6.16 s \\
+Function Evaluations & 16,540 \\
+\hline
+\end{tabular}
+\caption{SA optimisation results for Case 3}
+\label{tab:sa_case3}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case3_Sa_convergence.png}
+    \caption{Convergence}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case3_Sa_profile.png}
+    \caption{Profile}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case3_Sa_wireframe.png}
+    \caption{3D Wireframe}
+\end{subfigure}
+\caption{SA optimisation results for Case 3: Full Freedom}
+\label{fig:sa_case3}
+\end{figure}
+
+This is the most complex case where both radii and heights are free variables. The SA explores a much larger search space, resulting in longer computation time. The resulting profile is significantly different: a very narrow waist (11.1 m) and a vertically elongated structure. The larger area is due to the more complex geometry. Convergence is rapid ($<500$ iterations) but the final cost remains high due to geometric penalties.
+
+%----------------------------------------------------------
+\subsubsection{Case 4: Tight Waist}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Final Area & 7779.18 m² \\
+Volume Error & 0.03 m³ \\
+Waist Radius & 19.2 m \\
+Computation Time & 5.15 s \\
+Function Evaluations & 16,540 \\
+\hline
+\end{tabular}
+\caption{SA optimisation results for Case 4}
+\label{tab:sa_case4}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case4_Sa_convergence.png}
+    \caption{Convergence}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case4_Sa_profile.png}
+    \caption{Profile}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case4_Sa_wireframe.png}
+    \caption{3D Wireframe}
+\end{subfigure}
+\caption{SA optimisation results for Case 4: Tight Waist}
+\label{fig:sa_case4}
+\end{figure}
+
+A tight waist constraint is imposed in this case. The convergence shows a characteristic staircase descent over approximately 2000 iterations. This case achieves a better area than Case 1 ($-97$ m²) thanks to the narrower waist (19.2 m vs 21.1 m). The hyperboloid profile is well-formed with a more pronounced constriction at the centre.
+
+%----------------------------------------------------------
+\subsubsection{Case 5: Cylindrical Start}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Final Area & 8053.97 m² \\
+Volume Error & 0.18 m³ \\
+Waist Radius & 21.3 m \\
+Computation Time & 4.85 s \\
+Function Evaluations & 16,540 \\
+\hline
+\end{tabular}
+\caption{SA optimisation results for Case 5}
+\label{tab:sa_case5}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case5_Sa_convergence.png}
+    \caption{Convergence}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case5_Sa_profile.png}
+    \caption{Profile}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case5_Sa_wireframe.png}
+    \caption{3D Wireframe}
+\end{subfigure}
+\caption{SA optimisation results for Case 5: Cylindrical Start}
+\label{fig:sa_case5}
+\end{figure}
+
+The initial guess is a cylinder (all radii equal). The SA must discover the hyperboloid shape from scratch. Convergence is very rapid ($<200$ iterations) because the initial cylinder strongly violates the penalty constraints. The final area is slightly higher than Case 1 ($+177$ m²), demonstrating that the starting point influences the final solution.
+
+%----------------------------------------------------------
+\subsubsection{Case 6: High Volume}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Final Area & 36042.25 m² \\
+Volume Error & 0.02 m³ \\
+Waist Radius & 7.8 m \\
+Computation Time & 1.73 s \\
+Function Evaluations & 16,540 \\
+\hline
+\end{tabular}
+\caption{SA optimisation results for Case 6}
+\label{tab:sa_case6}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case6_Sa_convergence.png}
+    \caption{Convergence}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case6_Sa_profile.png}
+    \caption{Profile}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case6_Sa_wireframe.png}
+    \caption{3D Wireframe}
+\end{subfigure}
+\caption{SA optimisation results for Case 6: High Volume}
+\label{fig:sa_case6}
+\end{figure}
+
+The target volume is increased to 105,480 m³ ($\times 1.5$). \textbf{The resulting profile is unrealistic}: a zigzag shape with significant oscillations. The SA minimises the area without any smoothness constraint, producing a physically impossible geometry. While the volume constraint is satisfied, the solution is unacceptable from an engineering perspective.
+
+%----------------------------------------------------------
+\subsubsection{Case 7: Restricted Bounds}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Final Area & 7797.63 m² \\
+Volume Error & 0.10 m³ \\
+Waist Radius & 18.5 m \\
+Computation Time & 5.16 s \\
+Function Evaluations & 16,540 \\
+\hline
+\end{tabular}
+\caption{SA optimisation results for Case 7}
+\label{tab:sa_case7}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case7_Sa_convergence.png}
+    \caption{Convergence}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case7_Sa_profile.png}
+    \caption{Profile}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case7_Sa_wireframe.png}
+    \caption{3D Wireframe}
+\end{subfigure}
+\caption{SA optimisation results for Case 7: Restricted Bounds}
+\label{fig:sa_case7}
+\end{figure}
+
+The radii bounds are restricted to $[20, 60]$ m. The convergence shows a staircase pattern over approximately 3000 iterations. Despite the bound constraints, the hyperboloid profile is correctly formed. The final area is competitive (between Case 1 and Case 4). The waist at 18.5 m corresponds to the minimum allowed by the bounds.
+
+%----------------------------------------------------------
+\subsubsection{Case 8: Hyperbolic Fit}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Final Area & \textbf{5765.62 m²} \\
+Volume Error & \textbf{0.00 m³} \\
+Waist Radius & 24.2 m \\
+Computation Time & 2.17 s \\
+Function Evaluations & 16,540 \\
+\hline
+\end{tabular}
+\caption{SA optimisation results for Case 8}
+\label{tab:sa_case8}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case8_Sa_convergence.png}
+    \caption{Convergence}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case8_Sa_profile.png}
+    \caption{Profile}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case8_Sa_wireframe.png}
+    \caption{3D Wireframe}
+\end{subfigure}
+\caption{SA optimisation results for Case 8: Hyperbolic Fit}
+\label{fig:sa_case8}
+\end{figure}
+
+\textbf{This case achieves the best overall result.} A parametric formulation with 3 parameters $(a, b, c)$ defines an analytical hyperbola. The profile is quasi-cylindrical with a slight conical shape, significantly different from the other cases. The area is \textbf{26\% lower} than Case 1, and the volume error is virtually zero. Convergence is rapid and monotonic. This parametric formulation is the most efficient as it reduces the search space while guaranteeing a physically realistic shape.
 
 \subsection{Broyden-Fletcher-Goldfarb-Shanno results}
 
-TO DO
+\subsection{BFGS Results}
+
+\subsubsection{Case 1: Mandatory Reference Case}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Final Area & 7766.65 m² \\
+Volume Error & 0.00 m³ \\
+Waist Radius & 19.5 m \\
+Computation Time & 1.61 s \\
+Function Evaluations & 6,469 \\
+\hline
+\end{tabular}
+\caption{BFGS optimisation results for Case 1}
+\label{tab:bfgs_case1}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case1_Bfgs_convergence.png}
+    \caption{Convergence}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case1_Bfgs_profile.png}
+    \caption{Profile}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case1_Bfgs_wireframe.png}
+    \caption{3D Wireframe}
+\end{subfigure}
+\caption{BFGS optimisation results for Case 1: Mandatory Reference Case}
+\label{fig:bfgs_case1}
+\end{figure}
+
+This is the reference case with fixed frustum heights ($h = 3.65$ m). BFGS converges extremely rapidly, dropping from $10^{11}$ to $10^{4}$ within approximately 30 iterations. The final area (7766.65 m²) is slightly better than SA (7876.71 m²), representing a 1.4\% improvement. The volume constraint is satisfied with near-zero error. The hyperboloid profile is well-formed with a waist at 19.5 m.
+
+%----------------------------------------------------------
+\subsubsection{Case 2: Variable Heights}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Final Area & 6830.77 m² \\
+Volume Error & 0.00 m³ \\
+Waist Radius & 19.5 m \\
+Computation Time & 1.59 s \\
+Function Evaluations & 17,982 \\
+\hline
+\end{tabular}
+\caption{BFGS optimisation results for Case 2}
+\label{tab:bfgs_case2}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case2_Bfgs_convergence.png}
+    \caption{Convergence}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case2_Bfgs_profile.png}
+    \caption{Profile}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case2_Bfgs_wireframe.png}
+    \caption{3D Wireframe}
+\end{subfigure}
+\caption{BFGS optimisation results for Case 2: Variable Heights}
+\label{fig:bfgs_case2}
+\end{figure}
+
+With variable heights, BFGS achieves a remarkable \textbf{13\% improvement} over Case 1 (6830.77 m² vs 7766.65 m²). The convergence is rapid and monotonic within 20 iterations. The optimised profile shows a compressed geometry with redistributed frustum heights, concentrating material near the waist. This case demonstrates BFGS's efficiency in exploiting the additional degrees of freedom provided by variable heights. Compared to SA (7871.45 m²), BFGS achieves a significantly better result.
+
+%----------------------------------------------------------
+\subsubsection{Case 3: Full Freedom}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Final Area & 13300.38 m² \\
+Volume Error & 8.96 m³ \\
+Waist Radius & 5.0 m \\
+Computation Time & 22.72 s \\
+Function Evaluations & 23,692 \\
+\hline
+\end{tabular}
+\caption{BFGS optimisation results for Case 3}
+\label{tab:bfgs_case3}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case3_Bfgs_convergence.png}
+    \caption{Convergence}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case3_Bfgs_profile.png}
+    \caption{Profile}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case3_Bfgs_wireframe.png}
+    \caption{3D Wireframe}
+\end{subfigure}
+\caption{BFGS optimisation results for Case 3: Full Freedom}
+\label{fig:bfgs_case3}
+\end{figure}
+
+\textbf{This case illustrates a fundamental limitation of gradient-based methods.} With both radii and heights as free variables, BFGS converges to a local minimum that is physically unrealistic: an extremely narrow tower (waist = 5.0 m) stretched vertically to nearly 180 m. The volume error (8.96 m³) indicates the optimiser struggled to satisfy constraints in this high-dimensional space. The computation time (22.72 s) is significantly higher due to the complexity of the search space. Unlike SA, which explores globally, BFGS is trapped by its local search behaviour.
+
+%----------------------------------------------------------
+\subsubsection{Case 4: Tight Waist}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Final Area & 7775.11 m² \\
+Volume Error & 0.00 m³ \\
+Waist Radius & 19.2 m \\
+Computation Time & 1.31 s \\
+Function Evaluations & 6,432 \\
+\hline
+\end{tabular}
+\caption{BFGS optimisation results for Case 4}
+\label{tab:bfgs_case4}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case4_Bfgs_convergence.png}
+    \caption{Convergence}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case4_Bfgs_profile.png}
+    \caption{Profile}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case4_Bfgs_wireframe.png}
+    \caption{3D Wireframe}
+\end{subfigure}
+\caption{BFGS optimisation results for Case 4: Tight Waist}
+\label{fig:bfgs_case4}
+\end{figure}
+
+With a tight waist constraint, BFGS achieves similar performance to Case 1 (7775.11 m² vs 7766.65 m²). The convergence pattern is identical to Case 1, with rapid descent in approximately 30 iterations. The waist radius (19.2 m) is slightly narrower than Case 1 (19.5 m). Compared to SA (7779.18 m²), BFGS produces a nearly identical result, confirming that both methods converge to similar optima for this well-constrained problem.
+
+%----------------------------------------------------------
+\subsubsection{Case 5: Cylindrical Start}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Final Area & 7792.74 m² \\
+Volume Error & 0.00 m³ \\
+Waist Radius & 20.5 m \\
+Computation Time & 3.33 s \\
+Function Evaluations & 8,539 \\
+\hline
+\end{tabular}
+\caption{BFGS optimisation results for Case 5}
+\label{tab:bfgs_case5}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case5_Bfgs_convergence.png}
+    \caption{Convergence}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case5_Bfgs_profile.png}
+    \caption{Profile}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case5_Bfgs_wireframe.png}
+    \caption{3D Wireframe}
+\end{subfigure}
+\caption{BFGS optimisation results for Case 5: Cylindrical Start}
+\label{fig:bfgs_case5}
+\end{figure}
+
+Starting from a cylindrical initial guess, BFGS requires more iterations to converge (visible plateau around iterations 30-100). The convergence shows a characteristic staircase pattern as the algorithm escapes successive local regions. Despite the poor initial guess, BFGS successfully recovers a hyperboloid profile with an area (7792.74 m²) comparable to Case 1. This demonstrates the robustness of BFGS to initial conditions when the problem is well-conditioned. Compared to SA (8053.97 m²), BFGS achieves a 3.2\% better result.
+
+%----------------------------------------------------------
+\subsubsection{Case 6: High Volume}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Final Area & 7678.24 m² \\
+Volume Error & 0.00 m³ \\
+Waist Radius & 27.7 m \\
+Computation Time & 0.68 s \\
+Function Evaluations & 6,426 \\
+\hline
+\end{tabular}
+\caption{BFGS optimisation results for Case 6}
+\label{tab:bfgs_case6}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case6_Bfgs_convergence.png}
+    \caption{Convergence}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case6_Bfgs_profile.png}
+    \caption{Profile}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case6_Bfgs_wireframe.png}
+    \caption{3D Wireframe}
+\end{subfigure}
+\caption{BFGS optimisation results for Case 6: High Volume}
+\label{fig:bfgs_case6}
+\end{figure}
+
+\textbf{This case highlights a major advantage of BFGS over SA.} With the target volume increased to 105,480 m³ ($\times 1.5$), BFGS produces a physically realistic hyperboloid profile (7678.24 m²), while SA generated an unrealistic zigzag shape (36042.25 m²). The convergence is rapid ($<30$ iterations) despite the challenging constraint. The wider waist (27.7 m) is a natural consequence of the increased volume requirement. This demonstrates that gradient-based methods naturally preserve smooth geometries through their local search behaviour.
+
+%----------------------------------------------------------
+\subsubsection{Case 7: Restricted Bounds}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Final Area & 8045.87 m² \\
+Volume Error & 0.00 m³ \\
+Waist Radius & 21.2 m \\
+Computation Time & 0.34 s \\
+Function Evaluations & 1,303 \\
+\hline
+\end{tabular}
+\caption{BFGS optimisation results for Case 7}
+\label{tab:bfgs_case7}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case7_Bfgs_convergence.png}
+    \caption{Convergence}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case7_Bfgs_profile.png}
+    \caption{Profile}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case7_Bfgs_wireframe.png}
+    \caption{3D Wireframe}
+\end{subfigure}
+\caption{BFGS optimisation results for Case 7: Restricted Bounds}
+\label{fig:bfgs_case7}
+\end{table}
+
+With restricted radii bounds $[20, 60]$ m, BFGS converges quickly but to a slightly worse solution (8045.87 m²) than SA (7797.63 m²). The convergence curve shows a gradual staircase descent over 35 iterations, indicating the algorithm is navigating bound constraints. The hyperboloid profile is correctly formed. The reduced search space limits BFGS's ability to find the optimal waist position, explaining the 3\% performance gap compared to SA.
+
+%----------------------------------------------------------
+\subsubsection{Case 8: Hyperbolic Fit}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Final Area & \textbf{5961.77 m²} \\
+Volume Error & \textbf{0.00 m³} \\
+Waist Radius & 23.8 m \\
+Computation Time & \textbf{0.04 s} \\
+Function Evaluations & \textbf{294} \\
+\hline
+\end{tabular}
+\caption{BFGS optimisation results for Case 8}
+\label{tab:bfgs_case8}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case8_Bfgs_convergence.png}
+    \caption{Convergence}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case8_Bfgs_profile.png}
+    \caption{Profile}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figures/Case8_Bfgs_wireframe.png}
+    \caption{3D Wireframe}
+\end{subfigure}
+\caption{BFGS optimisation results for Case 8: Hyperbolic Fit}
+\label{fig:bfgs_case8}
+\end{figure}
+
+\textbf{This case achieves exceptional performance.} Using a parametric hyperbolic formulation with only 3 parameters $(a, b, c)$, BFGS converges in just \textbf{12 iterations} (294 function evaluations) to an area of 5961.77 m². This represents a \textbf{23\% improvement} over the reference Case 1 and is achieved in 0.04 seconds—the fastest computation time of all cases. The resulting profile is a smooth, monotonic cone-like shape that satisfies the volume constraint perfectly. This demonstrates that \textbf{combining BFGS with a well-chosen parametric formulation yields optimal results}: the reduced search space eliminates local minima while BFGS provides efficient gradient-based convergence.
+
 
 \subsection{Comparison between the three methods}
 

@@ -11,5 +11,10 @@ Their performance is evaluated across eight study cases of increasing complexity
 to a parametric hyperboloidal fit ($D = 3$), 
 encompassing variations in dimensionality, initialisation strategy, constraint topology, and physical scaling.
 
-Results demonstrate that NEED TO GET THE FINAL RESULTS 
+Results demonstrate that BFGS consistently outperforms the metaheuristic methods in both solution quality and computational efficiency, achieving zero volume error across all eight cases with computation times under 1.5\,s. 
+Its gradient-based local search produces physically realistic profiles even where SA generates unrealistic zigzag geometries (Case~6). 
+PSO exhibits robust exploration but suffers from significant volume constraint violations in the majority of cases, indicating that the penalty formulation alone is insufficient to guide the swarm toward the feasible manifold within the allocated iteration budget. 
+SA demonstrates reliable constraint satisfaction but converges to solutions with higher surface areas than BFGS in all but one case. 
+Across all three methods, the parametric hyperboloidal formulation (Case~8, $D = 3$) yields the best overall result, confirming that a well-chosen low-dimensional parametrisation can eliminate local minima and reduce computational cost by orders of magnitude. 
+These findings provide practical engineering guidelines for selecting optimisation strategies based on problem dimensionality, constraint topology, and the availability of gradient information.
 \end{abstract}

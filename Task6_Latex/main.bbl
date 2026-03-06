@@ -1,0 +1,243 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{mungan1976buckling}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=ae147f6bf24b2c3694ecfa4363abfbd1}{%
+           family={Mungan},
+           familyi={M\bibinitperiod},
+           given={I.},
+           giveni={I\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {ASCE}%
+      }
+      \strng{namehash}{ae147f6bf24b2c3694ecfa4363abfbd1}
+      \strng{fullhash}{ae147f6bf24b2c3694ecfa4363abfbd1}
+      \strng{fullhashraw}{ae147f6bf24b2c3694ecfa4363abfbd1}
+      \strng{bibnamehash}{ae147f6bf24b2c3694ecfa4363abfbd1}
+      \strng{authorbibnamehash}{ae147f6bf24b2c3694ecfa4363abfbd1}
+      \strng{authornamehash}{ae147f6bf24b2c3694ecfa4363abfbd1}
+      \strng{authorfullhash}{ae147f6bf24b2c3694ecfa4363abfbd1}
+      \strng{authorfullhashraw}{ae147f6bf24b2c3694ecfa4363abfbd1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of the Structural Division}
+      \field{number}{10}
+      \field{title}{Buckling Stress States of Hyperboloidal Shells}
+      \field{volume}{102}
+      \field{year}{1976}
+      \field{pages}{2005\bibrangedash 2018}
+      \range{pages}{14}
+    \endentry
+    \entry{nocedalwright2006}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=a375d39ab0f7a753973e8e3564576d56}{%
+           family={Nocedal},
+           familyi={N\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=cb09a7decd6b998193e06f6cf7e9ca80}{%
+           family={Wright},
+           familyi={W\bibinitperiod},
+           given={S.J.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{33210b6e8b98605197dfd92b5b9d9626}
+      \strng{fullhash}{33210b6e8b98605197dfd92b5b9d9626}
+      \strng{fullhashraw}{33210b6e8b98605197dfd92b5b9d9626}
+      \strng{bibnamehash}{33210b6e8b98605197dfd92b5b9d9626}
+      \strng{authorbibnamehash}{33210b6e8b98605197dfd92b5b9d9626}
+      \strng{authornamehash}{33210b6e8b98605197dfd92b5b9d9626}
+      \strng{authorfullhash}{33210b6e8b98605197dfd92b5b9d9626}
+      \strng{authorfullhashraw}{33210b6e8b98605197dfd92b5b9d9626}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2nd}
+      \field{note}{Chapter 6: Quasi-Newton Methods}
+      \field{title}{Numerical Optimization}
+      \field{year}{2006}
+    \endentry
+    \entry{task3report}{report}{}{}
+      \name{author}{4}{}{%
+        {{hash=05a41cdcd8c927db252f3f3f7ad3d312}{%
+           family={Hoarau},
+           familyi={H\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=a27d923d92045d4229e511decb609efb}{%
+           family={Harambat},
+           familyi={H\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=4cc280e49ed36ea8891b6b0200c05117}{%
+           family={Bédrune},
+           familyi={B\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=8c02777217a1bf520f2844d981d732c8}{%
+           family={Hinot},
+           familyi={H\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Cranfield University}%
+      }
+      \strng{namehash}{64907070180ba57163f8ec7ff1a5a4c4}
+      \strng{fullhash}{209af48b21271fb9876be2c6912c7163}
+      \strng{fullhashraw}{209af48b21271fb9876be2c6912c7163}
+      \strng{bibnamehash}{209af48b21271fb9876be2c6912c7163}
+      \strng{authorbibnamehash}{209af48b21271fb9876be2c6912c7163}
+      \strng{authornamehash}{64907070180ba57163f8ec7ff1a5a4c4}
+      \strng{authorfullhash}{209af48b21271fb9876be2c6912c7163}
+      \strng{authorfullhashraw}{209af48b21271fb9876be2c6912c7163}
+      \field{extraname}{1}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Task 3: Optimisation Project Group Report}
+      \field{type}{techreport}
+      \field{year}{2025}
+    \endentry
+    \entry{riaz_lec2}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=d1a71df2ca7c8f8457005149682546c5}{%
+           family={Riaz},
+           familyi={R\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{d1a71df2ca7c8f8457005149682546c5}
+      \strng{fullhash}{d1a71df2ca7c8f8457005149682546c5}
+      \strng{fullhashraw}{d1a71df2ca7c8f8457005149682546c5}
+      \strng{bibnamehash}{d1a71df2ca7c8f8457005149682546c5}
+      \strng{authorbibnamehash}{d1a71df2ca7c8f8457005149682546c5}
+      \strng{authornamehash}{d1a71df2ca7c8f8457005149682546c5}
+      \strng{authorfullhash}{d1a71df2ca7c8f8457005149682546c5}
+      \strng{authorfullhashraw}{d1a71df2ca7c8f8457005149682546c5}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Lecture presented at: Computational Optimisation Design}
+      \field{note}{[cited 2025 Oct 21]. Available from: \url{https://canvas.cranfield.ac.uk/courses/37635/pages/day-2?module_item_id=737718}}
+      \field{title}{Computational Optimisation Design Lecture 2}
+      \field{year}{2025}
+    \endentry
+    \entry{task3_chenonceau}{report}{}{}
+      \name{author}{4}{}{%
+        {{hash=05a41cdcd8c927db252f3f3f7ad3d312}{%
+           family={Hoarau},
+           familyi={H\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=a27d923d92045d4229e511decb609efb}{%
+           family={Harambat},
+           familyi={H\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=4cc280e49ed36ea8891b6b0200c05117}{%
+           family={Bédrune},
+           familyi={B\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=8c02777217a1bf520f2844d981d732c8}{%
+           family={Hinot},
+           familyi={H\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Cranfield University}%
+      }
+      \strng{namehash}{64907070180ba57163f8ec7ff1a5a4c4}
+      \strng{fullhash}{209af48b21271fb9876be2c6912c7163}
+      \strng{fullhashraw}{209af48b21271fb9876be2c6912c7163}
+      \strng{bibnamehash}{209af48b21271fb9876be2c6912c7163}
+      \strng{authorbibnamehash}{209af48b21271fb9876be2c6912c7163}
+      \strng{authornamehash}{64907070180ba57163f8ec7ff1a5a4c4}
+      \strng{authorfullhash}{209af48b21271fb9876be2c6912c7163}
+      \strng{authorfullhashraw}{209af48b21271fb9876be2c6912c7163}
+      \field{extraname}{2}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Task 3: Metaheuristic Optimisation -- Group Chenonceau}
+      \field{type}{techreport}
+      \field{year}{2025}
+    \endentry
+    \entry{task4_chenonceau}{report}{}{}
+      \name{author}{4}{}{%
+        {{hash=05a41cdcd8c927db252f3f3f7ad3d312}{%
+           family={Hoarau},
+           familyi={H\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=a27d923d92045d4229e511decb609efb}{%
+           family={Harambat},
+           familyi={H\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=4cc280e49ed36ea8891b6b0200c05117}{%
+           family={Bédrune},
+           familyi={B\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=8c02777217a1bf520f2844d981d732c8}{%
+           family={Hinot},
+           familyi={H\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Cranfield University}%
+      }
+      \strng{namehash}{64907070180ba57163f8ec7ff1a5a4c4}
+      \strng{fullhash}{209af48b21271fb9876be2c6912c7163}
+      \strng{fullhashraw}{209af48b21271fb9876be2c6912c7163}
+      \strng{bibnamehash}{209af48b21271fb9876be2c6912c7163}
+      \strng{authorbibnamehash}{209af48b21271fb9876be2c6912c7163}
+      \strng{authornamehash}{64907070180ba57163f8ec7ff1a5a4c4}
+      \strng{authorfullhash}{209af48b21271fb9876be2c6912c7163}
+      \strng{authorfullhashraw}{209af48b21271fb9876be2c6912c7163}
+      \field{extraname}{3}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Task 4: Gradient-Based Optimisation -- Group Chenonceau}
+      \field{type}{techreport}
+      \field{year}{2025}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

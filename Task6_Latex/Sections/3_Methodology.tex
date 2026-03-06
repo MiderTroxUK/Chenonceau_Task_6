@@ -41,10 +41,10 @@ The surrogate objective becomes:
 \end{equation}
 
 where $\rho \gg 0$ is a static scalar penalty weight. A static $\rho$ is deliberately chosen over an adaptive schedule to ensure that all three algorithms operate on an identical, fixed search landscape any dynamic $\rho$ strategy would introduce algorithm-dependent trajectory effects that would confound the performance comparison. 
-The chosen value $\rho = 10^3$ was calibrated empirically to ensure that volume violations incur a penalty several orders of magnitude larger than the surface area objective, effectively rendering infeasible solutions non-competitive without distorting the local geometry near the feasible manifold.
+The chosen value $\rho = 10^5$ was calibrated empirically to ensure that volume violations incur a penalty several orders of magnitude larger than the surface area objective, effectively rendering infeasible solutions non-competitive without distorting the local geometry near the feasible manifold.
 
 This penalty formulation has two notable consequences on the search landscape. 
-First, for BFGS, the quadratic term degrades the conditioning of the Hessian approximation in proportion to $\rho$, increasing the curvature of the surrogate near constraint boundaries~\cite{nocedal2006numerical}. 
+First, for BFGS, the quadratic term degrades the conditioning of the Hessian approximation in proportion to $\rho$, increasing the curvature of the surrogate near constraint boundaries~\cite{nocedalwright2006}. 
 Second, for SA and PSO, the penalty creates steep regions of high curvature in the search landscape around infeasible points, placing greater demands on the exploration-exploitation balance of each algorithm.
 
 \subsection{Architectural Decoupling and Benchmark Fairness}
@@ -104,9 +104,9 @@ All cases are evaluated against BFGS, SA, and PSO.
 
 \subsection{Particle Swarm Optimisation method} \cite{task3report}
 
-\subsubsection{General explanation & Algorithm}
+\subsubsection{General explanation \& Algorithm}
 
-The Particle Swarm Optimisation (PSO) is a stochastic optimisation technique inspired by the social behaviour of birds. A population of candidate solutions moves through the domain. Through several time steps, each particle adjusts its position based on its personal best and on the global best. This allows the algorithm to converge to a solution that matches a criterion \cite{riaz_lec2}.
+Particle Swarm Optimisation (PSO) is a stochastic optimisation technique inspired by the social behaviour of birds. The algorithm guides a population of candidate solutions through the search space over successive iterations, with each particle adjusting its trajectory based on both its personal best position and the global best, thereby enabling convergence toward a solution satisfying the prescribed criterion~\cite{riaz_lec2}.
 
 As the problem is single-objective, the standard PSO is used to minimise one error function. It uses two major concepts:
 \begin{itemize}
@@ -114,7 +114,7 @@ As the problem is single-objective, the standard PSO is used to minimise one err
 	\item Convergence Tracking: The best error is stored at each iteration to generate a convergence curve.
 \end{itemize}
 
-The PSO algorithm initialises a population of particles distributed across the search space, each assigned a random velocity and position. At each iteration, velocities are updated according to each particle's own experience and the collective knowledge of the swarm, weighted by an inertia term that decreases progressively to balance exploration and exploitation. A perturbation of the global best position is introduced to reduce the risk of converging prematurely to a local optimum. The algorithm stops when either the maximum number of iterations is reached or the improvement in the global best falls below a defined tolerance, ensuring computational efficiency without sacrificing solution quality.
+PSO initialises a population of particles distributed across the search space, each assigned a random velocity and position. At each iteration, velocities are updated according to each particle's own experience and the collective knowledge of the swarm, weighted by an inertia term that decreases progressively to balance exploration and exploitation. A perturbation of the global best position is introduced to reduce the risk of converging prematurely to a local optimum. The search terminates when either the maximum number of iterations is reached or the improvement in the global best falls below a defined tolerance, ensuring computational efficiency without sacrificing solution quality.
 
 \begin{figure}[H]
     \centering
@@ -125,7 +125,7 @@ The PSO algorithm initialises a population of particles distributed across the s
 
 \subsubsection{Seed exploration}
 
-To assess the influence of stochastic initialisation on the stability of the PSO optimisation, a seed-sentivity study was conducted. Seven distinct seed were tested including a random one called "None". The resulting volume errors were evaluated across the eight test cases. The objective of this exploration was to select a seed that provides the best results.
+To assess the influence of stochastic initialisation on the stability of the PSO optimisation, a seed-sensitivity study was conducted. Seven distinct seeds were tested including a random one called "None". The resulting volume errors were evaluated across the eight test cases. The objective of this exploration was to select a seed that provides the best results.
 
 \begin{figure}[H]
     \centering
@@ -136,23 +136,23 @@ To assess the influence of stochastic initialisation on the stability of the PSO
 
 Overall, the results show marked variability depending on the seed. In particular, some seeds lead to pronounced peaks for specific cases. The most notable example is the seed of 1000, which generates the largest error on the case 3 in the entire exploration. These large deviations indicate that these seeds may place the optimiser in initial conditions less favourable for convergence or stability.
 
-In contrast, seeds 1 and 10 tend to produc substantially lower and more homogeneous errors accross the eight cases. The seed 10 performs particularly weel: it shows no extreme outliers, and the volume error remains close to zero for most cases. Importantly, its behaviour is stable - neither systematically over optimistic nor overly sensitive to case-to-case variations. Compared to seed 1, seed 10 shows a slightly smoother profile, with fewer local spikes.
+In contrast, seeds 1 and 10 tend to produce substantially lower and more homogeneous errors across the eight cases. The seed 10 performs particularly well: it shows no extreme outliers, and the volume error remains close to zero for most cases. Importantly, its behaviour is stable - neither systematically over optimistic nor overly sensitive to case-to-case variations. Compared to seed 1, seed 10 shows a slightly smoother profile, with fewer local spikes.
 
-The seed option labelled "None", corresponding to the use of a non-deterministic initialisation, was deliberately not retained. Although its average behaviour appears reasonable, its intrinsic randomness means that results cannot be reproduced reliably accross runs. In the context of this study - chere traceability, repeatability, and controlled comparisons are essential - this lack of determinism is undesirables. For this reason, the random seed configuration was excluded from the potential candidates.
+The seed option labelled "None", corresponding to the use of a non-deterministic initialisation, was deliberately not retained. Although its average behaviour appears reasonable, its intrinsic randomness means that results cannot be reproduced reliably across runs. In the context of this study---where traceability, repeatability, and controlled comparisons are essential---this lack of determinism is undesirable. For this reason, the random seed configuration was excluded from the potential candidates.
 
-Based on this analysis, the seed 10 was selected for the remainder of the study. The choice is justified by its balances behaviour:
+Based on this analysis, the seed 10 was selected for the remainder of the study. The choice is justified by its balanced behaviour:
 \begin{itemize}
-    \item consistently low volume errors accross all cases,
+    \item consistently low volume errors across all cases,
     \item absence of irregular peaks,
     \item good reproducibility.
 \end{itemize}
-This seed therefore offers a reliable compromose between robustness and computational stability. However, it is important to note that the fluctuations are minors compared to the total volume of the cooling tower.
+This seed therefore offers a reliable compromise between robustness and computational stability. However, it is important to note that the fluctuations are minor compared to the total volume of the cooling tower.
 
 \subsection{Simulated Annealing method}
 
 \subsubsection{Principle}
 
-Simulated Annealing is an optimisation method inspired by the annealing process in metallurgy \cite{task3_chenonceau}. The algorithm explores the search space by accepting neighbouring solutions according to a probabilistic criterion: improvements are always accepted, while degradations are accepted with a probability that decreases over time (decreasing temperature). This acceptance mechanism helps escape local minima at the beginning, then allows the algorithm to converge towards a global minimum \cite{task3_chenonceau}.
+Simulated Annealing (SA) is an optimisation method inspired by the annealing process in metallurgy \cite{task3_chenonceau}. The algorithm explores the search space by accepting neighbouring solutions according to a probabilistic criterion: improvements are always accepted, while degradations are accepted with a probability that decreases over time (decreasing temperature). This acceptance mechanism helps escape local minima at the beginning, then allows the algorithm to converge towards a global minimum \cite{task3_chenonceau}.
 
 \subsubsection{Acceptance Criterion (Metropolis)}
 
@@ -176,7 +176,7 @@ where $\alpha$ is the cooling rate \cite{task3_chenonceau}.
 
 \subsubsection{Key Parameters}
 
-The SA algorithm requires the following parameters:
+SA requires the following parameters:
 \begin{itemize}
     \item \textbf{$T_{\text{initial}}$}: Initial temperature (controls exploration intensity)
     \item \textbf{$\alpha$ (cooling\_rate)}: Cooling speed (typically 0.95--0.999)
@@ -185,7 +185,7 @@ The SA algorithm requires the following parameters:
 
 \subsubsection{Multi-Objective Strategy (Weight Scalarisation)}
 
-SA is inherently a mono-objective algorithm. To solve bi-objective problems, a scalarisation approach transforms the problem into a single objective function using a weighted sum:
+As an inherently mono-objective algorithm, SA addresses bi-objective problems through a scalarisation approach that transforms the problem into a single objective function using a weighted sum:
 
 \begin{equation}
 E(x) = w_1 \cdot f_1(x) + w_2 \cdot f_2(x) + \sum_{i} \lambda_i \cdot \max(0, g_i(x))
@@ -197,13 +197,13 @@ where $w_1 + w_2 = 1$ and $\lambda_i$ are penalty coefficients for constraint vi
 
 \subsubsection{Principle}
 
-The BFGS (Broyden-Fletcher-Goldfarb-Shanno) algorithm is a quasi-Newton method designed to accelerate the iteration process in nonlinear optimisation \cite{task4_chenonceau}. Unlike Newton's method, which requires explicit computation of the Hessian matrix, BFGS builds an approximation of the Hessian using only gradient information collected during the optimisation process.
+The Broyden-Fletcher-Goldfarb-Shanno (BFGS) algorithm is a quasi-Newton method designed to accelerate the iteration process in nonlinear optimisation \cite{task4_chenonceau}. Unlike Newton's method, which requires explicit computation of the Hessian matrix, BFGS builds an approximation of the Hessian using only gradient information collected during the optimisation process.
 
 The method generates a sequence of iterates $x_k$ starting from an initial guess $x_0$. At each iteration, it computes a search direction $p_k$ using the current Hessian approximation $B_k$ and gradient $\nabla f_k$, then performs a line search to determine the step length $\alpha_k$. The algorithm terminates when convergence criteria are satisfied, typically when the gradient norm falls below a specified tolerance \cite{task4_chenonceau}.
 
 \subsubsection{Mathematical Formulation}
 
-The BFGS method approximates the inverse Hessian $H_k \approx (\nabla^2 f_k)^{-1}$ and updates it at each iteration using the following formula \cite{task4_chenonceau}:
+BFGS approximates the inverse Hessian $H_k \approx (\nabla^2 f_k)^{-1}$ and updates it at each iteration using the following formula \cite{task4_chenonceau}:
 
 \begin{equation}
 H_{k+1} = (I - \rho_k s_k y_k^T) H_k (I - \rho_k y_k s_k^T) + \rho_k s_k s_k^T
@@ -230,7 +230,7 @@ where $\alpha_k$ satisfies the Wolfe conditions to ensure sufficient decrease an
 
 \subsubsection{Key Parameters}
 
-The BFGS algorithm requires the following parameters:
+BFGS requires the following parameters:
 \begin{itemize}
     \item \textbf{$x_0$}: Initial guess
     \item \textbf{Gradient tolerance}: Convergence threshold for $\|\nabla f_k\|$

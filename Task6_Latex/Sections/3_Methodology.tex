@@ -1,11 +1,13 @@
 \section{Cooling Tower}
 
+
 \subsection{Mathematical Problem Formulation and Geometric Parametrisation}
 
 The cooling tower of a nuclear power plant defines a continuous surface optimisation problem over a rotationally symmetric structure. 
 To render this tractable computationally, the continuous domain is discretised into a vertical stack of $m$ conical frustums, bounded by $m+1$ horizontal cross-sections (rings). 
 Let $z$ denote the vertical axis originating at the tower base, with $z_0 = 0$. 
 Each frustum $i \in \{1, \dots, m\}$ is fully characterised by its bottom radius $r_{i-1}$, top radius $r_i$, and section height $h_i$.
+
 
 The macroscopic engineering objective is to minimise construction material costs, which are directly proportional to the total lateral surface area $A_{\text{total}}$. 
 This is subject to a strict equality constraint enforcing a fixed thermodynamic cooling capacity, expressed as a target volume $V_{\text{target}} = 70{,}320\,\text{m}^3$. 
@@ -106,7 +108,48 @@ TO DO
 
 \subsection{Simulated Annealing method}
 
-TO DO
+\subsubsection{Principle}
+
+Simulated Annealing is an optimisation method inspired by the annealing process in metallurgy \cite{task3_chenonceau}. The algorithm explores the search space by accepting neighbouring solutions according to a probabilistic criterion: improvements are always accepted, while degradations are accepted with a probability that decreases over time (decreasing temperature). This acceptance mechanism helps escape local minima at the beginning, then allows the algorithm to converge towards a global minimum \cite{task3_chenonceau}.
+
+\subsubsection{Acceptance Criterion (Metropolis)}
+
+The probability of accepting a worse solution is given by:
+
+\begin{equation}
+P(\text{acceptance}) = e^{-\frac{E_{\text{new}} - E_{\text{actual}}}{T}}
+\end{equation}
+
+where $E_{\text{actual}}$ is the current energy, $E_{\text{new}}$ is the energy of the new solution, and $T$ is the temperature parameter \cite{task3_chenonceau}.
+
+\subsubsection{Cooling Schedule}
+
+At each iteration, the temperature decreases according to:
+
+\begin{equation}
+T = T \times \alpha
+\end{equation}
+
+where $\alpha$ is the cooling rate \cite{task3_chenonceau}.
+
+\subsubsection{Key Parameters}
+
+The SA algorithm requires the following parameters:
+\begin{itemize}
+    \item \textbf{$T_{\text{initial}}$}: Initial temperature (controls exploration intensity)
+    \item \textbf{$\alpha$ (cooling\_rate)}: Cooling speed (typically 0.95--0.999)
+    \item \textbf{$T_{\text{min}}$}: Stopping temperature
+\end{itemize}
+
+\subsubsection{Multi-Objective Strategy (Weight Scalarisation)}
+
+SA is inherently a mono-objective algorithm. To solve bi-objective problems, a scalarisation approach transforms the problem into a single objective function using a weighted sum:
+
+\begin{equation}
+E(x) = w_1 \cdot f_1(x) + w_2 \cdot f_2(x) + \sum_{i} \lambda_i \cdot \max(0, g_i(x))
+\end{equation}
+
+where $w_1 + w_2 = 1$ and $\lambda_i$ are penalty coefficients for constraint violations. To approximate a Pareto front, multiple independent runs are performed with weights $w_1$ uniformly distributed between 0.005 and 0.995 \cite{task3_chenonceau}.
 
 \subsection{Broyden-Fletcher-Goldfarb-Shanno method}
 

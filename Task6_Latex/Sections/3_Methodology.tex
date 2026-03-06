@@ -104,16 +104,15 @@ All cases are evaluated against BFGS, SA, and PSO.
 
 \subsection{Particle Swarm Optimisation method} \cite{task3report}
 
-The Particle Swarm Optimisation (PSO) is a stochastic optimisation technique inspired by the social behaviour of birds. A population of candidate solutions moves through the domain.
-Through several time steps, each particle adjusts its position based on its personal best and
-on the global best. This allows the algorithm to converge to a solution that matches a
-criterion \cite{riaz_lec2}.
+The Particle Swarm Optimisation (PSO) is a stochastic optimisation technique inspired by the social behaviour of birds. A population of candidate solutions moves through the domain. Through several time steps, each particle adjusts its position based on its personal best and on the global best. This allows the algorithm to converge to a solution that matches a criterion \cite{riaz_lec2}.
 
 As the problem is single-objective, the standard PSO is used to minimise one error function. It uses two major concepts:
 \begin{itemize}
 	\item Continuous Movement: Particles move in continuous space according to standard velocity and position update rules.
 	\item Convergence Tracking: The best error is stored at each iteration to generate a convergence curve.
 \end{itemize}
+
+The PSO algorithm initialises a population of particles distributed across the search space, each assigned a random velocity and position. At each iteration, velocities are updated according to each particle's own experience and the collective knowledge of the swarm, weighted by an inertia term that decreases progressively to balance exploration and exploitation. A perturbation of the global best position is introduced to reduce the risk of converging prematurely to a local optimum. The algorithm stops when either the maximum number of iterations is reached or the improvement in the global best falls below a defined tolerance, ensuring computational efficiency without sacrificing solution quality.
 
 \begin{figure}[H]
     \centering

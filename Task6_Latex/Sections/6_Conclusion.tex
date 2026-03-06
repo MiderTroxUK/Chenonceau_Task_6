@@ -1,3 +1,19 @@
 \section{Conclusion}
 
-TO DO
+\subsection{Conclusion on Simulated Annealing}
+
+The Simulated Annealing algorithm demonstrated robust performance across the eight cooling tower optimisation scenarios. The algorithm consistently satisfied the volume constraint with errors below 0.5 m³ in all cases, confirming the effectiveness of the penalty-based approach.
+
+The key findings are:
+
+\begin{itemize}
+    \item \textbf{Best performance}: Case 8 (Hyperbolic Fit) achieved the minimum surface area of 5765.62 m², representing a 26\% reduction compared to the reference case. This result highlights the advantage of parametric formulations, which reduce the search space dimension while guaranteeing physically realistic geometries.
+    
+    \item \textbf{Convergence behaviour}: The SA exhibited characteristic staircase convergence patterns, with most improvements occurring within the first 2000 iterations. The algorithm successfully escaped local minima in early stages due to the high initial temperature.
+    
+    \item \textbf{Sensitivity to initial conditions}: Case 5 (Cylindrical Start) demonstrated that the starting point influences the final solution, with a 2.3\% increase in area compared to the reference case.
+    
+    \item \textbf{Limitations}: Case 6 (High Volume) revealed a critical limitation: without explicit geometric constraints (monotonicity, convexity), the SA produced unrealistic zigzag profiles. This confirms that penalty functions alone are insufficient for shape optimisation problems requiring smooth geometries.
+\end{itemize}
+
+In summary, SA is well-suited for cooling tower optimisation when combined with appropriate geometric constraints or parametric formulations. The computational cost remains low (1.6--6.2 s per case), making it practical for engineering design applications.

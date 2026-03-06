@@ -131,7 +131,7 @@ class CoolingTowerProblem:
         else:
             raise ValueError(f"Unknown case_num: {case_num}")
 
-    def cost_function(self, x, case_num, penalty_weight=1e3, **kwargs):
+    def cost_function(self, x, case_num, penalty_weight=1e5, **kwargs):
         """
         Objective function for all cases.
         J(x) = A_total(x) + rho * (V_total(x) - V_target)^2 + custom_penalties
@@ -164,40 +164,67 @@ class CoolingTowerProblem:
                 
         return area + penalty
     
+    def _hyperboloid_radii(self, r_waist):
+        """
+        Build a convex hyperboloid profile [r0, r1, ..., rm] that satisfies
+        monotonicity (decreasing to waist, increasing to top) and convexity
+        (positive second differences).
+
+        Lower half:  r(t) = r0 - (r0 - r_waist) * sqrt(t)   [convex, fast drop]
+        Upper half:  r(t) = r_waist + (rm - r_waist) * t^2   [convex, slow rise]
+        """
+        n = self.m + 1
+        mid = n // 2
+        radii = np.zeros(n)
+        radii[0] = self.r0
+        radii[-1] = self.rm
+        radii[mid] = r_waist
+        for i in range(1, mid):
+            t = i / mid
+            radii[i] = self.r0 - (self.r0 - r_waist) * np.sqrt(t)
+        for i in range(mid + 1, n - 1):
+            t = (i - mid) / (n - 1 - mid)
+            radii[i] = r_waist + (self.rm - r_waist) * t**2
+        return radii
+
     def get_initial_guess(self, case_num, **kwargs):
         """
         Returns a reasonable initial guess for the specified case.
+        Uses a hyperboloid-shaped profile for radii cases to satisfy
+        geometric constraints from the start.
         """
-        if case_num in [1, 4, 6, 7]:
-            # Linear guess from r0 to rm
-            return np.linspace(self.r0, self.rm, self.m + 1)[1:-1]
-            
+        if case_num in [1, 4, 7]:
+            # Hyperboloid initial guess (waist ~19m gives V ≈ 70,320)
+            radii = self._hyperboloid_radii(r_waist=19.0)
+            return radii[1:-1]
+
+        elif case_num == 6:
+            # High Volume: wider waist for 1.5x volume target
+            radii = self._hyperboloid_radii(r_waist=24.0)
+            return radii[1:-1]
+
         elif case_num == 5:
-            # Cylindrical Start
+            # Cylindrical Start (must start from cylinder per specification)
             r_avg = (self.r0 + self.rm) / 2.0
             return np.full(self.m - 1, r_avg)
-            
+
         elif case_num == 2:
             # Heights guess: equal slices
             return self.fixed_heights.copy()
-            
+
         elif case_num == 3:
-            # Combination of linear radii and equal heights
-            radii_guess = np.linspace(self.r0, self.rm, self.m + 1)[1:-1]
+            # Hyperboloid radii + equal heights
+            radii = self._hyperboloid_radii(r_waist=19.0)
             heights_guess = self.fixed_heights.copy()
-            return np.concatenate((radii_guess, heights_guess))
-            
+            return np.concatenate((radii[1:-1], heights_guess))
+
         elif case_num == 8:
-            # a, b, c guess
-            # r(z) = a * sqrt(1 + (z-c)^2 / b^2)
-            # a roughly min radius
+            # a, b, c guess for hyperbola r(z) = a * sqrt(1 + (z-c)^2 / b^2)
             a_guess = min(self.r0, self.rm) * 0.8
-            # b controls curvature, sensible starting value
             b_guess = self.total_height
-            # c is waist height, roughly in the middle
             c_guess = self.total_height / 2.0
             return np.array([a_guess, b_guess, c_guess])
-            
+
         else:
             raise ValueError(f"Unknown case_num: {case_num}")
 

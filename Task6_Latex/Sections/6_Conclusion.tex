@@ -10,7 +10,7 @@ In summary, SA is well-suited for cooling tower optimisation when combined with 
 
 \subsection{Conclusion on Particle Swarm Optimisation}
 
-The PSO algorithm exhibited strong exploration capabilities but suffered from severe constraint satisfaction failures under the penalty-based formulation used in this study. Volume errors exceeded 14\,000\,m$^3$ in five out of eight cases, rendering the corresponding solutions physically meaningless. This systemic failure is attributed to the interaction between the swarm dynamics and the penalty landscape: the penalty weight $\rho = 10^3$, while sufficient for single-point methods (BFGS, SA), is insufficient to steer the distributed swarm toward the feasible manifold.
+The PSO algorithm exhibited strong exploration capabilities but suffered from severe constraint satisfaction failures under the penalty-based formulation used in this study. Volume errors exceeded 14\,000\,m$^3$ in five out of eight cases, rendering the corresponding solutions physically meaningless. This systemic failure is attributed to the interaction between the swarm dynamics and the penalty landscape: the penalty weight $\rho = 10^5$, while sufficient for single-point methods (BFGS, SA), is insufficient to steer the distributed swarm toward the feasible manifold.
 
 The best performance was achieved on Case~8 (Hyperbolic Fit), which produced the lowest surface area of all algorithm--case combinations (5\,742.55\,m$^2$) with near-zero volume error, confirming that the low-dimensional parametric space enables effective swarm convergence. The two-phase convergence pattern---rapid descent followed by plateau---was consistently observed, with Cases~2, 6, and~8 converging within 30--50 iterations while Cases~1, 3, and~5 required over 500 iterations. However, only three out of eight cases achieved volume errors below 1\,m$^3$, constituting the most significant limitation of PSO as deployed in this study. The computational cost further compounds this limitation: PSO required 150\,200 function evaluations per case---$29\times$ more than BFGS and $9\times$ more than SA---yet produced the worst overall results, yielding a poor cost-effectiveness ratio that limits PSO's suitability for problems where function evaluations are expensive.
 
@@ -33,7 +33,7 @@ This study benchmarked three optimisation algorithms---BFGS, Simulated Annealing
     
     \item \textbf{Gradient-based methods are naturally suited to shape optimisation.} BFGS's local search produces smooth, structurally plausible profiles without requiring explicit geometric penalties, whereas stochastic methods can generate unrealistic geometries unless additional constraints are imposed.
     
-    \item \textbf{Penalty-based constraint handling is algorithm-dependent.} The static penalty weight $\rho = 10^3$ is effective for BFGS and SA but inadequate for PSO, highlighting the need for constraint-handling strategies tailored to each method's search dynamics.
+    \item \textbf{Penalty-based constraint handling is algorithm-dependent.} The static penalty weight $\rho = 10^5$ is effective for BFGS and SA but inadequate for PSO, highlighting the need for constraint-handling strategies tailored to each method's search dynamics.
     
     \item \textbf{Computational efficiency spans three orders of magnitude.} BFGS achieves convergence in $\mathcal{O}(10^2)$ function evaluations, SA in $\mathcal{O}(10^4)$, and PSO in $\mathcal{O}(10^5)$, with BFGS delivering superior solutions at the lowest cost in the majority of cases.
 \end{enumerate}
@@ -43,7 +43,7 @@ This study benchmarked three optimisation algorithms---BFGS, Simulated Annealing
 Building on the limitations identified in Section~5.4.4, several directions for future investigation are proposed:
 
 \begin{itemize}
-    \item \textbf{Constraint handling}: As noted in the limitations discussion, the penalty weight $\rho = 10^3$ is suboptimal for the stochastic methods. Future work should investigate augmented Lagrangian methods, feasibility-preserving operators for PSO, and adaptive penalty schedules to improve performance on equality-constrained problems.
+    \item \textbf{Constraint handling}: As noted in the limitations discussion, the penalty weight $\rho = 10^5$ is suboptimal for the stochastic methods. Future work should investigate augmented Lagrangian methods, feasibility-preserving operators for PSO, and adaptive penalty schedules to improve performance on equality-constrained problems.
     
     \item \textbf{Hybrid algorithms}: Combine global exploration (SA or PSO) with local refinement (BFGS) in a two-phase strategy, using the stochastic method to identify promising basins and BFGS to converge within them.
     

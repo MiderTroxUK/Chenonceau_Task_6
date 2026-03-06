@@ -41,7 +41,7 @@ The surrogate objective becomes:
 \end{equation}
 
 where $\rho \gg 0$ is a static scalar penalty weight. A static $\rho$ is deliberately chosen over an adaptive schedule to ensure that all three algorithms operate on an identical, fixed search landscape any dynamic $\rho$ strategy would introduce algorithm-dependent trajectory effects that would confound the performance comparison. 
-The chosen value $\rho = 10^3$ was calibrated empirically to ensure that volume violations incur a penalty several orders of magnitude larger than the surface area objective, effectively rendering infeasible solutions non-competitive without distorting the local geometry near the feasible manifold.
+The chosen value $\rho = 10^5$ was calibrated empirically to ensure that volume violations incur a penalty several orders of magnitude larger than the surface area objective, effectively rendering infeasible solutions non-competitive without distorting the local geometry near the feasible manifold.
 
 This penalty formulation has two notable consequences on the search landscape. 
 First, for BFGS, the quadratic term degrades the conditioning of the Hessian approximation in proportion to $\rho$, increasing the curvature of the surrogate near constraint boundaries~\cite{nocedalwright2006}. 

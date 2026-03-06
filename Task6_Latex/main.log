@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.1.30)  6 MAR 2026 22:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.1.30)  6 MAR 2026 22:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1557,7 +1557,7 @@ Package pdftex.def Info: Images/../Images/PSO/Case8_Pso_profile.png  used on in
 put line 32.
 (pdftex.def)             Requested size: 226.48395pt x 283.09796pt.
  [51] [52] [53] [54] [55] [56] [57]
-[58] [59]) [60] [61] (./Sections/6_Conclusion.tex [62] [63] [64]
+[58] [59] [60]) [61] (./Sections/6_Conclusion.tex [62] [63] [64]
 Overfull \hbox (11.31938pt too wide) in paragraph at lines 34--35
 []\T1/cmr/bx/n/12 Gradient-based meth-ods are nat-u-rally suited to shape op-ti
 -mi-sa-tion. \T1/cmr/m/n/12 BFGS's
@@ -1637,11 +1637,11 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 30258 strings out of 467533
- 580592 string characters out of 5423668
+ 30256 strings out of 467533
+ 580569 string characters out of 5423668
  1833375 words of memory out of 5000000
- 56713 multiletter control sequences out of 15000+600000
- 649683 words of font info for 92 fonts, out of 8000000 for 9000
+ 56712 multiletter control sequences out of 15000+600000
+ 649342 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  78i,13n,81p,1913b,3047s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/tex
@@ -1672,10 +1672,10 @@ uper/sfrm0600.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0
 s/type1/public/cm-super/sfti1200.pfb><c:/texlive/2025/texmf-dist/fonts/type1/pu
 blic/cm-super/sftt0800.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-su
 per/sftt1200.pfb>
-Output written on main.pdf (110 pages, 6414273 bytes).
+Output written on main.pdf (110 pages, 6416106 bytes).
 PDF statistics:
- 3600 PDF objects out of 4296 (max. 8388607)
- 3257 compressed objects within 33 object streams
+ 3632 PDF objects out of 4296 (max. 8388607)
+ 3290 compressed objects within 33 object streams
  2127 named destinations out of 2487 (max. 500000)
  1008 words of extra memory for PDF output out of 10000 (max. 10000000)
 

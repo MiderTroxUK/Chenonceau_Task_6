@@ -811,11 +811,11 @@ With restricted radii bounds $[20, 60]$ m, BFGS converges quickly but to a sligh
 \hline
 \textbf{Metric} & \textbf{Value} \\
 \hline
-Final Area & \textbf{5961.77 m²} \\
-Volume Error & \textbf{0.00 m³} \\
+Final Area & 5961.77 m² \\
+Volume Error & 0.00 m³ \\
 Waist Radius & 23.8 m \\
-Computation Time & \textbf{0.04 s} \\
-Function Evaluations & \textbf{294} \\
+Computation Time & 0.04 s \\
+Function Evaluations & 294 \\
 \hline
 \end{tabular}
 \caption{BFGS optimisation results for Case 8}
@@ -842,7 +842,7 @@ Function Evaluations & \textbf{294} \\
 \label{fig:bfgs_case8}
 \end{figure}
 
-This case achieves exceptional performance. Using a parametric hyperbolic formulation with only 3 parameters $(a, b, c)$, BFGS converges in just \textbf{12 iterations} (294 function evaluations) to an area of 5961.77 m². This represents a \textbf{23\% improvement} over the reference Case 1 and is achieved in 0.04 seconds—the fastest computation time of all cases. The resulting profile is a smooth, monotonic cone-like shape that satisfies the volume constraint perfectly. This demonstrates that combining BFGS with a well-chosen parametric formulation yields optimal results: the reduced search space eliminates local minima while BFGS provides efficient gradient-based convergence.
+This case achieves exceptional performance. Using a parametric hyperbolic formulation with only 3 parameters $(a, b, c)$, BFGS converges in just 12 iterations (294 function evaluations) to an area of 5961.77 m². This represents a 23\% improvement over the reference Case 1 and is achieved in 0.04 seconds—the fastest computation time of all cases. The resulting profile is a smooth, monotonic cone-like shape that satisfies the volume constraint perfectly. This demonstrates that combining BFGS with a well-chosen parametric formulation yields optimal results: the reduced search space eliminates local minima while BFGS provides efficient gradient-based convergence.
 
 
 \subsection{Comparison between the three methods}
@@ -878,7 +878,7 @@ Several key observations emerge from this consolidation:
 
 \textbf{SA provides the most reliable constraint satisfaction among the stochastic methods.} In every case, the volume error remains below 0.5\,m$^3$, confirming that the quadratic penalty formulation effectively guides the SA search toward the feasible manifold. However, Case~6 reveals a critical limitation: without explicit smoothness penalties, SA generates a physically unrealistic zigzag profile with a surface area 4.7$\times$ larger than the BFGS solution, despite satisfying the volume constraint.
 
-\textbf{PSO exhibits severe constraint failures in five out of eight cases.} Cases~1, 3, 4, 5, and~7 show volume errors exceeding 14\,000\,m$^3$---more than 20\% of the target volume. This indicates that the penalty weight $\rho = 10^3$, while sufficient for BFGS and SA, is inadequate for guiding the PSO swarm toward the feasible region within the allocated 150\,200 function evaluations. Only Cases~2, 6, and~8 achieve feasible solutions, suggesting that PSO requires either a substantially higher penalty weight, a problem-specific constraint-handling mechanism, or significantly more iterations to reliably satisfy the equality constraint.
+\textbf{PSO exhibits severe constraint failures in five out of eight cases.} Cases~1, 3, 4, 5, and~7 show volume errors exceeding 14\,000\,m$^3$---more than 20\% of the target volume. This indicates that the penalty weight $\rho = 10^5$, while sufficient for BFGS and SA, is inadequate for guiding the PSO swarm toward the feasible region within the allocated 150\,200 function evaluations. Only Cases~2, 6, and~8 achieve feasible solutions, suggesting that PSO requires either a substantially higher penalty weight, a problem-specific constraint-handling mechanism, or significantly more iterations to reliably satisfy the equality constraint.
 
 \subsection{Comparison of the methods performances}
 

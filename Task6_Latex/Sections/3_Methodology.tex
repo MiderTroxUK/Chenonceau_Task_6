@@ -44,7 +44,7 @@ where $\rho \gg 0$ is a static scalar penalty weight. A static $\rho$ is deliber
 The chosen value $\rho = 10^3$ was calibrated empirically to ensure that volume violations incur a penalty several orders of magnitude larger than the surface area objective, effectively rendering infeasible solutions non-competitive without distorting the local geometry near the feasible manifold.
 
 This penalty formulation has two notable consequences on the search landscape. 
-First, for BFGS, the quadratic term degrades the conditioning of the Hessian approximation in proportion to $\rho$, increasing the curvature of the surrogate near constraint boundaries~\cite{nocedal2006numerical}. 
+First, for BFGS, the quadratic term degrades the conditioning of the Hessian approximation in proportion to $\rho$, increasing the curvature of the surrogate near constraint boundaries~\cite{nocedalwright2006}. 
 Second, for SA and PSO, the penalty creates steep regions of high curvature in the search landscape around infeasible points, placing greater demands on the exploration-exploitation balance of each algorithm.
 
 \subsection{Architectural Decoupling and Benchmark Fairness}
@@ -104,7 +104,7 @@ All cases are evaluated against BFGS, SA, and PSO.
 
 \subsection{Particle Swarm Optimisation method} \cite{task3report}
 
-\subsubsection{General explanation & Algorithm}
+\subsubsection{General explanation \& Algorithm}
 
 The Particle Swarm Optimisation (PSO) is a stochastic optimisation technique inspired by the social behaviour of birds. A population of candidate solutions moves through the domain. Through several time steps, each particle adjusts its position based on its personal best and on the global best. This allows the algorithm to converge to a solution that matches a criterion \cite{riaz_lec2}.
 

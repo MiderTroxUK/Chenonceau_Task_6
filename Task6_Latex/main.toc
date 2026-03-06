@@ -1,0 +1,71 @@
+\contentsline {section}{\numberline {1}Introduction}{7}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Project Context and Progression}{7}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Problem Statement}{8}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Report Structure}{8}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Statement on the Use of Generative AI}{9}{subsection.1.4}%
+\contentsline {section}{\numberline {2}Cooling Tower}{10}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Mathematical Problem Formulation and Geometric Parametrisation}{10}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Methodology: Quadratic Penalty Formulation and Search Landscape}{11}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Architectural Decoupling and Benchmark Fairness}{12}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Study Cases: Dimensionality and Physical Complexity}{12}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Algorithms}{14}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Particle Swarm Optimisation method}{14}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}General explanation \& Algorithm}{14}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Seed exploration}{16}{subsubsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.2}Simulated Annealing method}{18}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Principle}{18}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Acceptance Criterion (Metropolis)}{19}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Cooling Schedule}{19}{subsubsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.4}Key Parameters}{19}{subsubsection.3.2.4}%
+\contentsline {subsubsection}{\numberline {3.2.5}Multi-Objective Strategy (Weight Scalarisation)}{19}{subsubsection.3.2.5}%
+\contentsline {subsection}{\numberline {3.3}Broyden-Fletcher-Goldfarb-Shanno method}{20}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Principle}{20}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Mathematical Formulation}{20}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Key Parameters}{21}{subsubsection.3.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.4}Constraint Handling}{22}{subsubsection.3.3.4}%
+\contentsline {section}{\numberline {4}Results}{23}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Particle Swarm Optimisation results}{23}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}Convergence}{23}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}Profiles}{26}{subsubsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.2}Simulated Annealing results}{30}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Case 1: Mandatory Reference Case}{30}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}Case 2: Variable Heights}{31}{subsubsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.3}Case 3: Full Freedom}{32}{subsubsection.4.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.4}Case 4: Tight Waist}{33}{subsubsection.4.2.4}%
+\contentsline {subsubsection}{\numberline {4.2.5}Case 5: Cylindrical Start}{34}{subsubsection.4.2.5}%
+\contentsline {subsubsection}{\numberline {4.2.6}Case 6: High Volume}{35}{subsubsection.4.2.6}%
+\contentsline {subsubsection}{\numberline {4.2.7}Case 7: Restricted Bounds}{36}{subsubsection.4.2.7}%
+\contentsline {subsubsection}{\numberline {4.2.8}Case 8: Hyperbolic Fit}{37}{subsubsection.4.2.8}%
+\contentsline {subsection}{\numberline {4.3}Broyden-Fletcher-Goldfarb-Shanno results}{38}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}Case 1: Mandatory Reference Case}{38}{subsubsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.2}Case 2: Variable Heights}{39}{subsubsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.3}Case 3: Full Freedom}{40}{subsubsection.4.3.3}%
+\contentsline {subsubsection}{\numberline {4.3.4}Case 4: Tight Waist}{41}{subsubsection.4.3.4}%
+\contentsline {subsubsection}{\numberline {4.3.5}Case 5: Cylindrical Start}{42}{subsubsection.4.3.5}%
+\contentsline {subsubsection}{\numberline {4.3.6}Case 6: High Volume}{43}{subsubsection.4.3.6}%
+\contentsline {subsubsection}{\numberline {4.3.7}Case 7: Restricted Bounds}{44}{subsubsection.4.3.7}%
+\contentsline {subsubsection}{\numberline {4.3.8}Case 8: Hyperbolic Fit}{45}{subsubsection.4.3.8}%
+\contentsline {subsection}{\numberline {4.4}Comparison between the three methods}{46}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Comparison of the methods performances}{46}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Discussion}{47}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Particle Swarm Optimisation}{47}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Convergence analysis}{47}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Profile analysis}{48}{subsubsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.3}Best result}{48}{subsubsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.2}SA}{51}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}BFGS}{51}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Global discussion}{51}{subsection.5.4}%
+\contentsline {section}{\numberline {6}Conclusion}{52}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Conclusion on Simulated Annealing}{52}{subsection.6.1}%
+\contentsline {section}{References}{54}{section*.45}%
+\contentsline {section}{\numberline {7}Appendices}{55}{section.7}%
+\contentsline {subsection}{\numberline {Appendix A}Code Listings}{55}{subsection.Alph0.1}%
+\contentsline {subsubsection}{\numberline {Appendix A.A}Problem Definition --- \texttt {cooling\_tower.py}}{55}{subsubsection.Alph0.1.1}%
+\contentsline {subsubsection}{\numberline {Appendix A.B}Solver Orchestrator --- \texttt {solver.py}}{62}{subsubsection.Alph0.1.2}%
+\contentsline {subsubsection}{\numberline {Appendix A.C}BFGS Implementation --- \texttt {bfgs.py}}{81}{subsubsection.Alph0.1.3}%
+\contentsline {subsubsection}{\numberline {Appendix A.D}PSO Implementation --- \texttt {pso.py}}{87}{subsubsection.Alph0.1.4}%
+\contentsline {subsubsection}{\numberline {Appendix A.E}SA Implementation --- \texttt {sa.py}}{92}{subsubsection.Alph0.1.5}%
+\contentsline {subsection}{\numberline {Appendix B}Detailed Results Data}{95}{subsection.Alph0.2}%
+\contentsline {subsubsection}{\numberline {Appendix B.A}BFGS Results}{95}{subsubsection.Alph0.2.1}%
+\contentsline {subsubsection}{\numberline {Appendix B.B}PSO Results}{95}{subsubsection.Alph0.2.2}%
+\contentsline {subsubsection}{\numberline {Appendix B.C}SA Results}{95}{subsubsection.Alph0.2.3}%

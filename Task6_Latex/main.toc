@@ -71,15 +71,15 @@
 \contentsline {subsection}{\numberline {6.3}Conclusion on BFGS}{66}{subsection.6.3}%
 \contentsline {subsection}{\numberline {6.4}Overall Conclusion}{67}{subsection.6.4}%
 \contentsline {subsection}{\numberline {6.5}Future Work}{68}{subsection.6.5}%
-\contentsline {section}{References}{69}{section*.49}%
-\contentsline {section}{\numberline {7}Appendices}{70}{section.7}%
-\contentsline {subsection}{\numberline {Appendix A}Code Listings}{70}{subsection.Alph0.1}%
-\contentsline {subsubsection}{\numberline {Appendix A.A}Problem Definition --- \texttt {cooling\_tower.py}}{70}{subsubsection.Alph0.1.1}%
-\contentsline {subsubsection}{\numberline {Appendix A.B}Solver Orchestrator --- \texttt {solver.py}}{77}{subsubsection.Alph0.1.2}%
-\contentsline {subsubsection}{\numberline {Appendix A.C}BFGS Implementation --- \texttt {bfgs.py}}{96}{subsubsection.Alph0.1.3}%
-\contentsline {subsubsection}{\numberline {Appendix A.D}PSO Implementation --- \texttt {pso.py}}{102}{subsubsection.Alph0.1.4}%
-\contentsline {subsubsection}{\numberline {Appendix A.E}SA Implementation --- \texttt {sa.py}}{107}{subsubsection.Alph0.1.5}%
-\contentsline {subsection}{\numberline {Appendix B}Detailed Results Data}{110}{subsection.Alph0.2}%
-\contentsline {subsubsection}{\numberline {Appendix B.A}BFGS Results}{110}{subsubsection.Alph0.2.1}%
-\contentsline {subsubsection}{\numberline {Appendix B.B}PSO Results}{110}{subsubsection.Alph0.2.2}%
-\contentsline {subsubsection}{\numberline {Appendix B.C}SA Results}{110}{subsubsection.Alph0.2.3}%
+\contentsline {section}{References}{70}{section*.49}%
+\contentsline {section}{\numberline {7}Appendices}{71}{section.7}%
+\contentsline {subsection}{\numberline {Appendix A}Code Listings}{71}{subsection.Alph0.1}%
+\contentsline {subsubsection}{\numberline {Appendix A.A}Problem Definition --- \texttt {cooling\_tower.py}}{71}{subsubsection.Alph0.1.1}%
+\contentsline {subsubsection}{\numberline {Appendix A.B}Solver Orchestrator --- \texttt {solver.py}}{78}{subsubsection.Alph0.1.2}%
+\contentsline {subsubsection}{\numberline {Appendix A.C}BFGS Implementation --- \texttt {bfgs.py}}{97}{subsubsection.Alph0.1.3}%
+\contentsline {subsubsection}{\numberline {Appendix A.D}PSO Implementation --- \texttt {pso.py}}{103}{subsubsection.Alph0.1.4}%
+\contentsline {subsubsection}{\numberline {Appendix A.E}SA Implementation --- \texttt {sa.py}}{108}{subsubsection.Alph0.1.5}%
+\contentsline {subsection}{\numberline {Appendix B}Detailed Results Data}{111}{subsection.Alph0.2}%
+\contentsline {subsubsection}{\numberline {Appendix B.A}BFGS Results}{111}{subsubsection.Alph0.2.1}%
+\contentsline {subsubsection}{\numberline {Appendix B.B}PSO Results}{111}{subsubsection.Alph0.2.2}%
+\contentsline {subsubsection}{\numberline {Appendix B.C}SA Results}{111}{subsubsection.Alph0.2.3}%

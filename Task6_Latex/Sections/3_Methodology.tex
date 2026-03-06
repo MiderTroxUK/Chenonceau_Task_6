@@ -104,6 +104,8 @@ All cases are evaluated against BFGS, SA, and PSO.
 
 \subsection{Particle Swarm Optimisation method} \cite{task3report}
 
+\subsubsection{General explanation & Algorithm}
+
 The Particle Swarm Optimisation (PSO) is a stochastic optimisation technique inspired by the social behaviour of birds. A population of candidate solutions moves through the domain. Through several time steps, each particle adjusts its position based on its personal best and on the global best. This allows the algorithm to converge to a solution that matches a criterion \cite{riaz_lec2}.
 
 As the problem is single-objective, the standard PSO is used to minimise one error function. It uses two major concepts:
@@ -120,6 +122,31 @@ The PSO algorithm initialises a population of particles distributed across the s
     \caption{Overview of the Particle Swarm Optimisation algorithm}
     \label{fig:pso_flowchart}
 \end{figure}
+
+\subsubsection{Seed exploration}
+
+To assess the influence of stochastic initialisation on the stability of the PSO optimisation, a seed-sentivity study was conducted. Seven distinct seed were tested including a random one called "None". The resulting volume errors were evaluated across the eight test cases. The objective of this exploration was to select a seed that provides the best results.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.70\textwidth]{../Images/PSO/Seed exploration.png}
+    \caption{Evolution of the volume error depending on the seed}
+    \label{fig:seed_exploration}
+\end{figure}
+
+Overall, the results show marked variability depending on the seed. In particular, some seeds lead to pronounced peaks for specific cases. The most notable example is the seed of 1000, which generates the largest error on the case 3 in the entire exploration. These large deviations indicate that these seeds may place the optimiser in initial conditions less favourable for convergence or stability.
+
+In contrast, seeds 1 and 10 tend to produc substantially lower and more homogeneous errors accross the eight cases. The seed 10 performs particularly weel: it shows no extreme outliers, and the volume error remains close to zero for most cases. Importantly, its behaviour is stable - neither systematically over optimistic nor overly sensitive to case-to-case variations. Compared to seed 1, seed 10 shows a slightly smoother profile, with fewer local spikes.
+
+The seed option labelled "None", corresponding to the use of a non-deterministic initialisation, was deliberately not retained. Although its average behaviour appears reasonable, its intrinsic randomness means that results cannot be reproduced reliably accross runs. In the context of this study - chere traceability, repeatability, and controlled comparisons are essential - this lack of determinism is undesirables. For this reason, the random seed configuration was excluded from the potential candidates.
+
+Based on this analysis, the seed 10 was selected for the remainder of the study. The choice is justified by its balances behaviour:
+\begin{itemize}
+    \item consistently low volume errors accross all cases,
+    \item absence of irregular peaks,
+    \item good reproducibility.
+\end{itemize}
+This seed therefore offers a reliable compromose between robustness and computational stability. However, it is important to note that the fluctuations are minors compared to the total volume of the cooling tower.
 
 \subsection{Simulated Annealing method}
 

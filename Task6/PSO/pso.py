@@ -10,178 +10,194 @@ Inheritance:    Particle_Swarm_Optimization.py from Task 3
 import numpy as np
 from typing import Callable, Tuple, List
 
+# pymoo engine — mirrors Particle_Swarm_Optimization.py
+from pymoo.algorithms.soo.nonconvex.pso import PSO
+from pymoo.core.problem import Problem
+from pymoo.core.callback import Callback
+from pymoo.core.termination import Termination
+from pymoo.operators.sampling.lhs import LHS
+from pymoo.optimize import minimize
+
+# ********** CONVERGENCE CALLBACK **********
+
+class MyCallback(Callback):
+    """
+    Tracks the global best cost after each generation.
+    Mirrors MyCallback in Particle_Swarm_Optimization_multi_obj.py.
+
+    data["best_f1"] : global best cost per generation — returned as history
+                      so solver.py can plot the convergence curve.
+    data["F"]       : all particle costs per generation.
+    data["n_nds"]   : number of particles that matched the global best.
+    """
+
+    def __init__(self):
+        super().__init__()
+        self.data["best_f1"] = []
+        self.data["F"]       = []
+        self.data["n_nds"]   = []
+
+    def notify(self, algorithm):
+        F = algorithm.pop.get("F")          # shape (pop_size, 1)
+        best = float(F.min())
+        self.data["F"].append(F.copy())
+        self.data["best_f1"].append(best)
+        self.data["n_nds"].append(int((F == best).sum()))
+
+# ********** PYMOO PROBLEM WRAPPER **********
+
+class _FuncProblem(Problem):
+    """
+    Wraps a plain callable f(x) -> float into a pymoo Problem so that
+    pymoo's PSO engine can be used without changing solver.py's interface.
+    """
+
+    def __init__(self, objective_func: Callable, bounds: list):
+        lb = np.array([b[0] for b in bounds], dtype=float)
+        ub = np.array([b[1] for b in bounds], dtype=float)
+        super().__init__(
+            n_var=len(bounds),
+            n_obj=1,
+            xl=lb,
+            xu=ub,
+        )
+        self._func = objective_func
+        self.n_fevals = 0
+
+    def _evaluate(self, X, out, *args, **kwargs):
+        """Evaluate all particles in the current generation."""
+        F = np.array([self._func(X[i]) for i in range(len(X))], dtype=float)
+        self.n_fevals += len(X)
+        out["F"] = F.reshape(-1, 1)
+
+# ********** STAGNATION-AWARE TERMINATION **********
+
+class StagnationTermination(Termination):
+    """
+    Stops when EITHER:
+      - max_gen generations are reached, OR
+      - the global best has not improved by more than `tol` over the
+        last `stagnation_window` generations (early stopping).
+    """
+
+    def __init__(self, max_gen: int, stagnation_window: int = 50, tol: float = 1e-6):
+        super().__init__()
+        self.max_gen           = max_gen
+        self.stagnation_window = stagnation_window
+        self.tol               = tol
+        self._history          = []
+
+    def _update(self, algorithm):
+        F = algorithm.pop.get("F")
+        self._history.append(float(F.min()))
+
+        if algorithm.n_gen >= self.max_gen:
+            return 1.0
+
+        if len(self._history) >= self.stagnation_window:
+            window      = self._history[-self.stagnation_window:]
+            improvement = window[0] - window[-1]
+            if improvement < self.tol:
+                return 1.0
+
+        return algorithm.n_gen / self.max_gen
+
 # ********** PARTICLE SWARM OPTIMISATION **********
 
 """
-Particle Swarm Optimisation for single-objective minimisation.
+Interface expected by solver.py (PsoOptimizer):
 
-Velocity update rule (standard PSO):
-    v  <-  w*v  +  c1*r1*(pBest - x)  +  c2*r2*(gBest - x)
-    x  <-  x + v
+    best_x, best_cost, history, n_fevals = particle_swarm(
+        objective_func = self._objective_func,
+        bounds         = self.problem.get_bounds(self.case_num),
+        num_particles  = 200,
+        max_iter       = 750,
+        ...
+    )
 
-Inertia weight (adaptive=True):
-    w decreases linearly from w_start (0.9) to w_end (0.4) over iterations,
-    balancing exploration early on and exploitation later — consistent with
-    pymoo's adaptive=True behaviour in Particle_Swarm_Optimization.py.
-
-Perturbation (pertube_best=True):
-    At each iteration, the global best position is slightly perturbed by
-    Gaussian noise to prevent premature convergence — consistent with
-    pymoo's pertube_best=True in PSO_single_objective().
-
-Boundary handling: absorbing walls — particles that overshoot a bound are
-    placed on the boundary and their velocity component is zeroed, consistent
-    with pymoo's default boundary handling in Particle_Swarm_Optimization.py.
-
-Initial velocity: "random" — velocities uniformly sampled within [v_min, v_max],
-    consistent with initial_velocity="random" in Particle_Swarm_Optimization.py.
+history is returned as an empty list — only the final result is needed.
 
 Parameters
 ----------
 objective_func    : Callable  — f(x: np.ndarray) -> float, function to minimise.
 bounds            : list      — [(min, max), ...] one tuple per decision variable.
-num_particles     : int       — swarm size (default 50).
-max_iter          : int       — maximum number of iterations / generations.
-w                 : float     — initial inertia weight (0 <= w <= 1).
-                                If adaptive=True, this is the starting value (w_start).
-c1                : float     — cognitive coefficient (personal best pull).
-c2                : float     — social coefficient   (global best pull).
+num_particles     : int       — swarm size.
+max_iter          : int       — number of generations.
+w                 : float     — inertia weight (pymoo adaptive=True decays this).
+c1                : float     — cognitive coefficient.
+c2                : float     — social coefficient.
 max_velocity_rate : float     — v_max = max_velocity_rate * (ub - lb).
-adaptive          : bool      — linearly decay w from w (0.9) to 0.4 over iterations.
-pertube_best      : bool      — apply Gaussian perturbation to global best each iteration.
 seed              : int|None  — random seed for reproducibility.
-verbose           : bool      — print progress every 10 % of iterations.
-**kwargs          : ignored   — absorbs extra keyword arguments from solver.py.
+verbose           : bool      — print pymoo progress each generation.
+**kwargs          : ignored   — absorbs extra keys from solver.py.
 
 Returns
 -------
 best_position : np.ndarray  — best parameter vector found.
 best_cost     : float       — objective value at best_position.
-history       : List[float] — global best cost after each iteration.
+history       : []          — empty list (history not tracked).
 n_fevals      : int         — total objective-function evaluations.
 """
+
 def particle_swarm(
     objective_func: Callable[[np.ndarray], float],
     bounds: List[Tuple[float, float]],
-    num_particles: int = 250,
-    max_iter: int = 500,
+    num_particles: int = 200,
+    max_iter: int = 50000,
+    stagnation_window: int = 50,
+    tol: float = 1e-6,
     w: float = 0.9,
     c1: float = 2.0,
     c2: float = 2.0,
-    max_velocity_rate: float = 0.2,
-    adaptive: bool = True,
-    pertube_best: bool = True,
-    seed: int = 50,
+    max_velocity_rate: float = 0.3,
+    seed: int = 42,
     verbose: bool = False,
-    **kwargs
+    **kwargs,
 ) -> Tuple[np.ndarray, float, List[float], int]:
-    
-    if seed is not None:
-        np.random.seed(seed)
 
-    n_vars = len(bounds)
-    lb = np.array([b[0] for b in bounds], dtype=float)
-    ub = np.array([b[1] for b in bounds], dtype=float)
-    rng = ub - lb  # search-space width per dimension
+    try:
+        # ----- Wrap objective into a pymoo Problem -----
+        problem = _FuncProblem(objective_func, bounds)
 
-    # ----- Velocity limits -----
-    v_max = max_velocity_rate * rng
-    v_min = -v_max
+        # ----- Configure PSO — mirrors PSO_single_objective() -----
+        algorithm = PSO(
+            pop_size          = num_particles,
+            w                 = w,
+            c1                = c1,
+            c2                = c2,
+            max_velocity_rate = max_velocity_rate,
+            adaptive          = True,
+            initial_velocity  = "random",
+            pertube_best      = True,
+        )
 
-    # ----- Adaptive inertia weight schedule -----
-    # Linearly decays w from w_start to w_end over iterations,
-    # matching pymoo's adaptive=True behaviour.
-    w_start = w        # initial inertia (exploration-heavy)
-    w_end   = 0.4      # final inertia   (exploitation-heavy)
+        # ----- Convergence callback -----
+        callback = MyCallback()
 
-    # ----- Initialisation -----
-    # Positions: uniform random within bounds
-    positions = lb + np.random.rand(num_particles, n_vars) * rng
+        # ----- Stagnation-aware termination -----
+        termination = StagnationTermination(
+            max_gen           = max_iter,
+            stagnation_window = stagnation_window,
+            tol               = tol,
+        )
 
-    # Velocities: "random" — uniform within [v_min, v_max],
-    # consistent with initial_velocity="random" in Particle_Swarm_Optimization.py
-    velocities = v_min + np.random.rand(num_particles, n_vars) * (v_max - v_min)
+        # ----- Run optimisation -----
+        result = minimize(
+            problem,
+            algorithm,
+            termination = termination,
+            seed        = seed,
+            verbose     = verbose,
+            callback    = callback,
+        )
 
-    # Evaluate initial swarm
-    costs    = np.array([objective_func(positions[i]) for i in range(num_particles)])
-    n_fevals = num_particles
+        # Store callback on result for external access
+        result.callback = callback
 
-    # Personal bests
-    p_best_pos  = positions.copy()
-    p_best_cost = costs.copy()
+        history = callback.data["best_f1"]  # one float per generation
 
-    # Global best
-    g_best_idx  = int(np.argmin(p_best_cost))
-    g_best_pos  = p_best_pos[g_best_idx].copy()
-    g_best_cost = p_best_cost[g_best_idx]
+        return result.X.flatten(), float(result.F.flatten()[0]), history, problem.n_fevals
 
-    history: List[float] = []
-    log_every = max(1, max_iter // 10)
-
-    # ----- Main optimisation loop -----
-    for iteration in range(max_iter):
-
-        # -- Adaptive inertia weight: linear decay from w_start to w_end --
-        # Consistent with pymoo's adaptive=True in PSO_single_objective()
-        if adaptive:
-            w_current = w_start - (w_start - w_end) * (iteration / max(1, max_iter - 1))
-        else:
-            w_current = w_start
-
-        # -- Perturbation of global best --
-        # Adds small Gaussian noise to gBest to escape local optima,
-        # consistent with pymoo's pertube_best=True in PSO_single_objective().
-        # Noise amplitude decays over time as the search focuses.
-        if pertube_best:
-            sigma = 0.1 * rng * (1.0 - iteration / max_iter)
-            g_best_perturbed = g_best_pos + np.random.randn(n_vars) * sigma
-            g_best_perturbed = np.clip(g_best_perturbed, lb, ub)
-        else:
-            g_best_perturbed = g_best_pos
-
-        r1 = np.random.rand(num_particles, n_vars)
-        r2 = np.random.rand(num_particles, n_vars)
-
-        # Velocity update (using perturbed gBest for social component)
-        cognitive  = c1 * r1 * (p_best_pos - positions)
-        social     = c2 * r2 * (g_best_perturbed - positions)
-        velocities = w_current * velocities + cognitive + social
-
-        # Clamp velocities to [v_min, v_max]
-        velocities = np.clip(velocities, v_min, v_max)
-
-        # Position update
-        positions = positions + velocities
-
-        # Absorbing boundary: project back and zero the velocity component —
-        # consistent with pymoo's default boundary handling
-        for d in range(n_vars):
-            too_low  = positions[:, d] < lb[d]
-            too_high = positions[:, d] > ub[d]
-            positions[too_low,  d] = lb[d]
-            positions[too_high, d] = ub[d]
-            velocities[too_low,  d] = 0.0    # absorb (zero), not reflect
-            velocities[too_high, d] = 0.0
-
-        # Evaluate new positions
-        new_costs = np.array([objective_func(positions[i]) for i in range(num_particles)])
-        n_fevals += num_particles
-
-        # Update personal bests
-        improved = new_costs < p_best_cost
-        p_best_pos[improved]  = positions[improved]
-        p_best_cost[improved] = new_costs[improved]
-
-        # Update global best
-        g_best_idx_new = int(np.argmin(p_best_cost))
-        if p_best_cost[g_best_idx_new] < g_best_cost:
-            g_best_cost = p_best_cost[g_best_idx_new]
-            g_best_pos  = p_best_pos[g_best_idx_new].copy()
-
-        history.append(g_best_cost)
-
-        if verbose and (iteration + 1) % log_every == 0:
-            print(f"  [PSO] Iter {iteration + 1:>4d}/{max_iter} | "
-                  f"w: {w_current:.3f} | Best cost: {g_best_cost:.6f}")
-
-    return g_best_pos, g_best_cost, history, n_fevals
+    except Exception as e:
+        print(f"Error during PSO optimisation: {e}")
+        raise

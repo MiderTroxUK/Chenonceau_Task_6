@@ -63,6 +63,12 @@ Case~6 constitutes the most significant failure (Figure~\ref{fig:sa_case6}). The
 
 \subsubsection{Best result}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.50\textwidth]{../Task6/Solver/output/Sa/Case8_SA_profile.png}
+    \caption{Best cooling tower with SA algorithm}
+\end{figure}
+
 Among the SA results, Case~8 (Hyperbolic Fit) delivers the best performance on all four selection criteria (Table~\ref{tab:sa_case8}, Figure~\ref{fig:sa_case8}). Its surface area of 5\,765.62\,m$^2$ is the lowest achieved by any algorithm--case combination except PSO on the same case (Table~\ref{tab:comparison_all}), its volume error is exactly zero, its convergence is rapid and monotonic, and its profile is a smooth, compact hyperboloid. The parametric formulation eliminates the geometric irregularities that degrade SA performance in higher-dimensional cases, confirming that a well-chosen parametrisation is the single most effective lever for improving SA outcomes.
 
 \subsection{BFGS}
@@ -86,6 +92,12 @@ Case~2 (Variable Heights) is particularly instructive (Figure~\ref{fig:bfgs_case
 Case~6 (High Volume) starkly contrasts with SA: BFGS produces a smooth, physically realistic hyperboloid with an area of 7\,678\,m$^2$ (Table~\ref{tab:bfgs_case6}, Figure~\ref{fig:bfgs_case6}), whereas SA generates an unrealistic zigzag with an area of 36\,042\,m$^2$ (Table~\ref{tab:sa_case6}). This 4.7$\times$ difference underscores the natural advantage of gradient-based methods for shape optimisation: the local search inherently preserves geometric smoothness without requiring explicit regularisation terms.
 
 \subsubsection{Best result}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.50\textwidth]{../Task6/Solver/output/Bfgs/Case8_Bfgs_profile.png}
+    \caption{Best cooling tower with BFGS algorithm}
+\end{figure}
 
 BFGS achieves its best result on Case~8 (Hyperbolic Fit), with a surface area of 5\,961.77\,m$^2$, zero volume error, and the fastest computation time of all algorithm--case combinations (0.04\,s; Table~\ref{tab:bfgs_case8}). Although the area is marginally higher than the SA result on the same case (5\,765.62\,m$^2$, Table~\ref{tab:sa_case8}), the difference is small (3.4\%) and BFGS requires $56\times$ fewer function evaluations (294 vs.\ 16\,540; Table~\ref{tab:perf_comparison}). When considering the combined criteria of solution quality, constraint satisfaction, computational cost, and profile regularity, the BFGS--Case~8 combination represents the most efficient configuration in this study.
 

@@ -9,7 +9,7 @@
 \contentsline {subsection}{\numberline {2.3}Architectural Decoupling and Benchmark Fairness}{12}{subsection.2.3}%
 \contentsline {subsection}{\numberline {2.4}Study Cases: Dimensionality and Physical Complexity}{12}{subsection.2.4}%
 \contentsline {section}{\numberline {3}Algorithms}{14}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Particle Swarm Optimisation method}{14}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.1}Particle Swarm Optimisation method \blx@tocontentsinit {0}\cite {task3report}}{14}{subsection.3.1}%
 \contentsline {subsubsection}{\numberline {3.1.1}General explanation \& Algorithm}{14}{subsubsection.3.1.1}%
 \contentsline {subsubsection}{\numberline {3.1.2}Seed exploration}{16}{subsubsection.3.1.2}%
 \contentsline {subsection}{\numberline {3.2}Simulated Annealing method}{18}{subsection.3.2}%
@@ -56,30 +56,30 @@
 \contentsline {subsubsection}{\numberline {5.2.1}Convergence analysis}{53}{subsubsection.5.2.1}%
 \contentsline {subsubsection}{\numberline {5.2.2}Profile analysis}{55}{subsubsection.5.2.2}%
 \contentsline {subsubsection}{\numberline {5.2.3}Best result}{56}{subsubsection.5.2.3}%
-\contentsline {subsection}{\numberline {5.3}BFGS}{56}{subsection.5.3}%
-\contentsline {subsubsection}{\numberline {5.3.1}Convergence analysis}{56}{subsubsection.5.3.1}%
-\contentsline {subsubsection}{\numberline {5.3.2}Profile analysis}{57}{subsubsection.5.3.2}%
-\contentsline {subsubsection}{\numberline {5.3.3}Best result}{58}{subsubsection.5.3.3}%
-\contentsline {subsection}{\numberline {5.4}Global discussion}{58}{subsection.5.4}%
-\contentsline {subsubsection}{\numberline {5.4.1}Deterministic vs.\ stochastic trade-offs}{58}{subsubsection.5.4.1}%
-\contentsline {subsubsection}{\numberline {5.4.2}The role of problem formulation}{60}{subsubsection.5.4.2}%
-\contentsline {subsubsection}{\numberline {5.4.3}Practical engineering recommendations}{60}{subsubsection.5.4.3}%
-\contentsline {subsubsection}{\numberline {5.4.4}Limitations of the study}{61}{subsubsection.5.4.4}%
-\contentsline {section}{\numberline {6}Conclusion}{62}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Conclusion on Simulated Annealing}{62}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Conclusion on Particle Swarm Optimisation}{63}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Conclusion on BFGS}{64}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Overall Conclusion}{65}{subsection.6.4}%
-\contentsline {subsection}{\numberline {6.5}Future Work}{66}{subsection.6.5}%
-\contentsline {section}{References}{67}{section*.47}%
-\contentsline {section}{\numberline {7}Appendices}{68}{section.7}%
-\contentsline {subsection}{\numberline {Appendix A}Code Listings}{68}{subsection.Alph0.1}%
-\contentsline {subsubsection}{\numberline {Appendix A.A}Problem Definition --- \texttt {cooling\_tower.py}}{68}{subsubsection.Alph0.1.1}%
-\contentsline {subsubsection}{\numberline {Appendix A.B}Solver Orchestrator --- \texttt {solver.py}}{75}{subsubsection.Alph0.1.2}%
-\contentsline {subsubsection}{\numberline {Appendix A.C}BFGS Implementation --- \texttt {bfgs.py}}{94}{subsubsection.Alph0.1.3}%
-\contentsline {subsubsection}{\numberline {Appendix A.D}PSO Implementation --- \texttt {pso.py}}{100}{subsubsection.Alph0.1.4}%
-\contentsline {subsubsection}{\numberline {Appendix A.E}SA Implementation --- \texttt {sa.py}}{105}{subsubsection.Alph0.1.5}%
-\contentsline {subsection}{\numberline {Appendix B}Detailed Results Data}{108}{subsection.Alph0.2}%
-\contentsline {subsubsection}{\numberline {Appendix B.A}BFGS Results}{108}{subsubsection.Alph0.2.1}%
-\contentsline {subsubsection}{\numberline {Appendix B.B}PSO Results}{108}{subsubsection.Alph0.2.2}%
-\contentsline {subsubsection}{\numberline {Appendix B.C}SA Results}{108}{subsubsection.Alph0.2.3}%
+\contentsline {subsection}{\numberline {5.3}BFGS}{57}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}Convergence analysis}{57}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}Profile analysis}{58}{subsubsection.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.3}Best result}{59}{subsubsection.5.3.3}%
+\contentsline {subsection}{\numberline {5.4}Global discussion}{60}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}Deterministic vs.\ stochastic trade-offs}{60}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}The role of problem formulation}{61}{subsubsection.5.4.2}%
+\contentsline {subsubsection}{\numberline {5.4.3}Practical engineering recommendations}{61}{subsubsection.5.4.3}%
+\contentsline {subsubsection}{\numberline {5.4.4}Limitations of the study}{62}{subsubsection.5.4.4}%
+\contentsline {section}{\numberline {6}Conclusion}{64}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Conclusion on Simulated Annealing}{64}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Conclusion on Particle Swarm Optimisation}{65}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Conclusion on BFGS}{66}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Overall Conclusion}{67}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Future Work}{68}{subsection.6.5}%
+\contentsline {section}{References}{69}{section*.49}%
+\contentsline {section}{\numberline {7}Appendices}{70}{section.7}%
+\contentsline {subsection}{\numberline {Appendix A}Code Listings}{70}{subsection.Alph0.1}%
+\contentsline {subsubsection}{\numberline {Appendix A.A}Problem Definition --- \texttt {cooling\_tower.py}}{70}{subsubsection.Alph0.1.1}%
+\contentsline {subsubsection}{\numberline {Appendix A.B}Solver Orchestrator --- \texttt {solver.py}}{77}{subsubsection.Alph0.1.2}%
+\contentsline {subsubsection}{\numberline {Appendix A.C}BFGS Implementation --- \texttt {bfgs.py}}{96}{subsubsection.Alph0.1.3}%
+\contentsline {subsubsection}{\numberline {Appendix A.D}PSO Implementation --- \texttt {pso.py}}{102}{subsubsection.Alph0.1.4}%
+\contentsline {subsubsection}{\numberline {Appendix A.E}SA Implementation --- \texttt {sa.py}}{107}{subsubsection.Alph0.1.5}%
+\contentsline {subsection}{\numberline {Appendix B}Detailed Results Data}{110}{subsection.Alph0.2}%
+\contentsline {subsubsection}{\numberline {Appendix B.A}BFGS Results}{110}{subsubsection.Alph0.2.1}%
+\contentsline {subsubsection}{\numberline {Appendix B.B}PSO Results}{110}{subsubsection.Alph0.2.2}%
+\contentsline {subsubsection}{\numberline {Appendix B.C}SA Results}{110}{subsubsection.Alph0.2.3}%

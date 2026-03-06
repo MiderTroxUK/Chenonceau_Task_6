@@ -295,7 +295,7 @@ Function Evaluations & 16,540 \\
 \label{fig:sa_case3}
 \end{figure}
 
-This is the most complex case where both radii and heights are free variables. The SA explores a much larger search space, resulting in longer computation time. The resulting profile is significantly different: a very narrow waist (11.1 m) and a vertically elongated structure. The larger area is due to the more complex geometry. Convergence is rapid ($<500$ iterations) but the final cost remains high due to geometric penalties.
+This represents the most complex case, with both radii and heights as free variables. SA explores a substantially larger search space, resulting in longer computation time and a significantly different optimised profile characterised by a very narrow waist (11.1\,m) and a vertically elongated structure. The larger surface area reflects the geometric complexity of this configuration. Although convergence is rapid (fewer than 500 iterations), the final cost remains high due to geometric penalties.
 
 %----------------------------------------------------------
 \subsubsection{Case 4: Tight Waist}
@@ -379,7 +379,7 @@ Function Evaluations & 16,540 \\
 \label{fig:sa_case5}
 \end{figure}
 
-The initial guess is a cylinder (all radii equal). The SA must discover the hyperboloid shape from scratch. Convergence is very rapid ($<200$ iterations) because the initial cylinder strongly violates the penalty constraints. The final area is slightly higher than Case 1 ($+177$ m²), demonstrating that the starting point influences the final solution.
+The initial guess is a cylinder (all radii equal), requiring SA to discover the hyperboloid shape from scratch. Convergence is very rapid (fewer than 200 iterations), as the initial cylinder strongly violates the penalty constraints and thereby provides a strong descent gradient. The final area is slightly higher than Case~1 ($+177$\,m$^2$), demonstrating that the starting point influences the final solution quality.
 
 %----------------------------------------------------------
 \subsubsection{Case 6: High Volume}
@@ -421,7 +421,7 @@ Function Evaluations & 16,540 \\
 \label{fig:sa_case6}
 \end{figure}
 
-The target volume is increased to 105,480 m³ ($\times 1.5$). The resulting profile is unrealistic: a zigzag shape with significant oscillations. The SA minimises the area without any smoothness constraint, producing a physically impossible geometry. While the volume constraint is satisfied, the solution is unacceptable from an engineering perspective.
+With the target volume increased to 105,480\,m$^3$ ($\times 1.5$), the resulting profile is unrealistic: a zigzag shape with significant oscillations. SA minimises the area without any smoothness constraint, producing a physically impossible geometry. Although the volume constraint is satisfied, the solution is unacceptable from an engineering perspective.
 
 %----------------------------------------------------------
 \subsubsection{Case 7: Restricted Bounds}
@@ -463,7 +463,7 @@ Function Evaluations & 16,540 \\
 \label{fig:sa_case7}
 \end{figure}
 
-The radii bounds are restricted to $[20, 60]$ m. The convergence shows a staircase pattern over approximately 3000 iterations. Despite the bound constraints, the hyperboloid profile is correctly formed. The final area is competitive (between Case 1 and Case 4). The waist at 18.5 m corresponds to the minimum allowed by the bounds.
+With radii bounds restricted to $[20, 60]$\,m, the convergence exhibits a staircase pattern over approximately 3\,000 iterations. Despite these bound constraints, the hyperboloid profile is correctly formed, and the final area is competitive (between Case~1 and Case~4). The waist at 18.5\,m corresponds to the minimum permitted by the imposed bounds.
 
 %----------------------------------------------------------
 \subsubsection{Case 8: Hyperbolic Fit}
@@ -474,8 +474,8 @@ The radii bounds are restricted to $[20, 60]$ m. The convergence shows a stairca
 \hline
 \textbf{Metric} & \textbf{Value} \\
 \hline
-Final Area & \textbf{5765.62 m²} \\
-Volume Error & \textbf{0.00 m³} \\
+Final Area & 5765.62 m² \\
+Volume Error & 0.00 m³ \\
 Waist Radius & 24.2 m \\
 Computation Time & 2.17 s \\
 Function Evaluations & 16,540 \\
@@ -505,7 +505,7 @@ Function Evaluations & 16,540 \\
 \label{fig:sa_case8}
 \end{figure}
 
-This case achieves the best overall result. A parametric formulation with 3 parameters $(a, b, c)$ defines an analytical hyperbola. The profile is quasi-cylindrical with a slight conical shape, significantly different from the other cases. The area is \textbf{26\% lower} than Case 1, and the volume error is virtually zero. Convergence is rapid and monotonic. This parametric formulation is the most efficient as it reduces the search space while guaranteeing a physically realistic shape.
+This case achieves the best overall result for SA. A parametric formulation with 3 parameters $(a, b, c)$ defines an analytical hyperbola, yielding a quasi-cylindrical profile with a slight conical shape that is significantly different from the other cases. The area is 26\% lower than Case~1, and the volume error is virtually zero. Convergence is rapid and monotonic, confirming that this parametric formulation is the most efficient approach as it reduces the search space while guaranteeing a physically realistic shape.
 
 \subsection{Broyden-Fletcher-Goldfarb-Shanno results}
 

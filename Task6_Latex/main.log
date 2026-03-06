@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.1.30)  6 MAR 2026 22:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.1.30)  6 MAR 2026 22:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1015,8 +1015,13 @@ Package pdftex.def Info: Images/../Images/PSO/Seed exploration.png  used on inp
 ut line 132.
 (pdftex.def)             Requested size: 317.07614pt x 255.71083pt.
  [16 <./Images/../Images/PSO/pso_flowchart.png>] [17 <./Images/../Images/PSO/Se
-ed exploration.png>] [18] [19] [20] [21]) [22]
-(./Sections/4_Results.tex
+ed exploration.png>] [18]
+Overfull \hbox (6.40468pt too wide) in paragraph at lines 188--189
+[]\T1/cmr/m/n/12 As an in-her-ently mono-objective al-go-rithm, SA ad-dresses b
+i-objective prob-lems through
+ []
+
+[19] [20] [21]) [22] (./Sections/4_Results.tex
 <Images/../Images/PSO/Case1_Pso_convergence.png, id=596, 462.528pt x 346.896pt>
 
 File: Images/../Images/PSO/Case1_Pso_convergence.png Graphic file (type png)
@@ -1061,8 +1066,9 @@ File: Images/../Images/PSO/Case6_Pso_convergence.png Graphic file (type png)
 Package pdftex.def Info: Images/../Images/PSO/Case6_Pso_convergence.png  used o
 n input line 59.
 (pdftex.def)             Requested size: 226.48395pt x 169.86406pt.
- [24 <./Images/../Images/PSO/Case3_Pso_convergence.png> <./Images/../Images/PSO
-/Case4_Pso_convergence.png>]
+
+[24 <./Images/../Images/PSO/Case3_Pso_convergence.png> <./Images/../Images/PSO/
+Case4_Pso_convergence.png>]
 <Images/../Images/PSO/Case7_Pso_convergence.png, id=617, 462.528pt x 346.896pt>
 
 File: Images/../Images/PSO/Case7_Pso_convergence.png Graphic file (type png)
@@ -1092,8 +1098,9 @@ File: Images/../Images/PSO/Case6_Pso_profile.png Graphic file (type png)
 Package pdftex.def Info: Images/../Images/PSO/Case6_Pso_profile.png  used on in
 put line 103.
 (pdftex.def)             Requested size: 226.48395pt x 283.09796pt.
- [26 <./Images/../Images/PSO/Case3_Pso_profile.png> <./Images/../Images/PSO/Cas
-e6_Pso_profile.png>]
+
+[26 <./Images/../Images/PSO/Case3_Pso_profile.png> <./Images/../Images/PSO/Case
+6_Pso_profile.png>]
 <Images/../Images/PSO/Case4_Pso_profile.png, id=639, 578.16pt x 722.7pt>
 File: Images/../Images/PSO/Case4_Pso_profile.png Graphic file (type png)
 <use Images/../Images/PSO/Case4_Pso_profile.png>
@@ -1106,9 +1113,8 @@ File: Images/../Images/PSO/Case7_Pso_profile.png Graphic file (type png)
 Package pdftex.def Info: Images/../Images/PSO/Case7_Pso_profile.png  used on in
 put line 123.
 (pdftex.def)             Requested size: 226.48395pt x 283.09796pt.
-
-[27 <./Images/../Images/PSO/Case4_Pso_profile.png> <./Images/../Images/PSO/Case
-7_Pso_profile.png>]
+ [27 <./Images/../Images/PSO/Case4_Pso_profile.png> <./Images/../Images/PSO/Cas
+e7_Pso_profile.png>]
 <Images/../Images/PSO/Case1_Pso_profile.png, id=648, 578.16pt x 722.7pt>
 File: Images/../Images/PSO/Case1_Pso_profile.png Graphic file (type png)
 <use Images/../Images/PSO/Case1_Pso_profile.png>
@@ -1327,7 +1333,7 @@ Package pdftex.def Info: ../Task6/Solver/output/Sa/Case8_Sa_wireframe.png  used
 (pdftex.def)             Requested size: 144.95303pt x 144.94545pt.
  [37 <../Task6/Solver/output/Sa/Case8_Sa_convergence.png> <../Task6/Solver/outp
 ut/Sa/Case8_Sa_profile.png> <../Task6/Solver/output/Sa/Case8_Sa_wireframe.png>]
-<../Task6/Solver/output/Bfgs/Case1_Bfgs_convergence.png, id=765, 462.528pt x 34
+<../Task6/Solver/output/Bfgs/Case1_Bfgs_convergence.png, id=764, 462.528pt x 34
 6.896pt>
 File: ../Task6/Solver/output/Bfgs/Case1_Bfgs_convergence.png Graphic file (type
  png)
@@ -1335,7 +1341,7 @@ File: ../Task6/Solver/output/Bfgs/Case1_Bfgs_convergence.png Graphic file (type
 Package pdftex.def Info: ../Task6/Solver/output/Bfgs/Case1_Bfgs_convergence.png
   used on input line 534.
 (pdftex.def)             Requested size: 144.95303pt x 108.71703pt.
-<../Task6/Solver/output/Bfgs/Case1_Bfgs_profile.png, id=766, 578.16pt x 722.7pt
+<../Task6/Solver/output/Bfgs/Case1_Bfgs_profile.png, id=765, 578.16pt x 722.7pt
 >
 File: ../Task6/Solver/output/Bfgs/Case1_Bfgs_profile.png Graphic file (type png
 )
@@ -1343,7 +1349,7 @@ File: ../Task6/Solver/output/Bfgs/Case1_Bfgs_profile.png Graphic file (type png
 Package pdftex.def Info: ../Task6/Solver/output/Bfgs/Case1_Bfgs_profile.png  us
 ed on input line 539.
 (pdftex.def)             Requested size: 144.95303pt x 181.18181pt.
-<../Task6/Solver/output/Bfgs/Case1_Bfgs_wireframe.png, id=767, 578.16pt x 578.1
+<../Task6/Solver/output/Bfgs/Case1_Bfgs_wireframe.png, id=766, 578.16pt x 578.1
 6pt>
 File: ../Task6/Solver/output/Bfgs/Case1_Bfgs_wireframe.png Graphic file (type p
 ng)
@@ -1354,7 +1360,7 @@ used on input line 544.
  [38 <../Task6/Solver/output/Bfgs/Case1_Bfgs_convergence.png> <../Task6/Solver/
 output/Bfgs/Case1_Bfgs_profile.png> <../Task6/Solver/output/Bfgs/Case1_Bfgs_wir
 eframe.png>]
-<../Task6/Solver/output/Bfgs/Case2_Bfgs_convergence.png, id=777, 462.528pt x 34
+<../Task6/Solver/output/Bfgs/Case2_Bfgs_convergence.png, id=776, 462.528pt x 34
 6.896pt>
 File: ../Task6/Solver/output/Bfgs/Case2_Bfgs_convergence.png Graphic file (type
  png)
@@ -1362,7 +1368,7 @@ File: ../Task6/Solver/output/Bfgs/Case2_Bfgs_convergence.png Graphic file (type
 Package pdftex.def Info: ../Task6/Solver/output/Bfgs/Case2_Bfgs_convergence.png
   used on input line 576.
 (pdftex.def)             Requested size: 144.95303pt x 108.71703pt.
-<../Task6/Solver/output/Bfgs/Case2_Bfgs_profile.png, id=778, 578.16pt x 722.7pt
+<../Task6/Solver/output/Bfgs/Case2_Bfgs_profile.png, id=777, 578.16pt x 722.7pt
 >
 File: ../Task6/Solver/output/Bfgs/Case2_Bfgs_profile.png Graphic file (type png
 )
@@ -1370,7 +1376,7 @@ File: ../Task6/Solver/output/Bfgs/Case2_Bfgs_profile.png Graphic file (type png
 Package pdftex.def Info: ../Task6/Solver/output/Bfgs/Case2_Bfgs_profile.png  us
 ed on input line 581.
 (pdftex.def)             Requested size: 144.95303pt x 181.18181pt.
-<../Task6/Solver/output/Bfgs/Case2_Bfgs_wireframe.png, id=779, 578.16pt x 578.1
+<../Task6/Solver/output/Bfgs/Case2_Bfgs_wireframe.png, id=778, 578.16pt x 578.1
 6pt>
 File: ../Task6/Solver/output/Bfgs/Case2_Bfgs_wireframe.png Graphic file (type p
 ng)
@@ -1381,7 +1387,7 @@ used on input line 586.
  [39 <../Task6/Solver/output/Bfgs/Case2_Bfgs_convergence.png> <../Task6/Solver/
 output/Bfgs/Case2_Bfgs_profile.png> <../Task6/Solver/output/Bfgs/Case2_Bfgs_wir
 eframe.png>]
-<../Task6/Solver/output/Bfgs/Case3_Bfgs_convergence.png, id=789, 462.528pt x 34
+<../Task6/Solver/output/Bfgs/Case3_Bfgs_convergence.png, id=788, 462.528pt x 34
 6.896pt>
 File: ../Task6/Solver/output/Bfgs/Case3_Bfgs_convergence.png Graphic file (type
  png)
@@ -1389,7 +1395,7 @@ File: ../Task6/Solver/output/Bfgs/Case3_Bfgs_convergence.png Graphic file (type
 Package pdftex.def Info: ../Task6/Solver/output/Bfgs/Case3_Bfgs_convergence.png
   used on input line 618.
 (pdftex.def)             Requested size: 144.95303pt x 108.71703pt.
-<../Task6/Solver/output/Bfgs/Case3_Bfgs_profile.png, id=790, 578.16pt x 722.7pt
+<../Task6/Solver/output/Bfgs/Case3_Bfgs_profile.png, id=789, 578.16pt x 722.7pt
 >
 File: ../Task6/Solver/output/Bfgs/Case3_Bfgs_profile.png Graphic file (type png
 )
@@ -1397,7 +1403,7 @@ File: ../Task6/Solver/output/Bfgs/Case3_Bfgs_profile.png Graphic file (type png
 Package pdftex.def Info: ../Task6/Solver/output/Bfgs/Case3_Bfgs_profile.png  us
 ed on input line 623.
 (pdftex.def)             Requested size: 144.95303pt x 181.18181pt.
-<../Task6/Solver/output/Bfgs/Case3_Bfgs_wireframe.png, id=791, 578.16pt x 578.1
+<../Task6/Solver/output/Bfgs/Case3_Bfgs_wireframe.png, id=790, 578.16pt x 578.1
 6pt>
 File: ../Task6/Solver/output/Bfgs/Case3_Bfgs_wireframe.png Graphic file (type p
 ng)
@@ -1408,7 +1414,7 @@ used on input line 628.
  [40 <../Task6/Solver/output/Bfgs/Case3_Bfgs_convergence.png> <../Task6/Solver/
 output/Bfgs/Case3_Bfgs_profile.png> <../Task6/Solver/output/Bfgs/Case3_Bfgs_wir
 eframe.png>]
-<../Task6/Solver/output/Bfgs/Case4_Bfgs_convergence.png, id=801, 462.528pt x 34
+<../Task6/Solver/output/Bfgs/Case4_Bfgs_convergence.png, id=800, 462.528pt x 34
 6.896pt>
 File: ../Task6/Solver/output/Bfgs/Case4_Bfgs_convergence.png Graphic file (type
  png)
@@ -1416,7 +1422,7 @@ File: ../Task6/Solver/output/Bfgs/Case4_Bfgs_convergence.png Graphic file (type
 Package pdftex.def Info: ../Task6/Solver/output/Bfgs/Case4_Bfgs_convergence.png
   used on input line 660.
 (pdftex.def)             Requested size: 144.95303pt x 108.71703pt.
-<../Task6/Solver/output/Bfgs/Case4_Bfgs_profile.png, id=802, 578.16pt x 722.7pt
+<../Task6/Solver/output/Bfgs/Case4_Bfgs_profile.png, id=801, 578.16pt x 722.7pt
 >
 File: ../Task6/Solver/output/Bfgs/Case4_Bfgs_profile.png Graphic file (type png
 )
@@ -1424,7 +1430,7 @@ File: ../Task6/Solver/output/Bfgs/Case4_Bfgs_profile.png Graphic file (type png
 Package pdftex.def Info: ../Task6/Solver/output/Bfgs/Case4_Bfgs_profile.png  us
 ed on input line 665.
 (pdftex.def)             Requested size: 144.95303pt x 181.18181pt.
-<../Task6/Solver/output/Bfgs/Case4_Bfgs_wireframe.png, id=803, 578.16pt x 578.1
+<../Task6/Solver/output/Bfgs/Case4_Bfgs_wireframe.png, id=802, 578.16pt x 578.1
 6pt>
 File: ../Task6/Solver/output/Bfgs/Case4_Bfgs_wireframe.png Graphic file (type p
 ng)
@@ -1436,7 +1442,7 @@ used on input line 670.
 [41 <../Task6/Solver/output/Bfgs/Case4_Bfgs_convergence.png> <../Task6/Solver/o
 utput/Bfgs/Case4_Bfgs_profile.png> <../Task6/Solver/output/Bfgs/Case4_Bfgs_wire
 frame.png>]
-<../Task6/Solver/output/Bfgs/Case5_Bfgs_convergence.png, id=813, 462.528pt x 34
+<../Task6/Solver/output/Bfgs/Case5_Bfgs_convergence.png, id=812, 462.528pt x 34
 6.896pt>
 File: ../Task6/Solver/output/Bfgs/Case5_Bfgs_convergence.png Graphic file (type
  png)
@@ -1444,7 +1450,7 @@ File: ../Task6/Solver/output/Bfgs/Case5_Bfgs_convergence.png Graphic file (type
 Package pdftex.def Info: ../Task6/Solver/output/Bfgs/Case5_Bfgs_convergence.png
   used on input line 702.
 (pdftex.def)             Requested size: 144.95303pt x 108.71703pt.
-<../Task6/Solver/output/Bfgs/Case5_Bfgs_profile.png, id=814, 578.16pt x 722.7pt
+<../Task6/Solver/output/Bfgs/Case5_Bfgs_profile.png, id=813, 578.16pt x 722.7pt
 >
 File: ../Task6/Solver/output/Bfgs/Case5_Bfgs_profile.png Graphic file (type png
 )
@@ -1452,7 +1458,7 @@ File: ../Task6/Solver/output/Bfgs/Case5_Bfgs_profile.png Graphic file (type png
 Package pdftex.def Info: ../Task6/Solver/output/Bfgs/Case5_Bfgs_profile.png  us
 ed on input line 707.
 (pdftex.def)             Requested size: 144.95303pt x 181.18181pt.
-<../Task6/Solver/output/Bfgs/Case5_Bfgs_wireframe.png, id=815, 578.16pt x 578.1
+<../Task6/Solver/output/Bfgs/Case5_Bfgs_wireframe.png, id=814, 578.16pt x 578.1
 6pt>
 File: ../Task6/Solver/output/Bfgs/Case5_Bfgs_wireframe.png Graphic file (type p
 ng)
@@ -1463,7 +1469,7 @@ used on input line 712.
  [42 <../Task6/Solver/output/Bfgs/Case5_Bfgs_convergence.png> <../Task6/Solver/
 output/Bfgs/Case5_Bfgs_profile.png> <../Task6/Solver/output/Bfgs/Case5_Bfgs_wir
 eframe.png>]
-<../Task6/Solver/output/Bfgs/Case6_Bfgs_convergence.png, id=826, 462.528pt x 34
+<../Task6/Solver/output/Bfgs/Case6_Bfgs_convergence.png, id=825, 462.528pt x 34
 6.896pt>
 File: ../Task6/Solver/output/Bfgs/Case6_Bfgs_convergence.png Graphic file (type
  png)
@@ -1471,7 +1477,7 @@ File: ../Task6/Solver/output/Bfgs/Case6_Bfgs_convergence.png Graphic file (type
 Package pdftex.def Info: ../Task6/Solver/output/Bfgs/Case6_Bfgs_convergence.png
   used on input line 744.
 (pdftex.def)             Requested size: 144.95303pt x 108.71703pt.
-<../Task6/Solver/output/Bfgs/Case6_Bfgs_profile.png, id=827, 578.16pt x 722.7pt
+<../Task6/Solver/output/Bfgs/Case6_Bfgs_profile.png, id=826, 578.16pt x 722.7pt
 >
 File: ../Task6/Solver/output/Bfgs/Case6_Bfgs_profile.png Graphic file (type png
 )
@@ -1479,7 +1485,7 @@ File: ../Task6/Solver/output/Bfgs/Case6_Bfgs_profile.png Graphic file (type png
 Package pdftex.def Info: ../Task6/Solver/output/Bfgs/Case6_Bfgs_profile.png  us
 ed on input line 749.
 (pdftex.def)             Requested size: 144.95303pt x 181.18181pt.
-<../Task6/Solver/output/Bfgs/Case6_Bfgs_wireframe.png, id=828, 578.16pt x 578.1
+<../Task6/Solver/output/Bfgs/Case6_Bfgs_wireframe.png, id=827, 578.16pt x 578.1
 6pt>
 File: ../Task6/Solver/output/Bfgs/Case6_Bfgs_wireframe.png Graphic file (type p
 ng)
@@ -1490,7 +1496,7 @@ used on input line 754.
  [43 <../Task6/Solver/output/Bfgs/Case6_Bfgs_convergence.png> <../Task6/Solver/
 output/Bfgs/Case6_Bfgs_profile.png> <../Task6/Solver/output/Bfgs/Case6_Bfgs_wir
 eframe.png>]
-<../Task6/Solver/output/Bfgs/Case7_Bfgs_convergence.png, id=838, 462.528pt x 34
+<../Task6/Solver/output/Bfgs/Case7_Bfgs_convergence.png, id=837, 462.528pt x 34
 6.896pt>
 File: ../Task6/Solver/output/Bfgs/Case7_Bfgs_convergence.png Graphic file (type
  png)
@@ -1498,7 +1504,7 @@ File: ../Task6/Solver/output/Bfgs/Case7_Bfgs_convergence.png Graphic file (type
 Package pdftex.def Info: ../Task6/Solver/output/Bfgs/Case7_Bfgs_convergence.png
   used on input line 786.
 (pdftex.def)             Requested size: 144.95303pt x 108.71703pt.
-<../Task6/Solver/output/Bfgs/Case7_Bfgs_profile.png, id=839, 578.16pt x 722.7pt
+<../Task6/Solver/output/Bfgs/Case7_Bfgs_profile.png, id=838, 578.16pt x 722.7pt
 >
 File: ../Task6/Solver/output/Bfgs/Case7_Bfgs_profile.png Graphic file (type png
 )
@@ -1506,7 +1512,7 @@ File: ../Task6/Solver/output/Bfgs/Case7_Bfgs_profile.png Graphic file (type png
 Package pdftex.def Info: ../Task6/Solver/output/Bfgs/Case7_Bfgs_profile.png  us
 ed on input line 791.
 (pdftex.def)             Requested size: 144.95303pt x 181.18181pt.
-<../Task6/Solver/output/Bfgs/Case7_Bfgs_wireframe.png, id=840, 578.16pt x 578.1
+<../Task6/Solver/output/Bfgs/Case7_Bfgs_wireframe.png, id=839, 578.16pt x 578.1
 6pt>
 File: ../Task6/Solver/output/Bfgs/Case7_Bfgs_wireframe.png Graphic file (type p
 ng)
@@ -1517,7 +1523,7 @@ used on input line 796.
  [44 <../Task6/Solver/output/Bfgs/Case7_Bfgs_convergence.png> <../Task6/Solver/
 output/Bfgs/Case7_Bfgs_profile.png> <../Task6/Solver/output/Bfgs/Case7_Bfgs_wir
 eframe.png>]
-<../Task6/Solver/output/Bfgs/Case8_Bfgs_convergence.png, id=851, 462.528pt x 34
+<../Task6/Solver/output/Bfgs/Case8_Bfgs_convergence.png, id=850, 462.528pt x 34
 6.896pt>
 File: ../Task6/Solver/output/Bfgs/Case8_Bfgs_convergence.png Graphic file (type
  png)
@@ -1525,7 +1531,7 @@ File: ../Task6/Solver/output/Bfgs/Case8_Bfgs_convergence.png Graphic file (type
 Package pdftex.def Info: ../Task6/Solver/output/Bfgs/Case8_Bfgs_convergence.png
   used on input line 828.
 (pdftex.def)             Requested size: 144.95303pt x 108.71703pt.
-<../Task6/Solver/output/Bfgs/Case8_Bfgs_profile.png, id=852, 578.16pt x 722.7pt
+<../Task6/Solver/output/Bfgs/Case8_Bfgs_profile.png, id=851, 578.16pt x 722.7pt
 >
 File: ../Task6/Solver/output/Bfgs/Case8_Bfgs_profile.png Graphic file (type png
 )
@@ -1533,7 +1539,7 @@ File: ../Task6/Solver/output/Bfgs/Case8_Bfgs_profile.png Graphic file (type png
 Package pdftex.def Info: ../Task6/Solver/output/Bfgs/Case8_Bfgs_profile.png  us
 ed on input line 833.
 (pdftex.def)             Requested size: 144.95303pt x 181.18181pt.
-<../Task6/Solver/output/Bfgs/Case8_Bfgs_wireframe.png, id=853, 578.16pt x 578.1
+<../Task6/Solver/output/Bfgs/Case8_Bfgs_wireframe.png, id=852, 578.16pt x 578.1
 6pt>
 File: ../Task6/Solver/output/Bfgs/Case8_Bfgs_wireframe.png Graphic file (type p
 ng)
@@ -1666,7 +1672,7 @@ uper/sfrm0600.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0
 s/type1/public/cm-super/sfti1200.pfb><c:/texlive/2025/texmf-dist/fonts/type1/pu
 blic/cm-super/sftt0800.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-su
 per/sftt1200.pfb>
-Output written on main.pdf (110 pages, 6414094 bytes).
+Output written on main.pdf (110 pages, 6414273 bytes).
 PDF statistics:
  3600 PDF objects out of 4296 (max. 8388607)
  3257 compressed objects within 33 object streams

@@ -2,7 +2,173 @@
 
 \subsection{Particle Swarm Optimisation results}
 
-TO DO
+\subsubsection{Convergence}
+
+To better characterise the optimisation dynamics, the convergence histories are analysed in pairs. All curves exhibit the typical behaviour of PSO, with a rapid initial decay followed by a gradual stabilisation once the swarm approches a locally optimal region. However, the rate of decrease, the number of iterations required to reach the plateau, and the presence of intermittent stagnation phases vary significantly from one case to another.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../Images/PSO/Case1_Pso_convergence.png}
+        \caption{Case 1 convergence}
+        \label{fig:convpso01}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../Images/PSO/Case2_Pso_convergence.png}
+        \caption{Case 2 convergence}
+        \label{fig:convpso02}
+    \end{subfigure}
+    \caption{Convergence plots (cases 1 and 2)}
+    \label{fig:pso-convergences_12}
+\end{figure}
+
+Both cases 1 and 2 show a steep cost reduction during the first iterations, dropping several orders of magnitude within the first 20 to 40 iterations. In case 1, the convergence then continues more progressively until 150 iterations, before entering a stable regime where the cost remains essentially constant for the remainder of the run. Case 2 reaches its stabilisation region sooner, around 30 iterations, after which the curve remains flat with only minor adjustments.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../Images/PSO/Case3_Pso_convergence.png}
+        \caption{Case 3 convergence}
+        \label{fig:convpso03}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../Images/PSO/Case4_Pso_convergence.png}
+        \caption{Case 4 convergence}
+        \label{fig:convpso04}
+    \end{subfigure}
+    \caption{Convergence plots (cases 3 and 4)}
+    \label{fig:pso-convergences_34}
+\end{figure}
+
+Cases 3 and 4 exhibit a comparable qualitative trend, with an initial rapid decrease followed by a more gradual decline. Case 3 displays a long monotonic descent extending over more than 500 iterations, without the clear two‑phase behaviour observed in case 1. The cost decreases continuously by small steps until the final stabilisation around iteration 600. In contrast, case 4 stabilises earlier: after a rapid descent during the first 100 iterations, the improvement rate decreases significantly, and the plateau phase is reached around iteration 200. The remainder of the run does not introduce notable changes.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../Images/PSO/Case5_Pso_convergence.png}
+        \caption{Case 5 convergence}
+        \label{fig:convpso05}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../Images/PSO/Case6_Pso_convergence.png}
+        \caption{Case 6 convergence}
+        \label{fig:convpso06}
+    \end{subfigure}
+    \caption{Convergence plots (cases 5 and 6)}
+    \label{fig:pso-convergences_56}
+\end{figure}
+
+The curves of Cases 5 and 6 both converge toward comparatively low cost levels but do so at markedly different speeds. In case 6, within only 30 iterations, the curve reaches a plateau that persists until the end of the run, with effectively no subsequent improvements. Case 5 requires about 150 iterations before reaching a stable region, and then continues with a long flat segment for the remainder of the process.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../Images/PSO/Case7_Pso_convergence.png}
+        \caption{Case 7 convergence}
+        \label{fig:convpso07}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../Images/PSO/Case8_Pso_convergence.png}
+        \caption{Case 8 convergence}
+        \label{fig:convpso08}
+    \end{subfigure}
+    \caption{Convergence plots (cases 7 and 8)}
+    \label{fig:pso-convergences_78}
+\end{figure}
+
+Cases 7 and 8 both exhibit sharp initial reductions of several orders of magnitude, but with different refinement phases. Case 7 continues to decrease gradually until around 200 iterations, suggesting an extended exploitation period where the algorithm continues to discover marginal improvements. Conversely, Case 8 reaches its plateau almost immediately after the initial descent: within 15 iterations, the curve stabilises and remains essentially unchanged.
+
+\subsubsection{Profiles}
+
+Each shape reflects the balance between aerodynamic, structural, and volumetric constraints imposed during optimisation, leading to characteristic variations in tower height, waist radius, and global curvature. Grouping the cases by geometric similarity therefore facilitates a more meaningful comparison of the resulting cooling‑tower profiles.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../Images/PSO/Case3_Pso_profile.png}
+        \caption{Case 3 profile}
+        \label{fig:profpso03}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../Images/PSO/Case6_Pso_profile.png}
+        \caption{Case 6 profile}
+        \label{fig:profpso06}
+    \end{subfigure}
+    \caption{Convergence plots (cases 3 and 6)}
+    \label{fig:pso-convergences_36}
+\end{figure}
+
+Cases 3 and 6 represent the most vertically developed cooling‑tower shapes within the dataset. Both exhibit a pronounced waist situated around mid‑height, followed by a strong radial expansion toward the top section—typical of tall hyperbolic structures. Case 3, however, extends significantly higher, producing a much more elongated upper region. Case 6 retains the same overall logic but delivers a more compact geometry, with smoother transitions between the waist and the upper flare. In both cases, the optimisation markedly reshapes the initial guess, steepening the curvature near the waist to accommodate the required volume. Overall, the two profiles share the same hyperbolic identity, but case 3 emphasises vertical stretching, whereas case 6 achieves a more proportionate distribution of curvature.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../Images/PSO/Case4_Pso_profile.png}
+        \caption{Case 4 profile}
+        \label{fig:profpso04}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../Images/PSO/Case7_Pso_profile.png}
+        \caption{Case 7 profile}
+        \label{fig:profpso07}
+    \end{subfigure}
+    \caption{Convergence plots (cases 4 and 7)}
+    \label{fig:pso-convergences_47}
+\end{figure}
+
+Cases 4 and 7 correspond to cooling‑tower geometries with medium height and a clearly defined waist. Both exhibit the classical hourglass form, with balanced radial expansion above and below the constriction. Case 4 presents a slightly broader upper flare, giving the tower a wider top contour, whereas case 7 adopts a more uniform slope, producing a narrower appearance near the upper section. The optimisation smooths the lower curvature in both cases, reducing asymmetries present in the initial guesses. Despite these subtle differences, the two profiles remain closely aligned and belong to the same geometric family, distinguished by their moderate height and regular hyperbolic curvature.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../Images/PSO/Case1_Pso_profile.png}
+        \caption{Case 1 profile}
+        \label{fig:profpso01}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../Images/PSO/Case5_Pso_profile.png}
+        \caption{Case 5 profile}
+        \label{fig:profpso05}
+    \end{subfigure}
+    \caption{Convergence plots (cases 1 and 5)}
+    \label{fig:pso-convergences_15}
+\end{figure}
+
+The profiles of cases 1 and 5 are nearly identical, both forming a symmetric cooling‑tower shape with balanced lower and upper regions. They follow a smooth curvature: a gentle expansion from the base, a mid‑height constriction, and a moderate upper flare. The optimised shapes differ only by very minor adjustments near the waist region. This strong similarity between the two cases explains their comparable performance metrics and suggests that the associated target volumes impose a tightly constrained optimal geometry. This pair is therefore one of the most homogeneous within the dataset.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../Images/PSO/Case2_Pso_profile.png}
+        \caption{Case 2 profile}
+        \label{fig:profpso02}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../Images/PSO/Case8_Pso_profile.png}
+        \caption{Case 8 profile}
+        \label{fig:profpso08}
+    \end{subfigure}
+    \caption{Convergence plots (cases 2 and 8)}
+    \label{fig:pso-convergences_28}
+\end{figure}
+
+Cases 2 and 8 depict cooling‑tower shapes that are considerably more compact, with large waist radii producing geometries closer to slightly curved cylinders than to elongated hyperbolas. Case 8 is particularly regular, with minimal curvature variation along the height, whereas case 2 shows a slightly sharper contraction near mid‑height. In both cases, the optimisation induces only small deviations from the initial guess, suggesting that the target geometries are already well approximated prior to refinement. These two cases form a distinct family, contrasting strongly with the tall, narrow‑waist towers and illustrating a different structural regime where the volumetric constraint promotes larger mid‑height openings.
 
 \subsection{Simulated Annealing results}
 
